@@ -446,18 +446,6 @@
                     "value": "true"
                 },
                 {
-                    "key": "spring.session.yb2bacceleratorstorefront.save",
-                    "value":"async"
-                },
-                {
-                    "key": "spring.session.yb2bacceleratorstorefront.cookie.name",
-                    "value": "JSESSIONID"
-                },
-                {
-                    "key": "spring.session.yb2bacceleratorstorefront.cookie.path",
-                    "value": "/yb2bacceleratorstorefront"
-                },
-                {
                     "key": "spring.session.yacceleratorstorefront.save",
                     "value":"async"
                 },
@@ -480,12 +468,47 @@
                     "contextPath": "/medias"
                 },
                 {
-                    "name": "yb2bacceleratorstorefront",
-                    "contextPath": "/yb2bacceleratorstorefront"
-                },
-                {
                     "name": "yacceleratorstorefront",
                     "contextPath": "/yacceleratorstorefront"
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
+                }
+            ]
+        },
+        {
+            "name": "accstorefrontb2b",
+            "properties": [
+                {
+                    "key": "spring.session.enabled",
+                    "value": "true"
+                },
+                {
+                    "key": "spring.session.yb2bacceleratorstorefront.save",
+                    "value":"async"
+                },
+                {
+                    "key": "spring.session.yb2bacceleratorstorefront.cookie.name",
+                    "value": "JSESSIONID"
+                },
+                {
+                    "key": "spring.session.yb2bacceleratorstorefront.cookie.path",
+                    "value": "/"
+                },
+                {
+                    "key":"storefrontContextRoot",
+                    "value":"/"
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "yb2bacceleratorstorefront",
+                    "contextPath": ""
                 },
                 {
                     "name": "acceleratorservices",
