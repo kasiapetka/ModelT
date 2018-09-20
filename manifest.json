@@ -163,7 +163,7 @@
         },
         {
             "key": "y2ysync.home.url",
-            "value": "https://backoffice.c6rsdprp-dthy2y1-p3-public.model-t.myhybris.cloud/backoffice"
+            "value": "https://backoffice.c6rsdprp-dthy2y1-p3-public.model-t.myhybris.cloud:80/backoffice"
         },
         {
             "key": "datahub.backoffice.rest.client.username",
