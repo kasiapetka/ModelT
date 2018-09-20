@@ -163,7 +163,7 @@
         },
         {
             "key": "y2ysync.home.url",
-            "value": "https://backoffice:8088"
+            "value": "https://backoffice:8088/backoffice"
         },
         {
             "key": "datahub.backoffice.rest.client.username",
