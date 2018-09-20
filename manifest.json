@@ -399,6 +399,14 @@
         {
             "key": "keygen.businessAgreement.sap_businessAgreement_id.start",
             "value": "000003010000"
+        },
+        {
+            "key":"website.electronics.http",
+            "value":"http://accstorefront.cebz-apjcrmsub2-p1-public.model-t.myhybris.cloud/yacceleratorstorefront"
+        },        
+        {
+            "key":"website.electronics.https",
+            "value":"https://accstorefront.cebz-apjcrmsub2-p1-public.model-t.myhybris.cloud/yacceleratorstorefront"
         }
     ],
     "aspects": [
