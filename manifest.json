@@ -150,10 +150,6 @@
      	      "value":"/hac"
     	  },
         {
-     	      "key":"y2ysync.webroot",
-     	      "value":"/y2ysync"
-        },
-        {
             "key":"persistence.legacy.mode",
             "value":"false"
         },
@@ -210,10 +206,6 @@
                 {
                     "name": "oauth2",
                     "contextPath": "/authorizationserver"
-                },
-                {
-                    "name": "y2ysync",
-                    "contextPath": "/y2ysync"
                 }
             ]
         },
