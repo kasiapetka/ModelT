@@ -149,7 +149,7 @@
      	      "key":"hac.webroot",
      	      "value":"/hac"
     	  },
-        
+        {
      	      "key":"y2ysync.webroot",
      	      "value":"/y2ysync"
         },
