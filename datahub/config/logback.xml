@@ -26,6 +26,7 @@
   <logger name="io.netty.handler.logging.LoggingHandler" level="warn" />
   <logger name="com.hybris.datahub.service.publication.impl.DeletePublicationRetryEventListener" level="WARN" />
   <logger name="com.hybris.charon" level="ERROR" />
+  <logger name="org.springframework.jdbc.core" level="TRACE" />
 
   <logger name="com.hybris.datahub.modelt" level="DEBUG" />
 
