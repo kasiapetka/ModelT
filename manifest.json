@@ -207,6 +207,10 @@
                 {
                     "name": "oauth2",
                     "contextPath": "/authorizationserver"
+                },
+                {
+                    "name": "y2ysync",
+                    "contextPath": "/y2ysync"
                 }
             ]
         },
