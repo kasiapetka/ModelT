@@ -13,7 +13,7 @@ public class CustomDataHubRequestCreator extends DataHubRequestCreator
 	String getY2YSyncWebRoot()
 	{
 		final String homeUrl = Config.getString("y2ysync.home.url", "http://localhost:9001");
-		final String webRoot = "/backoffice";
+		final String webRoot = "/y2ysync";
 
 		LOG.info("homeUrl = " + homeUrl);
 		LOG.info("y2ysyncwebroot = " + homeUrl + webRoot);
