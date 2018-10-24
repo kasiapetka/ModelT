@@ -28,5 +28,9 @@
 		<property name="processingDelay" value="${idocLoader.processingDelay}"/>
 	</bean>
 
-	
+	<alias name="customSSLValidationService" alias="sslValidationService"/>
+	<bean id="customSSLValidationService" class="com.hybris.datahub.custom.CustomSSLValidationService">
+		<property name="httpsEnabled" value="${datahub.security.https.enabled}"/>
+		<property name="datahubServerUrl" value="${datahub.server.url}" />
+	</bean>	
  </beans>
