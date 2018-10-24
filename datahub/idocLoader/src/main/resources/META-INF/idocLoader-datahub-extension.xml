@@ -13,10 +13,10 @@
 <extension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.hybris.com/schema/"
            xsi:schemaLocation="http://www.hybris.com/schema/ http://www.hybris.com/schema/datahub-metadata-schema-1.2.0.xsd"
 		   name="idocLoader">
-	<dependencies>
+	<!--<dependencies>
 		<dependency>
   			<extension xmlns="http://www.hybris.com/schema/">sapidocintegration</extension> 
 		</dependency>
-	</dependencies>
+	</dependencies>-->
 </extension>
 
