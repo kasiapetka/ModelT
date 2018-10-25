@@ -22,6 +22,7 @@
 					       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:property-placeholder location="classpath:/META-INF/idocLoader.properties" ignore-unresolvable="true" />
+	<context:annotation-config />
 
 	<bean id="idocload" class="com.hybris.datahub.custom.IDocLoad">
 		<property name="idocChannel" ref="idocXmlInboundChannel" />
