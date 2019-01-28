@@ -146,6 +146,18 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+		<itemtype code="TestType4"
+				  jaloclass="com.sap.productsupport.jalo.TestType4"
+				  extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="TestType4" typecode="2044" />
+			<attributes>
+				<attribute qualifier="testAttr" type="java.lang.String">
+					<modifiers initial="true" write="true" read="true"
+							   optional="false" unique="false" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
         </typegroup>
 
     </itemtypes>
