@@ -122,7 +122,7 @@
 				</attribute>
 			</attributes>
 		</itemtype>
-		<itemtype code="TestType2"
+		<!--<itemtype code="TestType2"
 				  jaloclass="com.sap.productsupport.jalo.TestType2"
 				  extends="GenericItem" autocreate="true" generate="true">
 			<deployment table="TestType2" typecode="2042" />
@@ -157,7 +157,7 @@
 					<persistence type="property" />
 				</attribute>
 			</attributes>
-		</itemtype>
+		</itemtype>-->
         </typegroup>
 
     </itemtypes>
