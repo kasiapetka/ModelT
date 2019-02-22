@@ -120,9 +120,14 @@
 							   optional="false" unique="false" />
 					<persistence type="property" />
 				</attribute>
+				<attribute qualifier="testAttr2" type="java.lang.String">
+					<modifiers initial="true" write="true" read="true"
+							   optional="false" unique="false" />
+					<persistence type="property" />
+				</attribute>
 			</attributes>
 		</itemtype>
-		<!--<itemtype code="TestType2"
+		<itemtype code="TestType2"
 				  jaloclass="com.sap.productsupport.jalo.TestType2"
 				  extends="GenericItem" autocreate="true" generate="true">
 			<deployment table="TestType2" typecode="2042" />
@@ -134,7 +139,7 @@
 				</attribute>
 			</attributes>
 		</itemtype>
-		<itemtype code="TestType3"
+		<!--<itemtype code="TestType3"
 				  jaloclass="com.sap.productsupport.jalo.TestType3"
 				  extends="GenericItem" autocreate="true" generate="true">
 			<deployment table="TestType3" typecode="2043" />
