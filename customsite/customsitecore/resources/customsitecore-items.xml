@@ -32,6 +32,12 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+        <enumtype code="ConsignmentEntryStatus">
+            <value code="CREATED"/>
+            <value code="PREPARED"/>
+            <value code="OUT_OF_STOCK"/>
+            <value code="CANCELLED"/>
+        </enumtype>
     </enumtypes>
 
     <itemtypes>
@@ -139,6 +145,18 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+		    <itemtype code="ConsignmentEntry" autocreate="false" generate="false">
+			<attributes>
+			    <attribute qualifier="code" type="java.lang.String">
+				<modifiers read="true" write="true" />
+				<persistence type="property" />
+			    </attribute>
+			    <attribute qualifier="status" type="ConsignmentEntryStatus">
+				<persistence type="property"/>
+				<defaultvalue>em().getEnumerationValue("ConsignmentEntryStatus","CREATED")</defaultvalue>
+			    </attribute>
+			</attributes>
+		    </itemtype>
 		<!--<itemtype code="TestType3"
 				  jaloclass="com.sap.productsupport.jalo.TestType3"
 				  extends="GenericItem" autocreate="true" generate="true">
