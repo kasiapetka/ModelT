@@ -223,16 +223,12 @@
                 {
                     "key": "processengine.process.canjoinpreviousnode.default",
                     "value": "true"
-                },
-                {
-     	              "key":"hac.webroot",
-     	              "value":"/"
-    	          }
+                }
             ],
             "webapps": [
                 {
                     "name": "hac",
-                    "contextPath": ""
+                    "contextPath": "/hac"
                 },
                 {
                     "name": "mediaweb",
