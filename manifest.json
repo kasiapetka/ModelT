@@ -1,5 +1,5 @@
 {
-   "commerceSuiteVersion": "1808",
+   "commerceSuiteVersion": "1811.3",
    "troubleshootingModeEnabled": true,
    "extensions": [
    	   "mcc",
@@ -165,7 +165,7 @@
                 },
                 {
                     "name": "backoffice",
-                    "contextPath": "/backoffice"
+                    "contextPath": ""
                 },
                 {
                     "name": "cmscockpit",
@@ -228,7 +228,7 @@
             "webapps": [
                 {
                     "name": "hac",
-                    "contextPath": "/hac"
+                    "contextPath": ""
                 },
                 {
                     "name": "mediaweb",
