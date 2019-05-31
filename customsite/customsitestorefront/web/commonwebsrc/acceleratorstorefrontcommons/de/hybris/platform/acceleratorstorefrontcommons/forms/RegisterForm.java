@@ -22,9 +22,8 @@ public class RegisterForm
 	private String email;
 	private String pwd;
 	private String checkPwd;
-	private String captcha;
-	private String mobileNumber;
 	private ConsentForm consentForm;
+	private boolean termsCheck;
 
 	/**
 	 * @return the titleCode
@@ -128,26 +127,6 @@ public class RegisterForm
 		this.checkPwd = checkPwd;
 	}
 
-	public String getCaptcha()
-	{
-		return captcha;
-	}
-
-	public void setCaptcha(final String captcha)
-	{
-		this.captcha = captcha;
-	}
-
-	public String getMobileNumber()
-	{
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(final String mobileNumber)
-	{
-		this.mobileNumber = mobileNumber;
-	}
-
 	public ConsentForm getConsentForm()
 	{
 		return consentForm;
@@ -156,5 +135,15 @@ public class RegisterForm
 	public void setConsentForm(final ConsentForm consentForm)
 	{
 		this.consentForm = consentForm;
+	}
+
+	public boolean isTermsCheck()
+	{
+		return termsCheck;
+	}
+
+	public void setTermsCheck(final boolean termsCheck)
+	{
+		this.termsCheck = termsCheck;
 	}
 }

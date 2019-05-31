@@ -27,7 +27,7 @@
     </bean>
 
     <bean id="markQuoteToExpireSoonEmailAsSent"
-          class="org.customsite.core.actions.quote.MarkQuoteNotificationAsSentAction"
+          class="org.core.actions.quote.MarkQuoteNotificationAsSentAction"
           parent="markQuoteNotificationAsSent">
         <property name="quoteNotificationType">
             <util:constant

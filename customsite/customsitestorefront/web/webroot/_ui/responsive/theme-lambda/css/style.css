@@ -257,7 +257,9 @@ th {
   src: url('../fonts/glyphicons-halflings-regular.eot');
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-.glyphicon {
+.glyphicon,
+.product__listing.product__list .product__list--item.tag-highlighted:after,
+.product__listing.product__grid .product-item.tag-highlighted:after {
   position: relative;
   top: 1px;
   display: inline-block;
@@ -7827,7 +7829,7 @@ a.ui-button:active,
   position: relative;
   top: 1px;
   display: inline-block;
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -7838,7 +7840,7 @@ a.ui-button:active,
 .ui-datepicker .ui-datepicker-next {
   color: #0068b3;
   cursor: pointer;
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   -webkit-font-smoothing: antialiased;
   font-style: normal;
   font-weight: normal;
@@ -8327,7 +8329,6 @@ output {
   }
 }
 footer {
-  padding-top: 50px;
   margin-top: 30px;
   background: #142939;
   color: #ffffff;
@@ -8335,6 +8336,7 @@ footer {
 }
 .footer__top {
   padding-bottom: 50px;
+  padding-top: 50px;
 }
 @media (max-width: 1024px) {
   .footer__top {
@@ -9325,7 +9327,7 @@ ul.nav__links::after {
     position: relative;
     top: 1px;
     display: inline-block;
-    font-family: 'Glyphicons Halflings';
+    font-family: 'Glyphicons Halflings', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -9614,7 +9616,7 @@ ul.nav__links::after {
   position: relative;
   top: 23%;
   display: inline;
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -9780,7 +9782,7 @@ header {
   font-weight: bold;
 }
 #consent-management-alert .consent-management-list__title:before {
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   content: '\e114';
   font-size: 16px;
   position: absolute;
@@ -9930,7 +9932,7 @@ header {
   top: 9px;
   left: 20px;
   display: inline-block;
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -11822,6 +11824,21 @@ a.product__listing .product__listing--promo:focus {
     display: inline-block;
     float: left;
   }
+  .product__listing .addtocart .pickup-in-store-available .ProductGridComponent-ListAddToCartAction {
+    position: relative;
+    right: 1%;
+    float: right;
+  }
+  .product__listing .addtocart .pickup-in-store-available .ProductGridComponent-ListPickUpInStoreAction {
+    position: relative;
+    left: 1%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1400px) {
+  .product__listing .addtocart .pickup-in-store-available .ProductGridComponent-ListAddToCartAction,
+  .product__listing .addtocart .pickup-in-store-available .ProductGridComponent-ListPickUpInStoreAction {
+    width: calc(49% - 4px);
+  }
 }
 @media (min-width: 1024px) and (max-width: 1399px) {
   .product__listing .addtocart .pickup-in-store-available {
@@ -11836,6 +11853,35 @@ a.product__listing .product__listing--promo:focus {
     padding: 0 3.33333333px;
   }
 }
+.product__listing.product__list .product__list--item.tag-highlighted,
+.product__listing.product__grid .product-item.tag-highlighted {
+  position: relative;
+}
+.product__listing.product__list .product__list--item.tag-highlighted:before,
+.product__listing.product__grid .product-item.tag-highlighted:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  border: 2px solid #0068b3;
+  top: 14px;
+  left: 12px;
+  right: 12px;
+  bottom: 14px;
+}
+.product__listing.product__list .product__list--item.tag-highlighted:after,
+.product__listing.product__grid .product-item.tag-highlighted:after {
+  content: "\e006";
+  top: 18px;
+  left: 16px;
+  color: #0068b3;
+  width: 24px;
+  line-height: 22px;
+  height: 24px;
+  font-size: 18px;
+  padding: 0;
+  text-align: center;
+  position: absolute;
+}
 .product__listing.product__list .product__list--item {
   padding: 20px 30px;
   border-top: 1px solid #d9d9d9;
@@ -11848,6 +11894,27 @@ a.product__listing .product__listing--promo:focus {
     padding-left: 20px;
     padding-right: 20px;
   }
+}
+.product__listing.product__list .product__list--item.tag-highlighted:before {
+  left: 0;
+  right: 0;
+  top: 1px;
+  bottom: 0;
+}
+.product__listing.product__list .product__list--item.tag-highlighted:after {
+  font-size: 16px;
+  top: 8px;
+  left: 7px;
+}
+.product__listing.product__list .product__list--item.tag-highlighted:first-child:before {
+  top: 0;
+}
+.product__listing.product__list .product__list--item.tag-highlighted:nth-of-type(2n) {
+  background: transparent;
+}
+.product__listing.product__list .product__list--item.tag-highlighted:nth-of-type(2n):before {
+  top: 1px;
+  background-color: #f4f4f4;
 }
 .product__listing.product__list .product__list--thumb {
   float: left;
@@ -11969,6 +12036,9 @@ a.product__listing .product__listing--promo:focus {
 }
 .product__listing.product__grid .product-item:first-child {
   margin-left: -1px;
+}
+.product__listing.product__grid .product-item.tag-highlighted {
+  position: relative;
 }
 .product__listing.product__grid .thumb {
   display: block;
@@ -13308,12 +13378,12 @@ textarea.quote__comments--textarea {
 }
 .quote__comments--toggle.collapsed:after,
 .quote__form--toggle.collapsed:after {
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   content: "\e114";
 }
 .quote__comments--toggle:after,
 .quote__form--toggle:after {
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   content: "\e113";
   position: relative;
   top: 2px;
@@ -16069,7 +16139,7 @@ a.price ins:focus {
   font-weight: bold;
 }
 .account-section .account-section-content .consent-management-list__title:before {
-  font-family: 'Glyphicons Halflings';
+  font-family: 'Glyphicons Halflings', sans-serif;
   content: '\e114';
   font-size: 16px;
   position: absolute;
@@ -18514,132 +18584,4 @@ select[multiple].input-sm {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-}
-#textFieldConfigurationForm,
-.textFieldConfigurationForm {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-@media (max-width: 1024px) {
-  #textFieldConfigurationForm,
-  .textFieldConfigurationForm {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-.product__config {
-  margin-bottom: 25px;
-}
-.product__config .product__config-row {
-  margin-bottom: 10px;
-}
-.cts-msg-history {
-  margin-top: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-@media (max-width: 1024px) {
-  .cts-msg-history {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-.cts-msg-history-item {
-  margin-top: 20px;
-  display: none;
-}
-.cts-msg-history-item-info {
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 0 20px;
-}
-@media (max-width: 639px) {
-  .cts-msg-history-item-info {
-    padding: 0;
-  }
-}
-.cts-msg-history-item-info .author {
-  font-weight: bold;
-}
-.cts-msg-history-item .well {
-  border-radius: 3px;
-  border: 1px solid #e5e5e5;
-}
-.cts-msg-history-item .well.well-tertiary {
-  border: 1px solid #142939;
-  opacity: .5;
-}
-.cts-msg-history-item .well.well-closed {
-  background-color: #a1eeae;
-}
-.cts-msg-history-item .well.well-reopen {
-  background-color: #a3e2ff;
-}
-@media (max-width: 639px) {
-  .cts-msg-history-item .well {
-    border-radius: 0;
-    border-left: 0;
-    border-right: 0;
-    margin-left: -20px;
-    margin-right: -20px;
-  }
-}
-.cts-msg-history-item-msg {
-  font-size: 16px;
-}
-.cts-msg-history-item.ct-msg-visible {
-  display: block;
-}
-.cts-msg-history-item-agent .well,
-.cts-msg-history-item-agent .cts-msg-history-item-info {
-  text-align: initial;
-}
-.cts-msg-history #ct-toggle-all-messages {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-}
-.cts-msg-history-item-modified-field {
-  margin-left: 5px;
-}
-.cts-msg-history-item-modified-field:before {
-  content: "|";
-  position: relative;
-  left: -3px;
-  top: -2px;
-  color: #929292;
-}
-.cts-msg-history-item-modified-field--status {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.cts-msg-history-item-modified-field--status-inprocess,
-.cts-msg-history-item-modified-field--status-open,
-.cts-msg-history-item-modified-field--status-reopen {
-  color: #0486e0;
-}
-.cts-msg-history-item-modified-field--status-completed,
-.cts-msg-history-item-modified-field--status-closed {
-  color: #18bc33;
-}
-#supportTicketForm textarea.form-control {
-  height: 240px;
-}
-.cts-attach-list {
-  padding-left: 0;
-  list-style: none;
-  border-top: 1px solid #e5e5e5;
-  margin: 20px -20px 0;
-  padding: 10px 20px 0;
-  font-size: 16px;
-}
-.cts-attach-file {
-  padding: 3px 0;
-}
-.cts-attach-file .glyphicon {
-  color: #003c66;
-  font-size: 1.125em;
-  margin-right: 3px;
-  top: 4px;
 }

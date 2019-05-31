@@ -19,24 +19,24 @@
            
     <context:annotation-config/> 
 
-	<bean id="test.checkOrderAction" class="org.customsite.fulfilmentprocess.test.actions.CheckOrder"  parent="abstractAction"/>
-	<bean id="test.cancelWholeOrderAuthorizationAction" class="org.customsite.fulfilmentprocess.test.actions.CancelWholeOrderAuthorization"  parent="abstractAction"/>
-	<bean id="test.sendOrderPlacedNotificationAction" class="org.customsite.fulfilmentprocess.test.actions.SendOrderPlacedNotification"  parent="abstractAction"/>
-	<bean id="test.takePaymentAction" class="org.customsite.fulfilmentprocess.test.actions.TakePayment"  parent="abstractAction"/>
-	<bean id="test.sendPaymentFailedNotificationAction" class="org.customsite.fulfilmentprocess.test.actions.SendPaymentFailedNotification"  parent="abstractAction"/>
-	<bean id="test.checkTransactionReviewStatusAction" class="org.customsite.fulfilmentprocess.test.actions.CheckTransactionReviewStatus"  parent="abstractAction"/>
-	<bean id="test.fraudCheckOrderAction" class="org.customsite.fulfilmentprocess.test.actions.FraudCheckOrder"  parent="abstractAction"/>
-	<bean id="test.prepareOrderForManualCheckAction" class="org.customsite.fulfilmentprocess.test.actions.PrepareOrderForManualCheck"  parent="abstractAction"/>
-	<bean id="test.sendFraudErrorNotificationAction" class="org.customsite.fulfilmentprocess.test.actions.SendFraudErrorNotification"  parent="abstractAction"/>
-	<bean id="test.checkAuthorizeOrderPaymentAction" class="org.customsite.fulfilmentprocess.test.actions.CheckAuthorizeOrderPayment"  parent="abstractAction"/>
-	<bean id="test.sendAuthorizationFailedNotificationAction" class="org.customsite.fulfilmentprocess.test.actions.SendAuthorizationFailedNotification"  parent="abstractAction"/>
-	<bean id="test.reserveOrderAmountAction" class="org.customsite.fulfilmentprocess.test.actions.ReserveOrderAmount"  parent="abstractAction"/>
-	<bean id="test.fraudCheckOrderInternalAction" class="org.customsite.fulfilmentprocess.test.actions.FraudCheckOrderInternal"  parent="abstractAction"/>
-	<bean id="test.orderManualCheckedAction" class="org.customsite.fulfilmentprocess.test.actions.OrderManualChecked"  parent="abstractAction"/>
-	<bean id="test.splitOrderAction" class="org.customsite.fulfilmentprocess.test.actions.SplitOrder"  parent="abstractAction"/>
-	<bean id="test.subprocessesCompletedAction" class="org.customsite.fulfilmentprocess.test.actions.SubprocessesCompleted"  parent="abstractAction"/>
-	<bean id="test.sendOrderCompletedNotificationAction" class="org.customsite.fulfilmentprocess.test.actions.SendOrderCompletedNotification"  parent="abstractAction"/>
-	<bean id="test.scheduleForCleanUpAction" class="org.customsite.fulfilmentprocess.test.actions.ScheduleForCleanUp"  parent="abstractAction"/>
-	<bean id="test.notifyCustomerAboutFraudAction" class="org.customsite.fulfilmentprocess.test.actions.NotifyCustomerAboutFraud"  parent="abstractAction"/>
+	<bean id="test.checkOrderAction" class="org.fulfilmentprocess.test.actions.CheckOrder"  parent="abstractAction"/>
+	<bean id="test.cancelWholeOrderAuthorizationAction" class="org.fulfilmentprocess.test.actions.CancelWholeOrderAuthorization"  parent="abstractAction"/>
+	<bean id="test.sendOrderPlacedNotificationAction" class="org.fulfilmentprocess.test.actions.SendOrderPlacedNotification"  parent="abstractAction"/>
+	<bean id="test.takePaymentAction" class="org.fulfilmentprocess.test.actions.TakePayment"  parent="abstractAction"/>
+	<bean id="test.sendPaymentFailedNotificationAction" class="org.fulfilmentprocess.test.actions.SendPaymentFailedNotification"  parent="abstractAction"/>
+	<bean id="test.checkTransactionReviewStatusAction" class="org.fulfilmentprocess.test.actions.CheckTransactionReviewStatus"  parent="abstractAction"/>
+	<bean id="test.fraudCheckOrderAction" class="org.fulfilmentprocess.test.actions.FraudCheckOrder"  parent="abstractAction"/>
+	<bean id="test.prepareOrderForManualCheckAction" class="org.fulfilmentprocess.test.actions.PrepareOrderForManualCheck"  parent="abstractAction"/>
+	<bean id="test.sendFraudErrorNotificationAction" class="org.fulfilmentprocess.test.actions.SendFraudErrorNotification"  parent="abstractAction"/>
+	<bean id="test.checkAuthorizeOrderPaymentAction" class="org.fulfilmentprocess.test.actions.CheckAuthorizeOrderPayment"  parent="abstractAction"/>
+	<bean id="test.sendAuthorizationFailedNotificationAction" class="org.fulfilmentprocess.test.actions.SendAuthorizationFailedNotification"  parent="abstractAction"/>
+	<bean id="test.reserveOrderAmountAction" class="org.fulfilmentprocess.test.actions.ReserveOrderAmount"  parent="abstractAction"/>
+	<bean id="test.fraudCheckOrderInternalAction" class="org.fulfilmentprocess.test.actions.FraudCheckOrderInternal"  parent="abstractAction"/>
+	<bean id="test.orderManualCheckedAction" class="org.fulfilmentprocess.test.actions.OrderManualChecked"  parent="abstractAction"/>
+	<bean id="test.splitOrderAction" class="org.fulfilmentprocess.test.actions.SplitOrder"  parent="abstractAction"/>
+	<bean id="test.subprocessesCompletedAction" class="org.fulfilmentprocess.test.actions.SubprocessesCompleted"  parent="abstractAction"/>
+	<bean id="test.sendOrderCompletedNotificationAction" class="org.fulfilmentprocess.test.actions.SendOrderCompletedNotification"  parent="abstractAction"/>
+	<bean id="test.scheduleForCleanUpAction" class="org.fulfilmentprocess.test.actions.ScheduleForCleanUp"  parent="abstractAction"/>
+	<bean id="test.notifyCustomerAboutFraudAction" class="org.fulfilmentprocess.test.actions.NotifyCustomerAboutFraud"  parent="abstractAction"/>
 
 </beans>

@@ -23,8 +23,8 @@
 	<c:if test="${not empty product.baseOptions[0].selected.variantOptionQualifiers}">
 		<c:forEach var="variant" items="${product.baseOptions[0].selected.variantOptionQualifiers}" varStatus="productcartVariantsNumber">
 			<c:if test="${not empty variant.value}">
-			<c:set var="variantValueJSON"><spring:theme code="basket.pickup.product.variant" arguments="${variant.name},${variant.value}"/></c:set>
-			"${ycommerce:encodeJSON(variant.name)}":"${ycommerce:encodeJSON(variantValueJSON)}"<c:if test="${!productcartVariantsNumber.last}">,</c:if>
+			<c:set var="variantValue"><spring:theme code="basket.pickup.product.variant" arguments="${variant.name},${variant.value}" htmlEscape="false"/></c:set>
+			"${ycommerce:encodeJSON(variant.name)}":"${ycommerce:encodeJSON(variantValue)}"<c:if test="${!productcartVariantsNumber.last}">,</c:if>
 			</c:if>
 		</c:forEach>
 	</c:if>
@@ -34,19 +34,17 @@
 <ycommerce:testId code="pickupInStoreButton">
 	<c:choose>
 		<c:when test="${cartPage}">
-
-
 			<a href="javascript:void(0)"
 			   class="btn btn-default btn-block js-pickup-in-store-button"
-			   id="product_${fn:escapeXml(product.code)}${entryNumber}" disabled="disabled"
+			   id="product_${fn:escapeXml(product.code)}${fn:escapeXml(entryNumber)}" disabled="disabled"
 			   data-productcart='${fn:escapeXml(product.price.formattedValue)}'
 			   data-productcart-variants='${fn:escapeXml(variantsJSON)}'
-			   data-img="${fn:escapeXml(productPrimaryImageHtml) }"
-			   data-productname="${fn:escapeXml(product.name)}"
-			   data-cartpage="${cartPage}"
-			   data-entryNumber="${entryNumber}"
-			   data-actionurl="${pickUpInStoreFormAction}"
-			   data-value="${quantity}">
+			   data-img-html="${fn:escapeXml(productPrimaryImageHtml) }"
+			   data-productname-html="${fn:escapeXml(ycommerce:sanitizeHTML(product.name))}"
+			   data-cartpage="${fn:escapeXml(cartPage)}"
+			   data-entryNumber="${fn:escapeXml(entryNumber)}"
+			   data-actionurl="${fn:escapeXml(pickUpInStoreFormAction)}"
+			   data-value="${fn:escapeXml(quantity)}">
 				<c:choose>
 					<c:when test="${not empty deliveryPointOfService}">
 						<spring:theme code="basket.page.shipping.change.store"/>
@@ -58,19 +56,17 @@
 			</a>
 		</c:when>
 		<c:when test="${searchResultsPage}">
-			<button class="btn btn-default btn-block js-pickup-in-store-button glyphicon glyphicon-map-marker" disabled="disabled" id="product_${fn:escapeXml(product.code)}${entryNumber}" type="button submit"
-
+			<button class="btn btn-default btn-block js-pickup-in-store-button glyphicon glyphicon-map-marker" disabled="disabled" id="product_${fn:escapeXml(product.code)}${fn:escapeXml(entryNumber)}" type="button submit"
 			data-productcart='${fn:escapeXml(product.price.formattedValue)}'
 			data-productcart-variants='${fn:escapeXml(variantsJSON)}'
-			data-img='<product:productPrimaryImage product="${product}" format="thumbnail"/>' data-productname="${fn:escapeXml(product.name)}" data-cartpage="false" data-entryNumber="0" data-actionurl="${pickUpInStoreFormAction}" data-value="1">
-
+			data-img-html="${fn:escapeXml(productPrimaryImageHtml)}" data-productname-html="${fn:escapeXml(ycommerce:sanitizeHTML(product.name))}" data-cartpage="false" data-entryNumber="0" data-actionurl="${fn:escapeXml(pickUpInStoreFormAction)}" data-value="1">
 			</button>
 		</c:when>
 		<c:otherwise>
-			<button class="btn btn-default btn-block js-pickup-in-store-button glyphicon-map-marker btn-icon" disabled="disabled" id="product_${fn:escapeXml(product.code)}${entryNumber}" type="submit" data-productavailable="${product.availableForPickup}"
+			<button class="btn btn-default btn-block js-pickup-in-store-button glyphicon-map-marker btn-icon" disabled="disabled" id="product_${fn:escapeXml(product.code)}${fn:escapeXml(entryNumber)}" type="submit" data-productavailable="${fn:escapeXml(product.availableForPickup)}"
 				data-productcart='${fn:escapeXml(product.price.formattedValue)}'
 				data-productcart-variants='${fn:escapeXml(variantsJSON)}'
-				data-img="${fn:escapeXml(productPrimaryImageHtml) }" data-productname="${fn:escapeXml(product.name)}" data-cartpage="false" data-entryNumber="0" data-actionurl="${pickUpInStoreFormAction}" data-value="1">
+				data-img-html="${fn:escapeXml(productPrimaryImageHtml)}" data-productname-html="${fn:escapeXml(ycommerce:sanitizeHTML(product.name))}" data-cartpage="false" data-entryNumber="0" data-actionurl="${fn:escapeXml(pickUpInStoreFormAction)}" data-value="1">
 				<spring:theme code="pickup.in.store"/>
 			</button>
 		</c:otherwise>

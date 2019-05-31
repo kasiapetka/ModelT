@@ -3,6 +3,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 
+				
+				
+				
+				
 	<classpathentry exported="true" kind="src" path="/customsitefacades" />
 	<classpathentry exported="true" kind="src" path="/electronicsstore" />
 	<classpathentry exported="true" kind="src" path="/apparelstore" />

@@ -32,10 +32,10 @@ public final class MetaSanitizerUtil
 	}
 
 	/**
-	 * Takes a List of keyword Strings and returns a comma separated list of keywords as String.
+	 * Takes a Collection of keyword Strings and returns a comma separated list of keywords as String.
 	 *
 	 * @param keywords
-	 *           List of KeywordModel objects
+	 *           Collection of keyword Strings
 	 * @return String of comma separated keywords
 	 */
 	public static String sanitizeKeywords(final Collection<String> keywords)

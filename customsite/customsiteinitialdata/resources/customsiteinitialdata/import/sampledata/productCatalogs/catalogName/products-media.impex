@@ -24,7 +24,7 @@ $others=others(code, $catalogVersion)
 $data_sheet=data_sheet(code, $catalogVersion)
 $medias=medias(code, $catalogVersion)
 $galleryImages=galleryImages(qualifier, $catalogVersion)
-$siteResource=jar:org.customsite.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/productCatalogs/$productCatalog
+$siteResource=jar:org.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/productCatalogs/$productCatalog
 
 # Create Media
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$media;mime[default='image/jpeg'];$catalogVersion;folder(qualifier)

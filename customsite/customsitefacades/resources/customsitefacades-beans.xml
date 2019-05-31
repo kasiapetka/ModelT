@@ -12,10 +12,10 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
 
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="genders" type="java.util.List&lt;org.customsite.facades.product.data.GenderData>"/>
+		<property name="genders" type="java.util.List&lt;org.facades.product.data.GenderData>"/>
 	</bean>
 
-	<bean class="org.customsite.facades.product.data.GenderData">
+	<bean class="org.facades.product.data.GenderData">
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>

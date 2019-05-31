@@ -11,7 +11,7 @@
 
 	<tag>
 		<name>testId</name>
-		<tag-class>org.customsite.storefront.tags.TestIdTag</tag-class>
+		<tag-class>org.storefront.tags.TestIdTag</tag-class>
 		<body-content>scriptless</body-content>
 		<info>Render a text id wrapper</info>
 		<attribute>
@@ -203,7 +203,16 @@
 		<function-class>de.hybris.platform.acceleratorstorefrontcommons.tags.HTMLSanitizer</function-class>
 		<function-signature>java.lang.String sanitizeHTML(java.lang.String)</function-signature>
 	</function>
-	
+
+	<function>
+		<description>
+			Sanitizes the provided html tag name. If invalid, returns div by default
+		</description>
+		<name>sanitizeHtmlTagName</name>
+		<function-class>de.hybris.platform.acceleratorstorefrontcommons.tags.Functions</function-class>
+		<function-signature>java.lang.String sanitizeHtmlTagName(java.lang.String)</function-signature>
+	</function>
+
 	<function>
 		<description>
 			Helper class used for efficient encoding of JSON String values using Jackson JsonStringEncoder.

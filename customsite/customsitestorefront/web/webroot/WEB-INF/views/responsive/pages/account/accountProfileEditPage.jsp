@@ -7,6 +7,8 @@
 <%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 
+<spring:htmlEscape defaultHtmlEscape="true" />
+
 <div class="account-section-header">
     <div class="row">
         <div class="container-lg col-md-6">

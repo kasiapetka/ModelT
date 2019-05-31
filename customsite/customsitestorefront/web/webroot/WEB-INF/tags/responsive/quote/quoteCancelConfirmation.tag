@@ -14,8 +14,8 @@
 
 <div style="display:none">
 	<spring:theme code="text.quote.cancel.confirmation.modal.title" arguments="${quoteData.code}"
-				  var="cancelConfirmationModalTitle"/>
-	<div id="js-quote-cancel-modal" data-cancel-confirmation-modal-title="${cancelConfirmationModalTitle}">
+				  var="cancelConfirmationModalTitleHtml"/>
+	<div id="js-quote-cancel-modal" data-cancel-confirmation-modal-title="${cancelConfirmationModalTitleHtml}">
 		<div class="modal__top">
             <label class="modal__top--label">
                 <spring:theme code="text.quote.name.label"/>

@@ -19,7 +19,7 @@
 </c:set>
 <c:if test="${empty cartData.quoteData}">
 <div class="form-group js-voucher-respond ${containerClass}">
-    <spring:theme code="text.voucher.apply.input.placeholder" var="voucherInputPlaceholder"/>
+    <spring:theme code="text.voucher.apply.input.placeholder" var="voucherInputPlaceholder" htmlEscape="false"/>
     <label class="control-label cart-voucher__label" for="voucher-code"><spring:theme
             code="text.voucher.apply.input.label"/></label>
     <form:form id="applyVoucherForm" action="${applyVoucherAction}" method="post" commandName="voucherForm">

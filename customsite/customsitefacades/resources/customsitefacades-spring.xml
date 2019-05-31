@@ -20,7 +20,7 @@
 	<context:annotation-config/> 
 
 	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
-	<bean id="defaultSimpleSuggestionFacade" class="org.customsite.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
+	<bean id="defaultSimpleSuggestionFacade" class="org.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
 		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
 		<property name="userService" ref="userService"/>
 		<property name="categoryService" ref="categoryService"/>
@@ -48,7 +48,7 @@
 	</bean>
 
 	<alias name="defaultAcceleratorVariantOptionDataPopulator" alias="acceleratorVariantOptionDataPopulator"/>
-	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="org.customsite.facades.populators.AcceleratorVariantOptionDataPopulator"
+	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="org.facades.populators.AcceleratorVariantOptionDataPopulator"
 	      parent="variantOptionDataPopulator" >
 		<property name="mediaService" ref="mediaService"/>
 		<property name="mediaContainerService" ref="mediaContainerService"/>
@@ -64,7 +64,7 @@
 
 	<alias name="acceleratorGenderConverter" alias="genderConverter"/> 
 	<bean id="acceleratorGenderConverter" parent="abstractPopulatingConverter">
-		<property name="targetClass" value="org.customsite.facades.product.data.GenderData"/>
+		<property name="targetClass" value="org.facades.product.data.GenderData"/>
 			<property name="populators">
 				<list>
 					<ref bean="genderDataPopulator"/>
@@ -73,11 +73,11 @@
 	</bean>
 
 	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
-	<bean id="defaultGenderDataPopulator" class="org.customsite.facades.populators.GenderDataPopulator" >
+	<bean id="defaultGenderDataPopulator" class="org.facades.populators.GenderDataPopulator" >
 		<property name="typeService" ref="typeService"/>
 	</bean>
 
-	<bean id="apparelProductPopulator" class="org.customsite.facades.populators.ApparelProductPopulator" >
+	<bean id="apparelProductPopulator" class="org.facades.populators.ApparelProductPopulator" >
 		<property name="genderConverter" ref="genderConverter"/>
 	</bean>
 
@@ -127,66 +127,66 @@
 		</property>
 	</bean>
 
-	<bean id="customerEmailContext" class="org.customsite.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="customerEmailContext" class="org.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="customerConverter" ref="customerConverter"/>
 	</bean>
 
-	<bean id="forgottenPasswordEmailContext" class="org.customsite.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+	<bean id="forgottenPasswordEmailContext" class="org.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
 		<property name="customerConverter" ref="customerConverter"/>
 	</bean>
 
-	<bean id="orderNotificationEmailContext" class="org.customsite.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderNotificationEmailContext" class="org.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 	</bean>
 
-	<bean id="quoteNotificationEmailContext" class="org.customsite.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="quoteNotificationEmailContext" class="org.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="quoteService" ref="quoteService"/>
 		<property name="quoteConverter" ref="quoteConverter"/>
 	</bean>
 	
-	<bean id="deliverySentEmailContext" class="org.customsite.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="deliverySentEmailContext" class="org.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="consignmentConverter" ref="consignmentConverter"/>
 	</bean>
 	
-	<bean id="readyForPickupEmailContext" class="org.customsite.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="readyForPickupEmailContext" class="org.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="consignmentConverter" ref="consignmentConverter"/>
 	</bean>
 	
-	<bean id="orderCancelledEmailContext" class="org.customsite.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderCancelledEmailContext" class="org.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 	</bean>
 	
-	<bean id="orderRefundEmailContext" class="org.customsite.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderRefundEmailContext" class="org.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 	</bean>
-	<bean id="consignmentCollectionReminderEmailContext" class="org.customsite.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
+	<bean id="consignmentCollectionReminderEmailContext" class="org.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
         <property name="consignmentConverter" ref="consignmentConverter"/>
         <property name="formatFactory" ref="formatFactory"/>
         <property name="customerServiceUncollectedConsignmentStrategy" ref="customerServiceUncollectedConsignmentStrategy" />
         <property name="orderConverter" ref="orderConverter"/>
     </bean>
 
-	<bean id="orderPartiallyModifiedEmailContext" class="org.customsite.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="orderPartiallyModifiedEmailContext" class="org.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="orderConverter" ref="orderConverter"/>
 		<property name="orderEntryConverter" ref="orderEntryConverter"/>
 		<property name="priceDataFactory" ref="priceDataFactory"/>		
 	</bean>
 
-	<bean id="orderPartiallyCanceledEmailContext" class="org.customsite.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	<bean id="orderPartiallyCanceledEmailContext" class="org.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
 	</bean>
 
-	<bean id="orderPartiallyRefundedEmailContext" class="org.customsite.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	<bean id="orderPartiallyRefundedEmailContext" class="org.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
 	</bean>
 
-	<bean id="notPickedUpConsignmentCanceledEmailContext" class="org.customsite.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
+	<bean id="notPickedUpConsignmentCanceledEmailContext" class="org.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="consignmentConverter" ref="consignmentConverter"/>
 		<property name="priceDataFactory" ref="priceDataFactory"/>
 	</bean>
 
 	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator" alias="searchPagePointOfServiceDistancePopulator" />
-	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="org.customsite.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
+	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="org.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
 		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
 	</bean>
 
-	<bean id="genderData" class="org.customsite.facades.product.data.GenderData" scope="prototype"/>
+	<bean id="genderData" class="org.facades.product.data.GenderData" scope="prototype"/>
 </beans>

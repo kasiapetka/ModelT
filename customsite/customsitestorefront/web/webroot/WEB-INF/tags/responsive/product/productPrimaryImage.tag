@@ -8,22 +8,30 @@
 
 <c:set value="${ycommerce:productImage(product, format)}" var="primaryImage"/>
 
-<c:set value="${fn:escapeXml(product.name)}" var="productName" />
+<c:set value="${fn:escapeXml(product.name)}" var="productNameHtml"/>
 
 <c:choose>
 	<c:when test="${not empty primaryImage}">
-		<c:url value="${primaryImage.url}" var="primaryImageUrl" context="${originalContextPath}"/>
 		<c:choose>
-			<c:when test="${not empty primaryImage.altText}">
-				<c:set value="${fn:escapeXml(primaryImage.altText)}" var="altText" />
-				<img src="${fn:escapeXml(primaryImageUrl)}" alt="${altText}" title="${altText}"/>
+			<c:when test='${fn:startsWith(primaryImage.url, originalContextPath)}'>
+				<c:url value="${primaryImage.url}" var="primaryImageUrl" context="/"/>
 			</c:when>
 			<c:otherwise>
-                <img src="${fn:escapeXml(primaryImageUrl)}" alt="${productName}" title="${productName}"/>
+				<c:url value="${primaryImage.url}" var="primaryImageUrl" context="${originalContextPath}"/>
+			</c:otherwise>
+		</c:choose>
+		
+		<c:choose>
+			<c:when test="${not empty primaryImage.altText}">
+				<c:set value="${fn:escapeXml(primaryImage.altText)}" var="altTextHtml"/>
+				<img src="${fn:escapeXml(primaryImageUrl)}" alt="${altTextHtml}" title="${altTextHtml}"/>
+			</c:when>
+			<c:otherwise>
+                <img src="${fn:escapeXml(primaryImageUrl)}" alt="${productNameHtml}" title="${productNameHtml}"/>
 			</c:otherwise>
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		<theme:image code="img.missingProductImage.responsive.${format}" alt="${productName}" title="${productName}"/>
+		<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}"/>
 	</c:otherwise>
 </c:choose>

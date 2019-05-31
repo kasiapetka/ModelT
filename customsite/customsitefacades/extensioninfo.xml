@@ -17,7 +17,7 @@
 		<requires-extension name="acceleratorfacades"/>
 		<requires-extension name="customsitecore"/>
 
-		<coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="org.customsite.facades"/>
+		<coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="org.facades"/>
 
 		
 		

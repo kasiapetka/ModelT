@@ -21,6 +21,7 @@ public class GuestRegisterForm
 	private String orderCode;
 	private String uid;
 	private ConsentForm consentForm;
+	private boolean termsCheck;
 
 	/**
 	 * @return the pwd
@@ -101,5 +102,24 @@ public class GuestRegisterForm
 	{
 		this.consentForm = consentForm;
 	}
+
+	/**
+	 *
+	 * @return termsCheck
+	 */
+	public boolean isTermsCheck()
+	{
+		return termsCheck;
+	}
+
+	/**
+	 *
+	 * @param termsCheck
+	 */
+	public void setTermsCheck(final boolean termsCheck)
+	{
+		this.termsCheck = termsCheck;
+	}
+
 
 }

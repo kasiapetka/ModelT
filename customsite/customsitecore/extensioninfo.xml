@@ -17,11 +17,10 @@
 		<requires-extension name="acceleratorcms"/>
 		<requires-extension name="solrserver"/>
 
-		<coremodule generated="true" manager="org.customsite.core.jalo.CustomsiteCoreManager" packageroot="org.customsite.core"/>
+		<coremodule generated="true" manager="org.core.jalo.CustomsiteCoreManager" packageroot="org.core"/>
 
 		
 		
-		<meta key="backoffice-module" value="true"/>
 	</extension>
 
 </extensioninfo>

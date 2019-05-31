@@ -5,19 +5,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 <spring:url value="/quote/{/quoteCode}/edit/" var="editQuoteUrl" htmlEscape="false">
     <spring:param name="quoteCode" value="${quoteData.code}"/>
 </spring:url>
 <div style="display:none">
-  <spring:theme code="text.quote.edit.confirmation.modal.title" arguments="${quoteData.code}"
-				  var="editConfirmationModalTitle"/>
-    <div id="js-quote-edit-modal"
-         data-edit-confirmation-modal-title="${editConfirmationModalTitle}">
-
+  <spring:theme code="text.quote.edit.confirmation.modal.title" arguments="${quoteData.code}" var="editConfirmationModalTitleHtml"/>
+    <div id="js-quote-edit-modal" data-edit-confirmation-modal-title="${editConfirmationModalTitleHtml}">
         <div><spring:theme code="text.quote.edit.confirmation.message"/></div> 
         <br/>
          <div><b><spring:theme code="text.quote.edit.warning.message"/></b></div>
@@ -41,4 +36,3 @@
         </form:form>
     </div>
 </div>
-

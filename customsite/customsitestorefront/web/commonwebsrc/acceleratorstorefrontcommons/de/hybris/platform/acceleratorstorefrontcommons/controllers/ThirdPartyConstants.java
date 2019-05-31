@@ -18,6 +18,7 @@ public interface ThirdPartyConstants
 		String ANALYTICS_TRACKING_ID = "google.analytics.tracking.id";
 	}
 
+	@Deprecated
 	interface Jirafe // NOSONAR
 	{
 		String API_URL = "jirafe.api.url";

@@ -31,9 +31,9 @@
 	<security:http pattern="/checkout/**">
         <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 		<security:access-denied-handler error-page="/login"/>
-		<security:session-management session-authentication-strategy-ref="fixation" />
+		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
 		<security:intercept-url pattern="/**" requires-channel="https" />
-		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
+		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher"/>
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
 
 		<security:form-login
@@ -62,7 +62,7 @@
 	</security:http>
 
 	<!-- Ignores url(s) that match paths specified in the set -->
-	<bean id="excludeUrlRequestMatcher" class="org.customsite.storefront.security.ExcludeUrlRequestMatcher">
+	<bean id="excludeUrlRequestMatcher" class="org.storefront.security.ExcludeUrlRequestMatcher">
 		<property name="excludeUrlSet" ref="excludeUrlSet"/>
 		<property name="pathMatcher" ref="defaultPathMatcher"/>
 	</bean>
@@ -78,7 +78,7 @@
 	<security:http request-matcher-ref="excludeUrlRequestMatcher">
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 		<security:access-denied-handler error-page="/login"/>
-		<security:session-management session-authentication-strategy-ref="fixation" />
+		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
 
@@ -125,19 +125,19 @@
 	</security:authentication-manager>
 
 	<bean id="acceleratorAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider" 
-			class="org.customsite.storefront.security.AcceleratorAuthenticationProvider">
+			class="org.storefront.security.AcceleratorAuthenticationProvider">
 		<property name="adminGroup" value="ROLE_ADMINGROUP"/>
 	</bean>
 
 	<bean id="coreUserDetailsService" class="de.hybris.platform.spring.security.CoreUserDetailsService"  />
 
-	<bean id="guidCookieStrategy" class="org.customsite.storefront.security.impl.DefaultGUIDCookieStrategy"
+	<bean id="guidCookieStrategy" class="org.storefront.security.impl.DefaultGUIDCookieStrategy"
 	      >
 		<property name="cookieGenerator" ref="guidCookieGenerator" />
 	</bean>
 	
 	<alias name="defaultGuestCheckoutCartCleanStrategy" alias="guestCheckoutCartCleanStrategy"/>
-	<bean id="defaultGuestCheckoutCartCleanStrategy" class="org.customsite.storefront.security.impl.DefaultGuestCheckoutCartCleanStrategy">
+	<bean id="defaultGuestCheckoutCartCleanStrategy" class="org.storefront.security.impl.DefaultGuestCheckoutCartCleanStrategy">
 		<property name="skipPatterns">
 			<list>
 				<value>#{configurationService.configuration.getProperty('customsitestorefront.checkout.url.pattern')}</value>
@@ -151,27 +151,27 @@
 	</bean>
 
 	<alias name="defaultGuidCookieGenerator" alias="guidCookieGenerator"/>
-	<bean id="defaultGuidCookieGenerator" class="org.customsite.storefront.security.cookie.EnhancedCookieGenerator" >
+	<bean id="defaultGuidCookieGenerator" class="org.storefront.security.cookie.EnhancedCookieGenerator" >
 		<property name="cookieSecure" value="true" />
 		<property name="cookieName" value="acceleratorSecureGUID" />
 		<property name="httpOnly" value="true"/>
 	</bean>
 
     <alias name="defaultAutoLoginStrategy" alias="autoLoginStrategy"/>
-    <bean id="defaultAutoLoginStrategy" class="org.customsite.storefront.security.impl.DefaultAutoLoginStrategy" >
+    <bean id="defaultAutoLoginStrategy" class="org.storefront.security.impl.DefaultAutoLoginStrategy" >
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="customerFacade" ref="customerFacade" />
 		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
 		<property name="rememberMeServices" ref="rememberMeServices"/>
 	</bean>
 
-	<bean id="httpSessionRequestCache" class="org.customsite.storefront.security.impl.WebHttpSessionRequestCache">
+	<bean id="httpSessionRequestCache" class="org.storefront.security.impl.WebHttpSessionRequestCache">
         <property name="requestMatcher" ref="excludeRedirectUrlRequestMatcher" />
 		<property name="sessionService" ref="sessionService"/>
 	</bean>
 
 	<!-- Ignores url(s) that match paths specified in the set -->
-	<bean id="excludeRedirectUrlRequestMatcher" class="org.customsite.storefront.security.ExcludeUrlRequestMatcher">
+	<bean id="excludeRedirectUrlRequestMatcher" class="org.storefront.security.ExcludeUrlRequestMatcher">
 	<property name="excludeUrlSet">
 		<set>
 			<value>/guest/*</value>
@@ -187,7 +187,7 @@
 
 	<!-- Login Success Handlers -->
 
-	<bean id="loginGuidAuthenticationSuccessHandler" class="org.customsite.storefront.security.GUIDAuthenticationSuccessHandler" >
+	<bean id="loginGuidAuthenticationSuccessHandler" class="org.storefront.security.GUIDAuthenticationSuccessHandler" >
 		<property name="authenticationSuccessHandler" ref="loginAuthenticationSuccessHandler" />
 		<property name="guidCookieStrategy" ref="guidCookieStrategy" />
 	</bean>
@@ -219,7 +219,7 @@
 		</property>
 	</bean>
 
-	<bean id="loginCheckoutGuidAuthenticationSuccessHandler" class="org.customsite.storefront.security.GUIDAuthenticationSuccessHandler" >
+	<bean id="loginCheckoutGuidAuthenticationSuccessHandler" class="org.storefront.security.GUIDAuthenticationSuccessHandler" >
 		<property name="authenticationSuccessHandler" ref="loginCheckoutAuthenticationSuccessHandler" />
 		<property name="guidCookieStrategy" ref="guidCookieStrategy" />
 	</bean>
@@ -251,17 +251,17 @@
 	</bean>
 
 	<alias name="defaultCommerceRedirectStrategy" alias="commerceRedirectStrategy"/>
-	<bean name="defaultCommerceRedirectStrategy" class="org.customsite.storefront.security.impl.DefaultCommerceRedirectStrategy" parent="redirectStrategy">
+	<bean name="defaultCommerceRedirectStrategy" class="org.storefront.security.impl.DefaultCommerceRedirectStrategy" parent="redirectStrategy">
 		<property name="checkoutFlowFacade" ref="checkoutFlowFacade"/>
 		<property name="expressTargetUrl" value="/checkout/multi/express"/>
    </bean>
 
-	<bean id="loginAuthenticationFailureHandler" class="org.customsite.storefront.security.LoginAuthenticationFailureHandler" >
+	<bean id="loginAuthenticationFailureHandler" class="org.storefront.security.LoginAuthenticationFailureHandler" >
         <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
 		<property name="defaultFailureUrl" value="/login?error=true"/>
 	</bean>
 
-	<bean id="loginCheckoutAuthenticationFailureHandler" class="org.customsite.storefront.security.LoginAuthenticationFailureHandler" >
+	<bean id="loginCheckoutAuthenticationFailureHandler" class="org.storefront.security.LoginAuthenticationFailureHandler" >
         <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
 		<property name="defaultFailureUrl" value="/login/checkout?error=true"/>
 	</bean>
@@ -303,7 +303,7 @@
 
 	
 	<alias name="defaultRememberMeServices" alias="rememberMeServices"/>
-	<bean id="defaultRememberMeServices" class="org.customsite.storefront.security.AcceleratorRememberMeServices" >
+	<bean id="defaultRememberMeServices" class="org.storefront.security.AcceleratorRememberMeServices" >
 		<constructor-arg name="key" value="customsitestorefront" />
 		<constructor-arg name="userDetailsService" ref="originalUidUserDetailsService" />
 		<property name="cookieName" value="customsitestorefrontRememberMe" />
@@ -331,7 +331,7 @@
 	<util:list id="csrfAllowedUrlPatternsList" />
 	
 	<alias name="defaultCsrfProtectionMatcher" alias="csrfProtectionMatcher"/>
-	<bean id="defaultCsrfProtectionMatcher" class="org.customsite.storefront.security.CsrfProtectionMatcher">
+	<bean id="defaultCsrfProtectionMatcher" class="org.storefront.security.CsrfProtectionMatcher">
 		<property name="csrfAllowedUrlPatterns" ref="csrfAllowedUrlPatternsList"/>
 	</bean>
 

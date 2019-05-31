@@ -26,12 +26,12 @@
 	<import resource="classpath:/customsitecore/integration/hot-folder-common-spring.xml"/>
 
 	<!-- SystemSetup for the CustomsiteCore -->
-	<bean id="acceleratorCoreSystemSetup" class="org.customsite.core.setup.CoreSystemSetup"
+	<bean id="acceleratorCoreSystemSetup" class="org.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
 
 	<!-- Solr field value providers -->
 
-	<bean id="volumeAwareProductPriceValueProvider" class="org.customsite.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
+	<bean id="volumeAwareProductPriceValueProvider" class="org.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="priceService" ref="priceService"/>
         <property name="commonI18NService" ref="commonI18NService"/>
@@ -41,9 +41,9 @@
         <property name="catalogVersionService" ref="catalogVersionService"/>
     </bean>
 
-    <bean id="volumePriceComparator" class="org.customsite.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
+    <bean id="volumePriceComparator" class="org.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
 
-    <bean id="productVolumePricesProvider" class="org.customsite.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
+    <bean id="productVolumePricesProvider" class="org.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="priceService" ref="priceService"/>
     </bean>
@@ -155,13 +155,13 @@
 	</bean>
 
 	<bean id="colorFacetValueProvider"
-	      class="org.customsite.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
+	      class="org.core.search.solrfacetsearch.provider.impl.ColorFacetValueProvider"
 	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="colorFacetDisplayNameProvider"
-	      class="org.customsite.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
+	      class="org.core.search.solrfacetsearch.provider.impl.ColorFacetDisplayNameProvider"
 	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
@@ -169,25 +169,25 @@
 	</bean>
 
 	<bean id="apparelPointOfServiceFacetDisplayNameProvider"
-	      class="org.customsite.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      class="org.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 
 	<bean id="electronicsPointOfServiceFacetDisplayNameProvider"
-	      class="org.customsite.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
+	      class="org.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider"
 	      >
 		<property name="pointOfServiceService" ref="pointOfServiceService"/>
 	</bean>
 
 	<bean id="genderValueProvider"
-	      class="org.customsite.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
+	      class="org.core.search.solrfacetsearch.provider.impl.GenderValueProvider"
 	       parent="abstractPropertyFieldValueProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
 	<bean id="genderFacetDisplayNameProvider"
-	      class="org.customsite.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
+	      class="org.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
 	      >
 		<property name="enumerationService" ref="enumerationService"/>
 		<property name="i18nService" ref="i18nService"/>
@@ -199,61 +199,61 @@
 		must be configured with a lookup method.
 	-->
 	<bean id="orderCancelledEventListener"
-	      class="org.customsite.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="orderRefundEventListener"
-	      class="org.customsite.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="customerRegistrationEventListener"
-	      class="org.customsite.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="forgottenPasswordEventListener"
-	      class="org.customsite.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	<bean id="submitOrderEventListener" class="org.customsite.core.event.SubmitOrderEventListener" parent="abstractAcceleratorSiteEventListener">
+	<bean id="submitOrderEventListener" class="org.core.event.SubmitOrderEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="businessProcessService" ref="businessProcessService"/>
 		<property name="modelService" ref="modelService"/>
 		<property name="baseStoreService" ref="baseStoreService"/>
 	</bean>
 	<bean id="orderConfirmationEventListener"
-	      class="org.customsite.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendDeliveryMessageEventListener"
-	      class="org.customsite.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendReadyForPickupMessageEventListener"
-	      class="org.customsite.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendOrderPartiallyCanceledMessageEventListener"
-	      class="org.customsite.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendOrderPartiallyRefundedMessageEventListener"
-	      class="org.customsite.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	<bean id="sendNotPickedUpConsignmentCanceledMessageEventListener"
-	      class="org.customsite.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+	      class="org.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	<bean id="orderCompletedEventListener" class="org.customsite.core.event.OrderCompletedEventListener" parent="abstractAcceleratorSiteEventListener">
+	<bean id="orderCompletedEventListener" class="org.core.event.OrderCompletedEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
@@ -366,7 +366,7 @@
 	</bean>
 
     <bean id="markQuoteNotificationAsSent"
-          class="org.customsite.core.actions.quote.MarkQuoteNotificationAsSentAction"
+          class="org.core.actions.quote.MarkQuoteNotificationAsSentAction"
           parent="abstractAction" abstract="true">
         <property name="quoteService" ref="quoteService"/>
     </bean>
@@ -374,17 +374,17 @@
 	<!-- Simple Suggestion Service -->
 	<alias alias="simpleSuggestionService" name="defaultSimpleSuggestionService"/>
 	<bean id="defaultSimpleSuggestionService"
-	      class="org.customsite.core.suggestion.impl.DefaultSimpleSuggestionService" >
+	      class="org.core.suggestion.impl.DefaultSimpleSuggestionService" >
 		<property name="simpleSuggestionDao" ref="simpleSuggestionDao"/>
 	</bean>
 	<alias alias="simpleSuggestionDao" name="defaultSimpleSuggestionDao"/>
 	<bean id="defaultSimpleSuggestionDao"
-	      class="org.customsite.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
+	      class="org.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
 	      parent="abstractItemDao" >
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
 
-	<bean id="mccSiteUrlHelper" class="org.customsite.core.util.MccSiteUrlHelper" >
+	<bean id="mccSiteUrlHelper" class="org.core.util.MccSiteUrlHelper" >
 		<property name="siteChannelValidationStrategy" ref="siteChannelValidationStrategy"/>
 		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
 		<property name="cmsSiteService" ref="cmsSiteService"/>
@@ -402,7 +402,7 @@
 	</bean>
 
 	<bean id="apparelSizeProductReferenceTargetStrategy"
-	      class="org.customsite.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
+	      class="org.core.strategies.impl.ApparelSizeProductReferenceTargetStrategy">
 		<property name="commerceCategoryService" ref="commerceCategoryService"/>
 		<property name="rootCategoryCode" value="categories"/>
 	</bean>
@@ -410,43 +410,43 @@
 	<!-- Sales quote process actions -->
 
 	<!-- quote-->
-	<bean id="quoteBuyerSubmitEventListener" class="org.customsite.core.event.QuoteBuyerSubmitEventListener"
+	<bean id="quoteBuyerSubmitEventListener" class="org.core.event.QuoteBuyerSubmitEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteSalesRepSubmitEventListener" class="org.customsite.core.event.QuoteSalesRepSubmitEventListener"
+	<bean id="quoteSalesRepSubmitEventListener" class="org.core.event.QuoteSalesRepSubmitEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteSellerApprovalSubmitEventListener" class="org.customsite.core.event.QuoteSellerApprovalSubmitEventListener"
+	<bean id="quoteSellerApprovalSubmitEventListener" class="org.core.event.QuoteSellerApprovalSubmitEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteBuyerOrderPlacedEventListener" class="org.customsite.core.event.QuoteBuyerOrderPlacedEventListener"
+	<bean id="quoteBuyerOrderPlacedEventListener" class="org.core.event.QuoteBuyerOrderPlacedEventListener"
 		  parent="abstractEventListener">
 		<property name="commerceQuoteService" ref="commerceQuoteService"/>
 		<property name="modelService" ref="modelService"/>
 	</bean>
 
-	<bean id="quoteToExpireSoonEventListener" class="org.customsite.core.event.QuoteToExpireSoonEventListener"
+	<bean id="quoteToExpireSoonEventListener" class="org.core.event.QuoteToExpireSoonEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	
-	<bean id="quoteExpiredEventListener" class="org.customsite.core.event.QuoteExpiredEventListener"
+	<bean id="quoteExpiredEventListener" class="org.core.event.QuoteExpiredEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="quoteCancelEventListener" class="org.customsite.core.event.QuoteCancelEventListener"
+	<bean id="quoteCancelEventListener" class="org.core.event.QuoteCancelEventListener"
 		  parent="abstractEventListener">
 		<property name="modelService" ref="modelService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
@@ -485,7 +485,7 @@
 
 	<!-- Quotes email notification jobs -->
 	<bean id="quoteToExpireSoonJobPerformable"
-		  class="org.customsite.core.job.QuoteToExpireSoonJobPerformable"
+		  class="org.core.job.QuoteToExpireSoonJobPerformable"
 		  parent="abstractJobPerformable">
 		<property name="supportedQuoteStatuses">
 			<set value-type="de.hybris.platform.core.enums.QuoteState">
@@ -499,7 +499,7 @@
 	</bean>
 	
 	<bean id="quoteExpiredJobPerformable"
-		  class="org.customsite.core.job.QuoteExpiredJobPerformable"
+		  class="org.core.job.QuoteExpiredJobPerformable"
 		  parent="abstractJobPerformable">
 		<property name="supportedQuoteStatuses">
 			<set value-type="de.hybris.platform.core.enums.QuoteState">
@@ -522,7 +522,7 @@
 	
 	<!-- Customer cleanup -->
 	<alias name="defaultCustomerCleanupRelatedObjectsAction" alias="customerCleanupRelatedObjectsAction"/>
-	<bean id="defaultCustomerCleanupRelatedObjectsAction" class="org.customsite.core.retention.impl.DefaultCustomerCleanupRelatedObjectsAction" parent="abstractExtensibleRemoveCleanupAction">
+	<bean id="defaultCustomerCleanupRelatedObjectsAction" class="org.core.retention.impl.DefaultCustomerCleanupRelatedObjectsAction" parent="abstractExtensibleRemoveCleanupAction">
 		<property name="itemCleanupHooks" ref="customerCleanupHooks"/>
 	</bean>
 	
@@ -547,7 +547,7 @@
 
 	<!-- CsTicket Stagnation action -->
 	<alias name="defaultCSTicketStagnationAction" alias="csTicketStagnationAction"/>
-	<bean id="defaultCSTicketStagnationAction" class="org.customsite.core.retention.impl.DefaultCSTicketStagnationAction" parent="abstractExtensibleRemoveCleanupAction">
+	<bean id="defaultCSTicketStagnationAction" class="org.core.retention.impl.DefaultCSTicketStagnationAction" parent="abstractExtensibleRemoveCleanupAction">
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>

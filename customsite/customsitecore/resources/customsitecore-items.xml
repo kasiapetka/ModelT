@@ -32,12 +32,6 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
-        <enumtype code="ConsignmentEntryStatus">
-            <value code="CREATED"/>
-            <value code="PREPARED"/>
-            <value code="OUT_OF_STOCK"/>
-            <value code="CANCELLED"/>
-        </enumtype>
     </enumtypes>
 
     <itemtypes>
@@ -50,7 +44,7 @@
         <typegroup name="Apparel">
             <itemtype code="ApparelProduct" extends="Product"
                       autocreate="true" generate="true"
-                      jaloclass="org.customsite.core.jalo.ApparelProduct">
+                      jaloclass="org.core.jalo.ApparelProduct">
                 <description>Base apparel product extension that contains additional attributes.</description>
                 <attributes>
                     <attribute qualifier="genders" type="GenderList">
@@ -63,7 +57,7 @@
 
             <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
                       autocreate="true" generate="true"
-                      jaloclass="org.customsite.core.jalo.ApparelStyleVariantProduct">
+                      jaloclass="org.core.jalo.ApparelStyleVariantProduct">
                 <description>Apparel style variant type that contains additional attribute describing variant style.
                 </description>
                 <attributes>
@@ -86,7 +80,7 @@
 
             <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
                       autocreate="true" generate="true"
-                      jaloclass="org.customsite.core.jalo.ApparelSizeVariantProduct">
+                      jaloclass="org.core.jalo.ApparelSizeVariantProduct">
                 <description>Apparel size variant type that contains additional attribute describing variant size.
                 </description>
                 <attributes>
@@ -103,7 +97,7 @@
         <typegroup name="Electronics">
             <itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
                       autocreate="true" generate="true"
-                      jaloclass="org.customsite.core.jalo.ElectronicsColorVariantProduct">
+                      jaloclass="org.core.jalo.ElectronicsColorVariantProduct">
                 <description>Electronics color variant type that contains additional attribute describing variant color.
                 </description>
                 <attributes>
@@ -115,72 +109,6 @@
                     </attribute>
                 </attributes>
             </itemtype>
-
-		<itemtype code="TestType1"
-				  jaloclass="com.sap.productsupport.jalo.TestType1"
-				  extends="GenericItem" autocreate="true" generate="true">
-			<deployment table="TestType1" typecode="2041" />
-			<attributes>
-				<attribute qualifier="testAttr" type="java.lang.String">
-					<modifiers initial="true" write="true" read="true"
-							   optional="false" unique="false" />
-					<persistence type="property" />
-				</attribute>
-				<attribute qualifier="testAttr2" type="java.lang.String">
-					<modifiers initial="true" write="true" read="true"
-							   optional="false" unique="false" />
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
-		<itemtype code="TestType2"
-				  jaloclass="com.sap.productsupport.jalo.TestType2"
-				  extends="GenericItem" autocreate="true" generate="true">
-			<deployment table="TestType2" typecode="2042" />
-			<attributes>
-				<attribute qualifier="testAttr" type="java.lang.String">
-					<modifiers initial="true" write="true" read="true"
-							   optional="false" unique="false" />
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
-		    <itemtype code="ConsignmentEntry" autocreate="false" generate="false">
-			<attributes>
-			    <attribute qualifier="code" type="java.lang.String">
-				<modifiers read="true" write="true" />
-				<persistence type="property" />
-			    </attribute>
-			    <attribute qualifier="status" type="ConsignmentEntryStatus">
-				<persistence type="property"/>
-				<defaultvalue>em().getEnumerationValue("ConsignmentEntryStatus","CREATED")</defaultvalue>
-			    </attribute>
-			</attributes>
-		    </itemtype>
-		<!--<itemtype code="TestType3"
-				  jaloclass="com.sap.productsupport.jalo.TestType3"
-				  extends="GenericItem" autocreate="true" generate="true">
-			<deployment table="TestType3" typecode="2043" />
-			<attributes>
-				<attribute qualifier="testAttr" type="java.lang.String">
-					<modifiers initial="true" write="true" read="true"
-							   optional="false" unique="false" />
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
-		<itemtype code="TestType4"
-				  jaloclass="com.sap.productsupport.jalo.TestType4"
-				  extends="GenericItem" autocreate="true" generate="true">
-			<deployment table="TestType4" typecode="2044" />
-			<attributes>
-				<attribute qualifier="testAttr" type="java.lang.String">
-					<modifiers initial="true" write="true" read="true"
-							   optional="false" unique="false" />
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>-->
         </typegroup>
 
     </itemtypes>

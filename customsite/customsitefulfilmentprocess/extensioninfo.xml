@@ -16,7 +16,7 @@
 		<requires-extension name="acceleratorservices"/>
 		<requires-extension name="ticketsystem"/>
 
-		<coremodule generated="true" manager="org.customsite.fulfilmentprocess.jalo.CustomsiteFulfilmentProcessManager" packageroot="org.customsite.fulfilmentprocess"/>
+		<coremodule generated="true" manager="org.fulfilmentprocess.jalo.CustomsiteFulfilmentProcessManager" packageroot="org.fulfilmentprocess"/>
 
 		<meta key="extgen-template-extension" value="true"/>
 		

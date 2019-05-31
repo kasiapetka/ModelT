@@ -18,6 +18,7 @@ public class ConsentForm
 	private String consentTemplateId;
 	private Integer consentTemplateVersion;
 	private boolean consentGiven;
+	private String consentCode;
 
 	public boolean getConsentGiven()
 	{
@@ -48,4 +49,15 @@ public class ConsentForm
 	{
 		this.consentTemplateVersion = consentTemplateVersion;
 	}
+
+	public String getConsentCode()
+	{
+		return consentCode;
+	}
+
+	public void setConsentCode(final String consentCode)
+	{
+		this.consentCode = consentCode;
+	}
+
 }

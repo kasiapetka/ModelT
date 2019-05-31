@@ -21,83 +21,83 @@
 
 	<!-- Order Process Actions -->
 
-	<bean id="abstractOrderAction" class="org.customsite.fulfilmentprocess.actions.order.AbstractOrderAction"  abstract="true" parent="abstractAction">
+	<bean id="abstractOrderAction" class="org.fulfilmentprocess.actions.order.AbstractOrderAction"  abstract="true" parent="abstractAction">
 		<property name="timeService" ref="timeService"/>
 	</bean>
 
-	<bean id="checkOrderAction" class="org.customsite.fulfilmentprocess.actions.order.CheckOrderAction"  parent="abstractAction">
+	<bean id="checkOrderAction" class="org.fulfilmentprocess.actions.order.CheckOrderAction"  parent="abstractAction">
 		<property name="checkOrderService" ref="checkOrderService"/>
 	</bean>
 
-	<bean id="cancelWholeOrderAuthorizationAction" class="org.customsite.fulfilmentprocess.actions.order.CancelWholeOrderAuthorizationAction"
+	<bean id="cancelWholeOrderAuthorizationAction" class="org.fulfilmentprocess.actions.order.CancelWholeOrderAuthorizationAction"
             parent="abstractAction">
 		<property name="paymentService" ref="paymentService"/>
     </bean>
 
-	<bean id="sendOrderPlacedNotificationAction" class="org.customsite.fulfilmentprocess.actions.order.SendOrderPlacedNotificationAction"  parent="abstractAction">
+	<bean id="sendOrderPlacedNotificationAction" class="org.fulfilmentprocess.actions.order.SendOrderPlacedNotificationAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="takePaymentAction" class="org.customsite.fulfilmentprocess.actions.order.TakePaymentAction"  parent="abstractAction">
+	<bean id="takePaymentAction" class="org.fulfilmentprocess.actions.order.TakePaymentAction"  parent="abstractAction">
 		<property name="paymentService" ref="paymentService"/>
     </bean>
 
-	<bean id="sendPaymentFailedNotificationAction" class="org.customsite.fulfilmentprocess.actions.order.SendPaymentFailedNotificationAction"  parent="abstractAction">
+	<bean id="sendPaymentFailedNotificationAction" class="org.fulfilmentprocess.actions.order.SendPaymentFailedNotificationAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="checkTransactionReviewStatusAction" class="org.customsite.fulfilmentprocess.actions.order.CheckTransactionReviewStatusAction"  parent="abstractAction">
+	<bean id="checkTransactionReviewStatusAction" class="org.fulfilmentprocess.actions.order.CheckTransactionReviewStatusAction"  parent="abstractAction">
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
 
-	<bean id="fraudCheckOrderAction" class="org.customsite.fulfilmentprocess.actions.order.FraudCheckOrderAction"  parent="abstractOrderAction">
+	<bean id="fraudCheckOrderAction" class="org.fulfilmentprocess.actions.order.FraudCheckOrderAction"  parent="abstractOrderAction">
 		<property name="fraudService" ref="fraudService"/>
 		<property name="providerName" value="Mockup_3rdPartyProvider"/>
 	</bean>
 
-	<bean id="prepareOrderForManualCheckAction" class="org.customsite.fulfilmentprocess.actions.order.PrepareOrderForManualCheckAction"  parent="abstractAction">
+	<bean id="prepareOrderForManualCheckAction" class="org.fulfilmentprocess.actions.order.PrepareOrderForManualCheckAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="sendFraudErrorNotificationAction" class="org.customsite.fulfilmentprocess.actions.order.SendFraudErrorNotificationAction"  parent="abstractAction">
+	<bean id="sendFraudErrorNotificationAction" class="org.fulfilmentprocess.actions.order.SendFraudErrorNotificationAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="checkAuthorizeOrderPaymentAction" class="org.customsite.fulfilmentprocess.actions.order.CheckAuthorizeOrderPaymentAction"  parent="abstractAction"/>
+	<bean id="checkAuthorizeOrderPaymentAction" class="org.fulfilmentprocess.actions.order.CheckAuthorizeOrderPaymentAction"  parent="abstractAction"/>
 
-	<bean id="sendAuthorizationFailedNotificationAction" class="org.customsite.fulfilmentprocess.actions.order.SendAuthorizationFailedNotificationAction"  parent="abstractAction">
+	<bean id="sendAuthorizationFailedNotificationAction" class="org.fulfilmentprocess.actions.order.SendAuthorizationFailedNotificationAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="reserveOrderAmountAction" class="org.customsite.fulfilmentprocess.actions.order.ReserveOrderAmountAction"  parent="abstractAction"/>
+	<bean id="reserveOrderAmountAction" class="org.fulfilmentprocess.actions.order.ReserveOrderAmountAction"  parent="abstractAction"/>
 
-	<bean id="fraudCheckOrderInternalAction" class="org.customsite.fulfilmentprocess.actions.order.FraudCheckOrderInternalAction"  parent="abstractOrderAction">
+	<bean id="fraudCheckOrderInternalAction" class="org.fulfilmentprocess.actions.order.FraudCheckOrderInternalAction"  parent="abstractOrderAction">
 		<property name="fraudService" ref="fraudService"/>
 		<property name="providerName" value="hybris"/>
 	</bean>
 
-	<bean id="orderManualCheckedAction" class="org.customsite.fulfilmentprocess.actions.order.OrderManualCheckedAction"  parent="abstractOrderAction"/>
+	<bean id="orderManualCheckedAction" class="org.fulfilmentprocess.actions.order.OrderManualCheckedAction"  parent="abstractOrderAction"/>
 
-	<bean id="splitOrderAction" class="org.customsite.fulfilmentprocess.actions.order.SplitOrderAction"  parent="abstractAction">
+	<bean id="splitOrderAction" class="org.fulfilmentprocess.actions.order.SplitOrderAction"  parent="abstractAction">
 		<property name="orderSplittingService" ref="orderSplittingService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="subprocessesCompletedAction" class="org.customsite.fulfilmentprocess.actions.order.SubprocessesCompletedAction"  parent="abstractAction"/>
+	<bean id="subprocessesCompletedAction" class="org.fulfilmentprocess.actions.order.SubprocessesCompletedAction"  parent="abstractAction"/>
 
-	<bean id="setOrderExpirationTimeAction" class="org.customsite.fulfilmentprocess.actions.order.SetOrderExpirationTimeAction"  parent="abstractAction">
+	<bean id="setOrderExpirationTimeAction" class="org.fulfilmentprocess.actions.order.SetOrderExpirationTimeAction"  parent="abstractAction">
 		<property name="timeService" ref="timeService"/>
 	</bean>
 	
-	<bean id="sendOrderCompletedNotificationAction" class="org.customsite.fulfilmentprocess.actions.order.SendOrderCompletedNotificationAction"  parent="abstractAction">
+	<bean id="sendOrderCompletedNotificationAction" class="org.fulfilmentprocess.actions.order.SendOrderCompletedNotificationAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="scheduleForCleanUpAction" class="org.customsite.fulfilmentprocess.actions.order.ScheduleForCleanUpAction"  parent="abstractAction">
+	<bean id="scheduleForCleanUpAction" class="org.fulfilmentprocess.actions.order.ScheduleForCleanUpAction"  parent="abstractAction">
 		<property name="timeService" ref="timeService"/>
 	</bean>
 
-	<bean id="notifyCustomerAboutFraudAction" class="org.customsite.fulfilmentprocess.actions.order.NotifyCustomerAboutFraudAction"  parent="abstractAction">
+	<bean id="notifyCustomerAboutFraudAction" class="org.fulfilmentprocess.actions.order.NotifyCustomerAboutFraudAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 

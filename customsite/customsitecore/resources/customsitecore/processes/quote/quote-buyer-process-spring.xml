@@ -21,7 +21,7 @@
 
     <alias name="defaultQuoteBuyerSubmitAction" alias="quoteBuyerSubmitAction"/>
     <bean id="defaultQuoteBuyerSubmitAction"
-          class="org.customsite.core.actions.quote.QuoteBuyerSubmitAction"
+          class="org.core.actions.quote.QuoteBuyerSubmitAction"
           parent="abstractAction">
         <property name="commerceQuoteService" ref="commerceQuoteService"/>
         <property name="quoteService" ref="quoteService"/>

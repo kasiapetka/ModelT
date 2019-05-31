@@ -43,22 +43,22 @@
 	</mvc:annotation-driven>
 
 	<!-- Scan for annotation configured controller -->
-	<context:component-scan base-package="org.customsite.storefront" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver"  />
+	<context:component-scan base-package="org.storefront" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver"  />
 
     
 
 	<!-- Data Value Processor -->
-	<bean name="defaultRequestDataValueProcessor" class="org.customsite.storefront.util.DefaultRequestDataProcessor" />
+	<bean name="defaultRequestDataValueProcessor" class="org.storefront.util.DefaultRequestDataProcessor" />
 
 	<!--This is a bean post-processor for RequestMappingHandlerAdapter-->
-	<bean class="org.customsite.storefront.web.mvc.RequestMappingHandlerAdapterConfigurer" init-method="init" lazy-init="false">
+	<bean class="org.storefront.web.mvc.RequestMappingHandlerAdapterConfigurer" init-method="init" lazy-init="false">
 		<property name="urlPathHelper">
-			<bean class="org.customsite.storefront.web.mvc.AcceleratorUrlPathHelper"/>
+			<bean class="org.storefront.web.mvc.AcceleratorUrlPathHelper"/>
 		</property>
 	</bean>
 
 	<alias name="defaultRequireHardLoginEvaluator" alias="requireHardLoginEvaluator" />
-	<bean id="defaultRequireHardLoginEvaluator" class="org.customsite.storefront.security.evaluator.impl.RequireHardLoginEvaluator" >
+	<bean id="defaultRequireHardLoginEvaluator" class="org.storefront.security.evaluator.impl.RequireHardLoginEvaluator" >
 		<property name="userService" ref="userService"/>
 		<property name="cookieGenerator" ref="guidCookieGenerator"/>
 		<property name="sessionService" ref="sessionService"/>
@@ -69,40 +69,40 @@
 	<alias name="defaultBeforeControllerHandlersList" alias="beforeControllerHandlersList" />
 	<util:list id="defaultBeforeControllerHandlersList" >
 		<!-- List of handlers to run -->
-		<bean class="org.customsite.storefront.interceptors.beforecontroller.SecurityUserCheckBeforeControllerHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforecontroller.RequireHardLoginBeforeControllerHandler" >
+		<bean class="org.storefront.interceptors.beforecontroller.SecurityUserCheckBeforeControllerHandler" />
+		<bean class="org.storefront.interceptors.beforecontroller.RequireHardLoginBeforeControllerHandler" >
 				<property name="redirectStrategy" ref="redirectStrategy"/>
 				<property name="loginUrl" value="/login"/>
 				<property name="loginAndCheckoutUrl" value="/login/checkout"/>
 				<property name="requireHardLoginEvaluator" ref="requireHardLoginEvaluator"/>
 		</bean>
-		<bean class="org.customsite.storefront.interceptors.beforecontroller.DeviceDetectionBeforeControllerHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforecontroller.SetLanguageBeforeControllerHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforecontroller.SetUiExperienceBeforeControllerHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforecontroller.ThemeBeforeControllerHandler" />
+		<bean class="org.storefront.interceptors.beforecontroller.DeviceDetectionBeforeControllerHandler" />
+		<bean class="org.storefront.interceptors.beforecontroller.SetLanguageBeforeControllerHandler" />
+		<bean class="org.storefront.interceptors.beforecontroller.SetUiExperienceBeforeControllerHandler" />
+		<bean class="org.storefront.interceptors.beforecontroller.ThemeBeforeControllerHandler" />
 	</util:list>
 	
 	<alias name="defaultBeforeViewHandlersList" alias="beforeViewHandlersList" />
 	<util:list id="defaultBeforeViewHandlersList"  >
 	<!-- The CmsPageBeforeViewHandler could change the target view, so it should be run first. -->
-		<bean class="org.customsite.storefront.interceptors.beforeview.CmsPageBeforeViewHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforeview.UiThemeResourceBeforeViewHandler" >
+		<bean class="org.storefront.interceptors.beforeview.CmsPageBeforeViewHandler" />
+		<bean class="org.storefront.interceptors.beforeview.UiThemeResourceBeforeViewHandler" >
 			<property name="defaultThemeName" value="blue"/>
 		</bean>
-		<bean class="org.customsite.storefront.interceptors.beforeview.SeoRobotsFollowBeforeViewHandler" >
+		<bean class="org.storefront.interceptors.beforeview.SeoRobotsFollowBeforeViewHandler" >
 			<property name="robotIndexForJSONMapping">
 				<map>
 					<entry key="/search" value="noindex,follow" />
 				</map>
 			</property>
 		</bean>
-		<bean class="org.customsite.storefront.interceptors.beforeview.UiExperienceMetadataViewHandler"  />
-		<bean class="org.customsite.storefront.interceptors.beforeview.AnalyticsPropertiesBeforeViewHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforeview.ConfigWro4jBeforeViewHandler" >
+		<bean class="org.storefront.interceptors.beforeview.UiExperienceMetadataViewHandler"  />
+		<bean class="org.storefront.interceptors.beforeview.AnalyticsPropertiesBeforeViewHandler" />
+		<bean class="org.storefront.interceptors.beforeview.ConfigWro4jBeforeViewHandler" >
 			<property name="siteConfigService" ref="siteConfigService"/>
 		</bean>
-		<bean class="org.customsite.storefront.interceptors.beforeview.DebugInfoBeforeViewHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforeview.CartRestorationBeforeViewHandler">
+		<bean class="org.storefront.interceptors.beforeview.DebugInfoBeforeViewHandler" />
+		<bean class="org.storefront.interceptors.beforeview.CartRestorationBeforeViewHandler">
 			<property name="sessionService" ref="sessionService" />
 			<property name="pagesToShowModifications">
 				<list>
@@ -110,9 +110,9 @@
 				</list>
 			</property>
 		</bean>
-		<bean class="org.customsite.storefront.interceptors.beforeview.GoogleMapsBeforeViewHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforeview.ConsentManagementBeforeViewHandler" />
-		<bean class="org.customsite.storefront.interceptors.beforeview.CookieNotificationBeforeViewHandler">
+		<bean class="org.storefront.interceptors.beforeview.GoogleMapsBeforeViewHandler" />
+		<bean class="org.storefront.interceptors.beforeview.ConsentManagementBeforeViewHandler" />
+		<bean class="org.storefront.interceptors.beforeview.CookieNotificationBeforeViewHandler">
 			<property name="cookieNotificationCookieGenerator" ref="cookieNotificationCookieGenerator" />
 		</bean>
 
@@ -120,7 +120,7 @@
 	
 	<!-- Interceptor that runs once per request and before the controller handler method is called -->
 	<alias name="defaultBeforeControllerHandlerInterceptor" alias="beforeControllerHandlerInterceptor" />
-	<bean id="defaultBeforeControllerHandlerInterceptor" class="org.customsite.storefront.interceptors.BeforeControllerHandlerInterceptor" >
+	<bean id="defaultBeforeControllerHandlerInterceptor" class="org.storefront.interceptors.BeforeControllerHandlerInterceptor" >
 		<property name="beforeControllerHandlers">
 			<ref bean="beforeControllerHandlersList" />	
 		</property>
@@ -128,7 +128,7 @@
 
 	<!-- Interceptor that runs BeforeViewHandlers before the view is rendered -->
 	<alias name="defaultBeforeViewHandlerInterceptor" alias="beforeViewHandlerInterceptor" />
-	<bean id="defaultBeforeViewHandlerInterceptor" class="org.customsite.storefront.interceptors.BeforeViewHandlerInterceptor" >
+	<bean id="defaultBeforeViewHandlerInterceptor" class="org.storefront.interceptors.BeforeViewHandlerInterceptor" >
 		<property name="beforeViewHandlers">
 			<ref bean="beforeViewHandlersList" />	
 		</property>
@@ -146,7 +146,7 @@
 	</mvc:interceptors>
 
 	<!-- Tell Spring MVC how to find its jsp files -->
-	<bean id="viewResolver" class="org.customsite.storefront.web.view.UiExperienceViewResolver" >
+	<bean id="viewResolver" class="org.storefront.web.view.UiExperienceViewResolver" >
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="addOnPrefix" value="addons/"/>
@@ -185,7 +185,7 @@
 	<!-- theme message source - falls back to the messageSource -->
 	<alias name="storefrontMessageSource" alias="themeSource" />
 	<alias name="storefrontMessageSource" alias="messageSource" />
-	<bean id="storefrontMessageSource" class="org.customsite.storefront.web.theme.StorefrontResourceBundleSource">
+	<bean id="storefrontMessageSource" class="org.storefront.web.theme.StorefrontResourceBundleSource">
 		<property name="basenamePrefix" value="/WEB-INF/messages/" />
 		<property name="basePrefix" value="base" />
 		<property name="sitePrefix" value="site" />
@@ -204,11 +204,11 @@
 
 	<!-- Theme Resolver Will resolve Theme from current page and then current cms site -->
 	<alias name="uiExperienceSiteThemeResolver" alias="themeResolver"/>
-	<bean id="uiExperienceSiteThemeResolver" class="org.customsite.storefront.web.theme.UiExperienceSiteThemeResolver" >
+	<bean id="uiExperienceSiteThemeResolver" class="org.storefront.web.theme.UiExperienceSiteThemeResolver" >
 		<property name="siteThemeResolverUtils" ref="siteThemeResolverUtils"/>
 	</bean>
 	
-	<bean id="localeResolver" class="org.customsite.storefront.web.i18n.StoreSessionLocaleResolver" >
+	<bean id="localeResolver" class="org.storefront.web.i18n.StoreSessionLocaleResolver" >
 		<property name="i18NService" ref="i18NService"/>
 	</bean>
 
@@ -310,7 +310,7 @@
 	</util:map>
 
 	<alias name="defaultPreviewDataModelUrlResolver" alias="previewDataModelUrlResolver" />
-	<bean id="defaultPreviewDataModelUrlResolver" class="org.customsite.storefront.url.DefaultPreviewDataModelUrlResolver" >
+	<bean id="defaultPreviewDataModelUrlResolver" class="org.storefront.url.DefaultPreviewDataModelUrlResolver" >
 		<property name="productModelUrlResolver" ref="productModelUrlResolver"/>
 		<property name="categoryModelUrlResolver" ref="categoryModelUrlResolver"/>
 		<property name="pageMapping">
@@ -351,7 +351,7 @@
 	<bean id="mapMergeBeanPostProcessor"
 	      class="de.hybris.platform.commerceservices.spring.config.MapMergeDirectiveBeanPostProcessor"/>
 
-	<bean id="siteThemeResolverUtils" class="org.customsite.storefront.util.SiteThemeResolverUtils">
+	<bean id="siteThemeResolverUtils" class="org.storefront.util.SiteThemeResolverUtils">
 		<property name="uiExperienceService" ref="uiExperienceService"/>
 		<property name="cmsSiteService" ref="cmsSiteService"/>
 		<property name="defaultTheme" value="blue"/>

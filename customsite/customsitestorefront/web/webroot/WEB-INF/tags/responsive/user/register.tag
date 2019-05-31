@@ -4,11 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="formElement"
-	tagdir="/WEB-INF/tags/responsive/formElement"%>
-<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
+<%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="template" tagdir="/WEB-INF/tags/responsive/template"%>
+
+<spring:htmlEscape defaultHtmlEscape="true" />
 
 <spring:url value="/login/register/termsandconditions" var="getTermsAndConditionsUrl"/>
 
@@ -54,15 +55,18 @@
 		</div>
 
     </c:if>
-	
-	<div class="checkbox">
-		<label class="control-label uncased">
-			<input type="checkbox" id="registerChkTermsConditions" name="registerChkTermsConditions" disabled="disabled"/>
-            <spring:theme code="register.termsConditions" arguments="${getTermsAndConditionsUrl}" />
-		</label>
-	</div>
-	
-    <input type="hidden" id="recaptchaChallangeAnswered"
+
+	<spring:theme code="register.termsConditions" arguments="${getTermsAndConditionsUrl}" var="termsConditionsHtml" htmlEscape="false" />
+	<template:errorSpanField path="termsCheck">
+		<div class="checkbox">
+			<label class="control-label uncased">
+				<form:checkbox id="registerChkTermsConditions" path="termsCheck" disabled="true"/>
+				${ycommerce:sanitizeHTML(termsConditionsHtml)}
+			</label>
+		</div>
+	</template:errorSpanField>
+
+	<input type="hidden" id="recaptchaChallangeAnswered"
 		value="${fn:escapeXml(requestScope.recaptchaChallangeAnswered)}" />
 	<div class="form_field-elements control-group js-recaptcha-captchaaddon"></div>
 	<div class="form-actions clearfix">

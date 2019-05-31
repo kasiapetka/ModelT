@@ -29,7 +29,7 @@
 	<bean id="defaultRequestContextData" class="de.hybris.platform.acceleratorservices.data.RequestContextData" scope="request"/>
 
 	<!-- Converter that creates the CMS Restriction Data -->
-	<bean id="requestContextRestrictionConverter" class="org.customsite.storefront.util.RequestContextRestrictionConverter" >
+	<bean id="requestContextRestrictionConverter" class="org.storefront.util.RequestContextRestrictionConverter" >
 		<property name="cmsDataFactory" ref="cmsDataFactory"/>
 	</bean>
 
@@ -37,13 +37,13 @@
 	<!-- CMS Component Renderers -->
 
 	<alias name="defaultCMSLinkComponentRenderer" alias="cmsLinkComponentRenderer"/>
-	<bean id="defaultCMSLinkComponentRenderer" class="org.customsite.storefront.renderer.CMSLinkComponentRenderer" >
+	<bean id="defaultCMSLinkComponentRenderer" class="org.storefront.renderer.CMSLinkComponentRenderer" >
 		<property name="categoryUrlConverter" ref="categoryUrlConverter"/>
 		<property name="productUrlConverter" ref="productUrlConverter"/>
 	</bean>
 
 	<alias name="defaultImageMapComponentRenderer" alias="imageMapComponentRenderer"/>
-	<bean id="defaultImageMapComponentRenderer" class="org.customsite.storefront.renderer.ImageMapComponentRenderer" />
+	<bean id="defaultImageMapComponentRenderer" class="org.storefront.renderer.ImageMapComponentRenderer" />
 
 
 	<alias alias="cmsComponentRendererRegistry" name="acceleratorCMSComponentRendererRegistry" />

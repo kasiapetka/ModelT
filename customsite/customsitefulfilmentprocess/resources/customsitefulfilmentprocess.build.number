@@ -1,11 +1,9 @@
 #Ant properties
-#Thu Feb 15 16:21:50 UTC 2018
-builddate=20180215 1621
+#Fri Feb 22 17:58:20 CET 2019
+builddate=20190222 1756
 description=customsitefulfilmentprocess
-group.id=de.hybris.platform
-module.name=platform-module
 name=customsitefulfilmentprocess
-releasedate=20180214 1940
+releasedate=20181129 1417
 vendor=hybris
-version=6.6.0.0
-version.api=6.6.0
+version=1811.3
+version.api=1811

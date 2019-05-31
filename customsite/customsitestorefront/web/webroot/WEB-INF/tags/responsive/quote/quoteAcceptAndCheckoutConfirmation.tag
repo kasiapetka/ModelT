@@ -15,8 +15,8 @@
 
 <div style="display:none">
     <spring:theme code="text.quote.checkout.confirmation.modal.title"  arguments="${quoteData.code}"
-                  var="submitConfirmationModalTitle"/>
-    <div id="js-quote-checkout-modal" data-submit-confirmation-modal-title="${submitConfirmationModalTitle}">
+                  var="submitConfirmationModalTitleHtml"/>
+    <div id="js-quote-checkout-modal" data-submit-confirmation-modal-title="${submitConfirmationModalTitleHtml}">
         <div class="modal__top">
             <label class="modal__top--label">
                 <spring:theme code="text.quote.name.label"/>

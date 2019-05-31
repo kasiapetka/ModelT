@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ attribute name="stockData" required="true" type="de.hybris.platform.commercefacades.product.data.StockData" %>
+
+<spring:htmlEscape defaultHtmlEscape="true" />
+
 <c:choose>
 	<c:when test="${stockData.stockLevelStatus.code eq 'outOfStock'}">
 		<div class='resultStock negative'><spring:theme code="pickup.out.of.stock"/></div>
@@ -12,7 +15,7 @@
 		<div class='resultStock'><spring:theme code="pickup.force.in.stock"/></div>
 	</c:when>
 	<c:otherwise>
-		<div class='resultStock'><spring:theme code="pickup.in.stock" arguments="${fn:escapeXml(stockData.stockLevel)}"/></div>
+		<div class='resultStock'><spring:theme code="pickup.in.stock" arguments="${stockData.stockLevel}"/></div>
 	</c:otherwise>
 </c:choose>
 

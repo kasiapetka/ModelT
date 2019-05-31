@@ -50,7 +50,6 @@
 		<js>/_ui/responsive/common/js/acc.cart.js</js>
 		<js>/_ui/responsive/common/js/acc.cartitem.js</js>
 		<js>/_ui/responsive/common/js/acc.checkout.js</js>
-		<js>/_ui/responsive/common/js/acc.checkoutaddress.js</js>
 		<js>/_ui/responsive/common/js/acc.checkoutsteps.js</js>
 		<js>/_ui/responsive/common/js/acc.cms.js</js>
 		<js>/_ui/responsive/common/js/acc.colorbox.js</js>

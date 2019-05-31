@@ -9,7 +9,6 @@
 
 <c:set var="hasShippedItems" value="${cartData.deliveryItemsQuantity > 0}" />
 <c:set var="deliveryAddress" value="${cartData.deliveryAddress}"/>
-<c:set var="firstShippedItem" value="true"></c:set>
 
 <c:if test="${hasShippedItems}">
 	<div class="checkout-shipping-items row">
@@ -22,7 +21,7 @@
                     <c:if test="${entry.deliveryPointOfService == null}">
                         <li class="row">
                             <span class="name col-xs-8">${fn:escapeXml(entry.product.name)}</span>
-                            <span class="qty col-xs-4"><spring:theme code="basket.page.qty"/>:&nbsp;${entry.quantity}</span>
+                            <span class="qty col-xs-4"><spring:theme code="basket.page.qty"/>:&nbsp;${fn:escapeXml(entry.quantity)}</span>
                         </li>
                     </c:if>
                 </c:forEach>
@@ -31,7 +30,7 @@
 
         <c:if test="${showDeliveryAddress and not empty deliveryAddress}">
             <div class="col-sm-12 col-lg-6">
-                <div class="checkout-shipping-items-header"><spring:theme code="checkout.summary.shippingAddress"></spring:theme></div>
+                <div class="checkout-shipping-items-header"><spring:theme code="checkout.summary.shippingAddress" /></div>
                 <span>
                     <b>${fn:escapeXml(deliveryAddress.title)}&nbsp;${fn:escapeXml(deliveryAddress.firstName)}&nbsp;${fn:escapeXml(deliveryAddress.lastName)}</b>
                     <br/>
