@@ -8,7 +8,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with SAP.
  */
-package org.customsite.storefront.controllers.pages;
+package de.hybris.platform.yacceleratorstorefront.controllers.pages;
 
 import de.hybris.platform.acceleratorfacades.flow.impl.SessionOverrideCheckoutFlowFacade;
 import de.hybris.platform.acceleratorservices.controllers.page.PageType;
@@ -38,7 +38,7 @@ import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.commerceservices.util.ResponsiveUtils;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
-import org.customsite.storefront.controllers.ControllerConstants;
+import de.hybris.platform.yacceleratorstorefront.controllers.ControllerConstants;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -56,7 +56,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -66,6 +65,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -79,8 +80,8 @@ public class CheckoutController extends AbstractCheckoutController
 	private static final Logger LOG = Logger.getLogger(CheckoutController.class);
 	/**
 	 * We use this suffix pattern because of an issue with Spring 3.1 where a Uri value is incorrectly extracted if it
-	 * contains on or more '.' characters. Please see https://jira.springsource.org/browse/SPR-6164 for a discussion on
-	 * the issue and future resolution.
+	 * contains on or more '.' characters. Please see https://jira.springsource.org/browse/SPR-6164 for a discussion on the
+	 * issue and future resolution.
 	 */
 	private static final String ORDER_CODE_PATH_VARIABLE_PATTERN = "{orderCode:.*}";
 
@@ -163,6 +164,7 @@ public class CheckoutController extends AbstractCheckoutController
 	{
 		if (bindingResult.hasErrors())
 		{
+			form.setTermsCheck(false);
 			GlobalMessages.addErrorMessage(model, "form.global.error");
 			return processOrderCode(form.getOrderCode(), model, request, redirectModel);
 		}
@@ -175,7 +177,8 @@ public class CheckoutController extends AbstractCheckoutController
 		catch (final DuplicateUidException e)
 		{
 			// User already exists
-			LOG.warn("guest registration failed: " + e);
+			LOG.debug("guest registration failed.");
+			form.setTermsCheck(false);
 			model.addAttribute(new GuestRegisterForm());
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
 					"guest.checkout.existingaccount.register.error", new Object[]
