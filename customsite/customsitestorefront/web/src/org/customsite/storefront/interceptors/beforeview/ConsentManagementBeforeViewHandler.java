@@ -8,7 +8,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with SAP.
  */
-package org.customsite.storefront.interceptors.beforeview;
+package de.hybris.platform.yacceleratorstorefront.interceptors.beforeview;
 
 import de.hybris.platform.acceleratorstorefrontcommons.consent.data.ConsentCookieData;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
@@ -17,6 +17,9 @@ import de.hybris.platform.commercefacades.consent.ConsentFacade;
 import de.hybris.platform.commercefacades.consent.data.ConsentTemplateData;
 import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.user.UserFacade;
+import de.hybris.platform.commerceservices.consent.AnonymousConsentChangeEventFactory;
+import de.hybris.platform.commerceservices.event.AnonymousConsentChangeEvent;
+import de.hybris.platform.servicelayer.event.EventService;
 import de.hybris.platform.servicelayer.session.SessionService;
 
 import java.io.IOException;
@@ -26,10 +29,11 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -40,9 +44,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
@@ -51,7 +56,6 @@ import org.springframework.web.util.WebUtils;
  * 1. Creates and synchronizes the 'anonymous-consent' cookie with all latest consent-templates <br/>
  * 2. Populates the model with the {consentTemplatesToDisplay}:List<ConsentTemplateData>, which are used to render in
  * JSP.
- *
  */
 public class ConsentManagementBeforeViewHandler implements BeforeViewHandler
 {
@@ -72,6 +76,10 @@ public class ConsentManagementBeforeViewHandler implements BeforeViewHandler
 	private UserFacade userFacade;
 	@Resource(name = "storeSessionFacade")
 	private StoreSessionFacade storeSessionFacade;
+	@Resource(name = "eventService")
+	private EventService eventService;
+	@Resource(name = "anonymousConsentChangeEventFactory")
+	private AnonymousConsentChangeEventFactory anonymousConsentChangeEventFactory;
 
 	@Override
 	public void beforeView(final HttpServletRequest request, final HttpServletResponse response, final ModelAndView modelAndView)
@@ -95,7 +103,7 @@ public class ConsentManagementBeforeViewHandler implements BeforeViewHandler
 				: filterDisplayTemplates(upToDateCookies);
 
 		// Update client cookie
-        updateCookieAndSession(response, upToDateCookies);
+		updateCookieAndSession(response, upToDateCookies);
 		modelAndView.addObject(CONSENT_TEMPLATES, consentTemplatesToDisplay);
 	}
 
@@ -153,6 +161,7 @@ public class ConsentManagementBeforeViewHandler implements BeforeViewHandler
 		{
 			final Optional<ConsentTemplateData> templateData = getConsentTemplateById(consentTemplates,
 					cookieConsent.getTemplateCode());
+
 			if (!templateData.isPresent() || (templateData.isPresent()
 					&& templateData.get().getVersion().equals(Integer.valueOf(cookieConsent.getTemplateVersion())) == false))
 			{
@@ -203,8 +212,8 @@ public class ConsentManagementBeforeViewHandler implements BeforeViewHandler
 
 	protected void updateCookieAndSession(final HttpServletResponse response, final List<ConsentCookieData> consentCookies)
 	{
-		updateCookie(response,consentCookies);
-		populateConsentCookiesIntoSession(consentCookies);
+		updateCookie(response, consentCookies);
+		updateConsentCookiesInSession(consentCookies);
 	}
 
 	protected void updateCookie(final HttpServletResponse response, final List<ConsentCookieData> consentCookies)
@@ -215,6 +224,8 @@ public class ConsentManagementBeforeViewHandler implements BeforeViewHandler
 			final Cookie cookie = new Cookie(WebConstants.ANONYMOUS_CONSENT_COOKIE, URLEncoder.encode(cookieValue, UTF_8));
 			cookie.setMaxAge(NEVER_EXPIRES);
 			cookie.setPath("/");
+			cookie.setHttpOnly(true);
+			cookie.setSecure(true);
 			response.addCookie(cookie);
 		}
 		catch (final UnsupportedEncodingException e)
@@ -227,12 +238,49 @@ public class ConsentManagementBeforeViewHandler implements BeforeViewHandler
 		}
 	}
 
-	protected void populateConsentCookiesIntoSession(final List<ConsentCookieData> consentCookies)
+	protected void updateConsentCookiesInSession(final List<ConsentCookieData> consentCookies)
+	{
+		final Map<String, String> previousConsentMap = (Map<String, String>) sessionService
+				.getAttribute(WebConstants.USER_CONSENTS);
+		final Map<String, String> currentConsentMap = populateConsentCookiesIntoSession(consentCookies);
+		if (previousConsentMap != null && currentConsentMap != null)
+		{
+			for (final String template : currentConsentMap.keySet())
+			{
+				final String previousValue = previousConsentMap.get(template);
+				final String currentValue = currentConsentMap.get(template);
+				//send event if previous consent value is different than current one
+				if (!Objects.equals(currentValue, previousValue))
+				{
+					publishConsentEvent(template, previousValue, currentValue, currentConsentMap);
+				}
+			}
+		}
+	}
+
+	protected void publishConsentEvent(final String template, final String previousValue, final String currentValue,
+			final Map<String, String> currentConsentMap)
+	{
+		try
+		{
+			final AnonymousConsentChangeEvent event = anonymousConsentChangeEventFactory.buildEvent(template, previousValue,
+					currentValue, currentConsentMap);
+			eventService.publishEvent(event);
+		}
+		catch (final RuntimeException e)
+		{
+			LOG.warn("Event publishing failed for anonymous user consent change", e);
+		}
+	}
+
+	protected Map<String, String> populateConsentCookiesIntoSession(final List<ConsentCookieData> consentCookies)
 	{
 		final Map<String, String> consentsMap = new HashMap<>();
-		for(ConsentCookieData cookieData:consentCookies){
-			consentsMap.put(cookieData.getTemplateCode(),cookieData.getConsentState());
+		for (final ConsentCookieData cookieData : consentCookies)
+		{
+			consentsMap.put(cookieData.getTemplateCode(), cookieData.getConsentState());
 		}
 		sessionService.setAttribute(WebConstants.USER_CONSENTS, consentsMap);
+		return consentsMap;
 	}
 }
