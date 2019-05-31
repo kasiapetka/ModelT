@@ -32,7 +32,7 @@
        "smarteditaddon",
        "cmssmartedit",
        "cmsbackoffice",
-       "cmsmulticountrycockpit",
+       #"cmsmulticountrycockpit",
        "multicountrysampledataaddon",       
        "textfieldconfiguratortemplatebackoffice",
        "textfieldconfiguratortemplateaddon",
