@@ -12,9 +12,9 @@
 
 <c:choose>
 	<c:when test="${not empty productImage}">
-		<img src="${fn:escapeXml(productImage.url)}" alt="${fn:escapeXml(product.name)}" title="${fn:escapeXml(product.name)}"/>
+		<img src="${productImage.url}" alt="${fn:escapeXml(product.name)}" title="${fn:escapeXml(product.name)}"/>
 	</c:when>
 	<c:otherwise>
-		<theme:image code="img.missingProductImage.responsive.${format}" alt="${product.name}" title="${product.name}"/>
+		<theme:image code="img.missingProductImage.${format}" alt="${fn:escapeXml(product.name)}" title="${fn:escapeXml(product.name)}"/>
 	</c:otherwise>
 </c:choose>

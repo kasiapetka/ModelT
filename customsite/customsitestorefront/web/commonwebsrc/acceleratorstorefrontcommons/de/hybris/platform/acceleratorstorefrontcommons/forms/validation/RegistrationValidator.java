@@ -45,7 +45,6 @@ public class RegistrationValidator implements Validator
 		final String email = registerForm.getEmail();
 		final String pwd = registerForm.getPwd();
 		final String checkPwd = registerForm.getCheckPwd();
-		final boolean termsCheck = registerForm.isTermsCheck();
 
 		validateTitleCode(errors, titleCode);
 		validateName(errors, firstName, "firstName", "register.firstName.invalid");
@@ -60,7 +59,6 @@ public class RegistrationValidator implements Validator
 		validateEmail(errors, email);
 		validatePassword(errors, pwd);
 		comparePasswords(errors, pwd, checkPwd);
-		validateTermsAndConditions(errors, termsCheck);
 	}
 
 	protected void comparePasswords(final Errors errors, final String pwd, final String checkPwd)
@@ -102,7 +100,7 @@ public class RegistrationValidator implements Validator
 		}
 	}
 
-	protected void validateName(final Errors errors, final String name, final String propertyName, final String property)
+	protected void validateName(final Errors errors, final String name, final String propertyName, String property)
 	{
 		if (StringUtils.isBlank(name))
 		{
@@ -130,13 +128,5 @@ public class RegistrationValidator implements Validator
 	{
 		final Matcher matcher = EMAIL_REGEX.matcher(email);
 		return matcher.matches();
-	}
-
-	protected void validateTermsAndConditions(final Errors errors, final boolean termsCheck)
-	{
-		if (!termsCheck)
-		{
-			errors.rejectValue("termsCheck", "register.terms.not.accepted");
-		}
 	}
 }

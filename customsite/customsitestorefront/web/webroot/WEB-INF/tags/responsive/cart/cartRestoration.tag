@@ -4,8 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<spring:htmlEscape defaultHtmlEscape="true" />
-
 <c:url value="/cart" var="cartUrl" />
 
 <c:set var="textPos" value="left" scope="request"/>
@@ -39,18 +37,25 @@
 						<c:forEach items="${restorationData.modifications}"
 							var="modification">
 							<br />
-							<c:url value="${modification.entry.product.url}" var="entryUrl" /><c:choose>
-								<c:when test="${modification.deliveryModeChanged}">
+							<c:url value="${modification.entry.product.url}" var="entryUrl" />
+							<c:choose>
+								<c:when
+									test="${modification.deliveryModeChanged and not empty modification.entry}">
 									<spring:theme code="basket.restoration.delivery.changed"
-										arguments="${modification.entry.product.name}" />
+										arguments="${fn:escapeXml(modification.entry.product.name)},${entryUrl},${modification.entry.quantity},${modification.quantityAdded}" />
+								</c:when>
+								<c:when
+									test="${modification.deliveryModeChanged and empty modification.entry}">
+									<spring:theme code="basket.restoration.delivery.changed"
+										arguments="${fn:escapeXml(modification.entry.product.name)},${entryUrl},${modification.quantity},${modification.quantityAdded}" />
 								</c:when>
 								<c:when test="${not modification.deliveryModeChanged and not empty modification.entry}">
-									<spring:theme htmlEscape="false"
+									<spring:theme
 										code="basket.restoration.${modification.statusCode}"
 										arguments="${fn:escapeXml(modification.entry.product.name)},${entryUrl},${modification.entry.quantity},${modification.quantityAdded}" />
 								</c:when>
 								<c:when test="${not modification.deliveryModeChanged and empty modification.entry}">
-									<spring:theme htmlEscape="false"
+									<spring:theme
 										code="basket.restoration.${modification.statusCode}"
 										arguments="${fn:escapeXml(modification.entry.product.name)},${entryUrl},${modification.quantity},${modification.quantityAdded}" />
 								</c:when>

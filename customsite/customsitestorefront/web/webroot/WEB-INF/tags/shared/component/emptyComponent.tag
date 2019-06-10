@@ -4,6 +4,6 @@
 
 <c:if test="${cmsPageRequestContextData.liveEdit}">
 	<div class="yCmsComponentEmpty">
-		Empty ${fn:escapeXml(component.itemtype)}: ${fn:escapeXml(component.name)}
+		Empty ${component.itemtype}: ${fn:escapeXml(component.name)}
 	</div>
 </c:if>

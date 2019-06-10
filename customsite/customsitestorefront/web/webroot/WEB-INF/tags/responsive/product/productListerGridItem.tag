@@ -12,21 +12,15 @@
 <spring:theme code="text.addToCart" var="addToCartText"/>
 <c:url value="${product.url}" var="productUrl"/>
 <c:set value="${not empty product.potentialPromotions}" var="hasPromotion"/>
-
-<c:set value="product-item" var="productTagClasses"/>
-<c:forEach var="tag" items="${product.tags}">
-	<c:set value="${productTagClasses} tag-${tag}" var="productTagClasses"/>
-</c:forEach>
-
-<div class="${fn:escapeXml(productTagClasses)}">
+<div class="product-item">
 	<ycommerce:testId code="product_wholeProduct">
-		<a class="thumb" href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}">
+		<a class="thumb" href="${productUrl}" title="${fn:escapeXml(product.name)}">
 			<product:productPrimaryImage product="${product}" format="product"/>
 		</a>
 		<div class="details">
 
 			<ycommerce:testId code="product_productName">
-				<a class="name" href="${fn:escapeXml(productUrl)}">
+				<a class="name" href="${productUrl}">
 					<c:out escapeXml="false" value="${ycommerce:sanitizeHTML(product.name)}" />
 				</a>
 			</ycommerce:testId>
@@ -48,13 +42,13 @@
 	                    <c:set var="rollupProperty" value="${variantOptionQualifier.value}"/>
 	                </c:if>
 					<c:if test="${variantOptionQualifier.qualifier eq 'thumbnail'}">
-	                    <c:set var="imageUrlHtml" value="${fn:escapeXml(variantOptionQualifier.value)}"/>
+	                    <c:set var="imageUrl" value="${fn:escapeXml(variantOptionQualifier.value)}"/>
 	                </c:if>
 	                <c:if test="${variantOptionQualifier.qualifier eq rollupProperty}">
-	                    <c:set var="variantNameHtml" value="${fn:escapeXml(variantOptionQualifier.value)}"/>
+	                    <c:set var="variantName" value="${fn:escapeXml(variantOptionQualifier.value)}"/>
 	                </c:if>
 				</c:forEach>
-				<img style="width: 32px; height: 32px;" src="${imageUrlHtml}" title="${variantNameHtml}" alt="${variantNameHtml}"/>
+				<img style="width: 32px; height: 32px;" src="${imageUrl}" title="${variantName}" alt="${variantName}"/>
 			</c:forEach>
 		</div>
 

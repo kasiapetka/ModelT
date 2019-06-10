@@ -16,7 +16,7 @@
  */
 
 jQuery(function(){
-	jQuery("div.svw").prepend(jQuery("<img>").attr({"src":ACC.config.commonResourcePath + "/images/spinner.gif", "alt":"loading..."}).addClass("ldrgif"));
+   jQuery("div.svw").prepend("<img src='" + ACC.config.commonResourcePath + "/images/spinner.gif' class='ldrgif' alt='loading...'/ >");
 });
 var j = 0;
 var quantofamo = 0;

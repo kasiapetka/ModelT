@@ -58,10 +58,10 @@
                         </button>
                         <c:choose>
                             <c:when test="${edit}">
-                                <input id="editAddress" name="editAddress" type="hidden" value="true"/>
+                                <input id="editAddress" name="editAddress" type="hidden" value="${true}"/>
                             </c:when>
                             <c:otherwise>
-                                <input id="editAddress" name="editAddress" type="hidden" value="false"/>
+                                <input id="editAddress" name="editAddress" type="hidden" value="${false}"/>
                             </c:otherwise>
                         </c:choose>
                     </form:form>
@@ -114,10 +114,10 @@
                         </button>
                         <c:choose>
                             <c:when test="${edit}">
-                                <input id="editAddress" name="editAddress" type="hidden" value="true"/>
+                                <input id="editAddress" name="editAddress" type="hidden" value="${true}"/>
                             </c:when>
                             <c:otherwise>
-                                <input id="editAddress" name="editAddress" type="hidden" value="false"/>
+                                <input id="editAddress" name="editAddress" type="hidden" value="${false}"/>
                             </c:otherwise>
                         </c:choose>
                     </form:form>

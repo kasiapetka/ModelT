@@ -5,7 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="common" tagdir="/WEB-INF/tags/responsive/common" %>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format" %>
-<%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
@@ -41,7 +40,7 @@
                             <div class="file-upload__wrapper btn btn-default btn-small" id="chooseFileButton">
                                 <span><spring:theme code="import.csv.savedCart.chooseFile"/></span>
                                 <input type="file" id="csvFile" name="csvFile" class="file-upload__input js-file-upload__input"
-                                       accept="text/csv" data-file-max-size="${fn:escapeXml(csvFileMaxSize)}"/>
+                                       accept="text/csv" data-file-max-size="${csvFileMaxSize}"/>
                             </div>
                             <span class="file-upload__file-name js-file-upload__file-name">
                             </span>
@@ -62,8 +61,7 @@
         </div>
     </div>
     <div style="display: none">
-    	<spring:theme code="import.csv.savedCart.success" var="inportSuccessHtml" arguments="${savedCartsLink}" htmlEscape="false"/>
-        <span id="import-csv-success-message">${ycommerce:sanitizeHTML(inportSuccessHtml)}</span>
+        <span id="import-csv-success-message"><spring:theme code="import.csv.savedCart.success" arguments="${savedCartsLink}" htmlEscape="false"/></span>
         <span id="import-csv-upload-message"><spring:theme code="import.csv.savedCart.uploadStarted"/></span>
         <span id="import-csv-generic-error-message"><spring:theme code="import.csv.savedCart.genericError"/></span>
         <span id="import-csv-file-max-size-exceeded-error-message"><spring:theme code="import.csv.savedCart.fileMaxSizeExceeded"/></span>

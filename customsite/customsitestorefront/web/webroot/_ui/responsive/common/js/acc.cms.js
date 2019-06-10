@@ -3,10 +3,9 @@ ACC.cms = {
 		var self = this;
 		if(id) {
 			$.ajax({
-				url: ACC.config.contextPath +  '/cms/component?componentUid=' + encodeURIComponent(id),
+				url: ACC.config.contextPath +  '/cms/component?componentUid=' + id,
 				cache: false,
 				type: 'GET',
-                dataType: 'html',
 				success: function (result) {
 					reprocess = result.indexOf('js-responsive-image') > -1;
 					self.insertHtml(result, target, reprocess);

@@ -9,7 +9,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/responsive/template"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
@@ -18,12 +17,12 @@
 
 <template:errorSpanField path="${path}" errorPath="${errorPath}">
 	<ycommerce:testId code="LoginPage_Item_${idKey}">
-		<label class="control-label ${fn:escapeXml(labelCSS)}" for="${fn:escapeXml(idKey)}">
+		<label class="control-label ${labelCSS}" for="${idKey}">
 			<spring:theme code="${labelKey}" />
 			<c:if test="${mandatory != null && mandatory == false}">
 				<span>&nbsp;<spring:theme code="login.optional" /></span>
 			</c:if>
 		</label>
-		<form:password cssClass="${fn:escapeXml(inputCSS)}" id="${idKey}" path="${path}" autocomplete="off"/>
+		<form:password cssClass="${inputCSS}" id="${idKey}" path="${path}" autocomplete="off"/>
 	</ycommerce:testId>
 </template:errorSpanField>

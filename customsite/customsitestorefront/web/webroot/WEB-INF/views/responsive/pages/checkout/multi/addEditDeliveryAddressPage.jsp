@@ -35,13 +35,9 @@
 
                                         <div id="addressbook">
 
-                                            <spring:url var="selectDeliveryAddressUrl" value="{contextPath}/checkout/multi/delivery-address/select" htmlEscape="false">
-                                                <spring:param name="contextPath" value="${request.contextPath}" />
-                                            </spring:url>
-
                                             <c:forEach items="${deliveryAddresses}" var="deliveryAddress" varStatus="status">
                                                 <div class="addressEntry">
-                                                    <form action="${fn:escapeXml(selectDeliveryAddressUrl)}" method="GET">
+                                                    <form action="${request.contextPath}/checkout/multi/delivery-address/select" method="GET">
                                                         <input type="hidden" name="selectedAddressCode" value="${fn:escapeXml(deliveryAddress.id)}" />
                                                         <ul>
                                                             <li>

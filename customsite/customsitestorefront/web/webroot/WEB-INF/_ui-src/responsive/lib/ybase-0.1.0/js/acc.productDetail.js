@@ -7,14 +7,13 @@ ACC.productDetail = {
 
 
     checkQtySelector: function (self, mode) {
-    	var $qtySelector = $(document).find(self).parents(".js-qty-selector");
-        var input = $qtySelector.find(".js-qty-selector-input");
+        var input = $(self).parents(".js-qty-selector").find(".js-qty-selector-input");
         var inputVal = parseInt(input.val());
         var max = input.data("max");
-        var minusBtn = $qtySelector.find(".js-qty-selector-minus");
-        var plusBtn = $qtySelector.find(".js-qty-selector-plus");
+        var minusBtn = $(self).parents(".js-qty-selector").find(".js-qty-selector-minus");
+        var plusBtn = $(self).parents(".js-qty-selector").find(".js-qty-selector-plus");
 
-        $qtySelector.find(".btn").removeAttr("disabled");
+        $(self).parents(".js-qty-selector").find(".btn").removeAttr("disabled");
 
         if (mode == "minus") {
             if (inputVal != 1) {
@@ -66,9 +65,9 @@ ACC.productDetail = {
     },
 
     updateQtyValue: function (self, value) {
-        var input = $(document).find(self).parents(".js-qty-selector").find(".js-qty-selector-input");
-        var addtocartQty = $(document).find(self).parents(".addtocart-component").find("#addToCartForm").find(".js-qty-selector-input");
-        var configureQty = $(document).find(self).parents(".addtocart-component").find("#configureForm").find(".js-qty-selector-input");
+        var input = $(self).parents(".js-qty-selector").find(".js-qty-selector-input");
+        var addtocartQty = $(self).parents(".addtocart-component").find("#addToCartForm").find(".js-qty-selector-input");
+        var configureQty = $(self).parents(".addtocart-component").find("#configureForm").find(".js-qty-selector-input");
         input.val(value);
         addtocartQty.val(value);
         configureQty.val(value);

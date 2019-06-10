@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ attribute name="showLinks" required="false" type="java.lang.Boolean" %>
 <%@ attribute name="starsClass" required="false" type="java.lang.String" %>
 
@@ -11,10 +11,8 @@
 <%@ attribute name="product" required="true"
 	type="de.hybris.platform.commercefacades.product.data.ProductData"%>
 
-<h1>Product review summary</h1>
 <div class="rating">
-	<c:set var="ratingJson">${ycommerce:encodeJSON(product.averageRating)}</c:set>
-	<div class="rating-stars pull-left js-ratingCalc ${fn:escapeXml(starsClass)}" data-rating='{"rating":"${fn:escapeXml(ratingJson)}","total":5}' >
+	<div class="rating-stars pull-left js-ratingCalc ${starsClass}" data-rating='{"rating":"${product.averageRating}","total":5}' >
 		<div class="greyStars">
 			<c:forEach  begin="1" end="5">
 				<span class="glyphicon glyphicon-star"></span>

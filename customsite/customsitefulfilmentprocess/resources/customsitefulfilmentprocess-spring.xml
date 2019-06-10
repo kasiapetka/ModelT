@@ -21,21 +21,21 @@
 
 	<!-- Listeners -->
 	
-	<bean id="pickupConfirmationEventListener" class="org.fulfilmentprocess.listeners.PickupConfirmationEventListener" parent="abstractEventListener">
+	<bean id="pickupConfirmationEventListener" class="org.customsite.fulfilmentprocess.listeners.PickupConfirmationEventListener" parent="abstractEventListener">
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 	
 	<!-- Process Adapters -->
 
 	<alias name="mockProcess2WarehouseAdapter" alias="process2WarehouseAdapter"/>
-	<bean id="mockProcess2WarehouseAdapter" class="org.fulfilmentprocess.warehouse.MockProcess2WarehouseAdapter" >
+	<bean id="mockProcess2WarehouseAdapter" class="org.customsite.fulfilmentprocess.warehouse.MockProcess2WarehouseAdapter" >
 		<property name="modelService" ref="modelService"/>
 		<property name="warehouse2ProcessAdapter" ref="warehouse2ProcessAdapter"/>
 		<property name="timeService" ref="timeService"/>
 	</bean>
 
 	<alias name="defaultWarehouse2ProcessAdapter" alias="warehouse2ProcessAdapter"/>
-	<bean id="defaultWarehouse2ProcessAdapter" class="org.fulfilmentprocess.warehouse.DefaultWarehouse2ProcessAdapter" >
+	<bean id="defaultWarehouse2ProcessAdapter" class="org.customsite.fulfilmentprocess.warehouse.DefaultWarehouse2ProcessAdapter" >
 		<property name="modelService" ref="modelService"/>
 		<property name="statusMap">
 			<map key-type="de.hybris.platform.warehouse.WarehouseConsignmentStatus" value-type="de.hybris.platform.commerceservices.enums.WarehouseConsignmentState">
@@ -71,7 +71,7 @@
 	<!-- Performs some basic validation for the order as part of the first stage of the process. -->
 
 	<alias name="defaultCheckOrderService" alias="checkOrderService"/>
-	<bean id="defaultCheckOrderService" class="org.fulfilmentprocess.impl.DefaultCheckOrderService" />
+	<bean id="defaultCheckOrderService" class="org.customsite.fulfilmentprocess.impl.DefaultCheckOrderService" />
 	
 	<!-- Order Splitting -->
 	<alias name="customsitefulfilmentprocessOrderSplittingService" alias="orderSplittingService"/>
@@ -91,30 +91,30 @@
 	<!-- Split Strategies -->
 	
 	<alias name="defaultSplitByPoS" alias="splitByPoS"/>
-	<bean id="defaultSplitByPoS" class="org.fulfilmentprocess.strategy.impl.SplitByPoS" />
+	<bean id="defaultSplitByPoS" class="org.customsite.fulfilmentprocess.strategy.impl.SplitByPoS" />
 	
 	<alias name="defaultSplitByEntryDeliveryAddress" alias="splitByEntryDeliveryAddress"/>
-	<bean id="defaultSplitByEntryDeliveryAddress" class="org.fulfilmentprocess.strategy.impl.SplitByEntryDeliveryAddress"  />
+	<bean id="defaultSplitByEntryDeliveryAddress" class="org.customsite.fulfilmentprocess.strategy.impl.SplitByEntryDeliveryAddress"  />
 	
 	<alias name="defaultSplitByDeliveryMode" alias="splitByDeliveryMode"/>
-	<bean id="defaultSplitByDeliveryMode" class="org.fulfilmentprocess.strategy.impl.SplitByDeliveryMode" >
+	<bean id="defaultSplitByDeliveryMode" class="org.customsite.fulfilmentprocess.strategy.impl.SplitByDeliveryMode" >
 		<property name="pickupDeliveryModeDao" ref="pickupDeliveryModeDao"/>
 	</bean>
 	
 	<alias name="defaultSplitByAvailableCount" alias="splitByAvailableCount"/>
-	<bean id="defaultSplitByAvailableCount" class="org.fulfilmentprocess.strategy.impl.SplitByAvailableCount" >
+	<bean id="defaultSplitByAvailableCount" class="org.customsite.fulfilmentprocess.strategy.impl.SplitByAvailableCount" >
 		<property name="commerceStockService" ref="commerceStockService"/>
 	</bean>
 	
 	<alias name="defaultSplitByWarehouse" alias="splitByWarehouse"/>
-	<bean id="defaultSplitByWarehouse" class="org.fulfilmentprocess.strategy.impl.SplitByWarehouse">
+	<bean id="defaultSplitByWarehouse" class="org.customsite.fulfilmentprocess.strategy.impl.SplitByWarehouse">
 		<property name="stockService" ref="stockService"/>
 		<property name="commerceAvailabilityCalculationStrategy" ref="commerceStockLevelCalculationStrategy"/>
 	</bean>
 	
 	<!--  Jobs -->
 	
-	<bean id="cleanUpFraudOrderJob" class="org.fulfilmentprocess.jobs.CleanUpFraudOrderJob"  >
+	<bean id="cleanUpFraudOrderJob" class="org.customsite.fulfilmentprocess.jobs.CleanUpFraudOrderJob"  >
 		<property name="modelService" ref="modelService"/>
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 		<property name="businessProcessService" ref="businessProcessService"/>

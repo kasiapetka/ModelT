@@ -37,10 +37,10 @@
                                             <input type="hidden" name="orderPage_declineResponseURL" value="${fn:escapeXml(silentOrderPageData.parameters['orderPage_declineResponseURL'])}"/>
                                             <input type="hidden" name="orderPage_cancelResponseURL" value="${fn:escapeXml(silentOrderPageData.parameters['orderPage_cancelResponseURL'])}"/>
                                             <c:forEach items="${sopPaymentDetailsForm.signatureParams}" var="entry" varStatus="status">
-                                                <input type="hidden" id="${fn:escapeXml(entry.key)}" name="${fn:escapeXml(entry.key)}" value="${fn:escapeXml(entry.value)}"/>
+                                                <input type="hidden" id="${entry.key}" name="${entry.key}" value="${fn:escapeXml(entry.value)}"/>
                                             </c:forEach>
                                             <c:forEach items="${sopPaymentDetailsForm.subscriptionSignatureParams}" var="entry" varStatus="status">
-                                                <input type="hidden" id="${fn:escapeXml(entry.key)}" name="${fn:escapeXml(entry.key)}" value="${fn:escapeXml(entry.value)}"/>
+                                                <input type="hidden" id="${entry.key}" name="${entry.key}" value="${fn:escapeXml(entry.value)}"/>
                                             </c:forEach>
                                             <input type="hidden" value="${fn:escapeXml(silentOrderPageData.parameters['billTo_email'])}" name="billTo_email" id="billTo_email">
 
@@ -151,17 +151,14 @@
                                     </div>
                                 </div>
                                 <div id="savedpaymentsbody">
-                                    <spring:url var="choosePaymentMethod" value="{contextPath}/checkout/multi/payment-method/choose" htmlEscape="false">
-                                        <spring:param name="contextPath" value="${request.contextPath}" />
-                                    </spring:url>
                                     <c:forEach items="${paymentInfos}" var="paymentInfo" varStatus="status">
-                                        <form action="${fn:escapeXml(choosePaymentMethod)}" method="GET">
+                                        <form action="${request.contextPath}/checkout/multi/payment-method/choose" method="GET">
                                             <input type="hidden" name="selectedPaymentMethodId" value="${fn:escapeXml(paymentInfo.id)}"/>
                                                     <strong>${fn:escapeXml(paymentInfo.billingAddress.firstName)}&nbsp; ${fn:escapeXml(paymentInfo.billingAddress.lastName)}</strong><br/>
                                                     ${fn:escapeXml(paymentInfo.cardType)}<br/>
                                                     ${fn:escapeXml(paymentInfo.accountHolderName)}<br/>
                                                     ${fn:escapeXml(paymentInfo.cardNumber)}<br/>
-                                                    <spring:theme code="checkout.multi.paymentMethod.paymentDetails.expires" arguments="${paymentInfo.expiryMonth},${paymentInfo.expiryYear}"/><br/>
+                                                    <spring:theme code="checkout.multi.paymentMethod.paymentDetails.expires" arguments="${fn:escapeXml(paymentInfo.expiryMonth)},${fn:escapeXml(paymentInfo.expiryYear)}"/><br/>
                                                     ${fn:escapeXml(paymentInfo.billingAddress.line1)}<br/>
                                                     ${fn:escapeXml(paymentInfo.billingAddress.town)}&nbsp; ${fn:escapeXml(paymentInfo.billingAddress.region.isocodeShort)}<br/>
                                                     ${fn:escapeXml(paymentInfo.billingAddress.postalCode)}&nbsp; ${fn:escapeXml(paymentInfo.billingAddress.country.isocode)}<br/>

@@ -9,22 +9,18 @@ ACC.consent = {
     bindSendConsent: function ()
     {
         var consentCheckbox = $('#consent-management-form').find('input.toggle-button__input');
-        consentCheckbox.removeAttr('disabled');
 
         consentCheckbox.click(function ()
         {
             var consentId = $(this).prop('id');
             var isConsentGiven = $(this).is(':checked');
             var buttonId = (isConsentGiven ? '#give-consent-button-' : '#withdraw-consent-button-') + consentId;
-            var $consentBtn = $(document).find(buttonId);
-            $consentBtn.trigger('click');
-            consentCheckbox.attr('disabled', 'disabled');
+            $(buttonId).trigger('click');
 
-            $consentBtn.on('keydown', function(event) {
+            $(buttonId).on('keydown', function(event) {
                 if (event.keyCode === 13 || event.keyCode === 32) {
                     event.preventDefault();
-                    $consentBtn.trigger('click');
-                    consentCheckbox.attr('disabled', 'disabled');
+                    $(buttonId).trigger('click');
                 }
             });
 
@@ -97,23 +93,30 @@ ACC.consent = {
 
     bindConsentClick:function(){
         $('.consent-accept').on("click",function(){
-            ACC.consent.changeConsentState(this, "GIVEN");
+            ACC.consent.updateConsent(this, "GIVEN");
         });
+
         $('.consent-reject').on("click",function(){
-            ACC.consent.changeConsentState(this, "WITHDRAWN");
+            ACC.consent.updateConsent(this, "WITHDRAWN");
         });
     },
 
-    changeConsentState:function(element, consentState){
-        var consentCode = ($(element).closest('.consentmanagement-bar').data('code'));
-        $.ajax({
-            url: ACC.config.encodedContextPath+"/anonymous-consent/"+encodeURIComponent(consentCode)+"?consentState="+encodeURIComponent(consentState),
-            type: 'POST',
-            success: function () {
-                $(element).closest('.consentmanagement-bar').hide();
+    changeConsentState:function(anonymousConsentCookie,consentCode, consentState){
+        anonymousConsentCookie.forEach(function(consent) {
+            if(consent.templateCode === String(consentCode)){
+                consent.consentState=consentState;
             }
         });
     },
+
+    updateConsent:function(element, state){
+        var anonymousConsentCookie=  JSON.parse( decodeURIComponent($.cookie("anonymous-consents")));
+        $(element).closest('.consentmanagement-bar').hide();
+        var consentCode = ($(element).closest('.consentmanagement-bar').data('code'));
+        ACC.consent.changeConsentState(anonymousConsentCookie,consentCode,state)
+        $.cookie("anonymous-consents",JSON.stringify(anonymousConsentCookie),{json:true, path:'/'});
+    },
+
 
     bindConsentManagementAlertBar: function () {
 

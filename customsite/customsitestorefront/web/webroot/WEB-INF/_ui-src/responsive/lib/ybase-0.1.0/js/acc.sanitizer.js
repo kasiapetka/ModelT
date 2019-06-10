@@ -11,7 +11,7 @@ ACC.sanitizer = {
                                "blockquote", 'b', 'i', 's', 'o', 'sup', 'sub', 'ins', 'del', 'strong', 'strike', 'tt', 'code', 'big', 'small', 'br', 'span']
 	},
             
-	sanitize: function(dirty) {
+	sanitize: function(dirty, useWhitelist=true) {
 		return DOMPurify.sanitize(dirty, ACC.sanitizer.config);
 	}
 };

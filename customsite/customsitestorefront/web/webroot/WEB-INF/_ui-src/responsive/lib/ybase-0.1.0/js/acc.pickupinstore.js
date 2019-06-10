@@ -26,7 +26,7 @@ ACC.pickupinstore = {
 		var pageEndPos = (((totalCount/displayCount)-1) * (displayCount*listItemHeight)) * -1;
 
 
-		$("#colorbox .js-pickup-store-pager-item-all").text(totalCount);
+		$("#colorbox .js-pickup-store-pager-item-all").html(totalCount);
 
 		$("#colorbox .store-navigation-pager").show();
 
@@ -51,7 +51,7 @@ ACC.pickupinstore = {
 		function checkPosition(){
 
 			var curPage = Math.ceil((curPos/(displayCount*listItemHeight))*-1)+1;
-			$("#colorbox .js-pickup-store-pager-item-from").text(curPage*displayCount-4);
+			$("#colorbox .js-pickup-store-pager-item-from").html(curPage*displayCount-4);
 
 			var tocount = (curPage*displayCount > totalCount)? totalCount :curPage*displayCount;
 
@@ -68,7 +68,7 @@ ACC.pickupinstore = {
 			}
 
 
-			$("#colorbox .js-pickup-store-pager-item-to").text(tocount);
+			$("#colorbox .js-pickup-store-pager-item-to").html(tocount);
 		}
 	},
 
@@ -138,12 +138,12 @@ ACC.pickupinstore = {
 		});
 	},
 
-	locationSearchSubmit: function (location, cartPage, entryNumber, actionUrl, latitude, longitude)
+	locationSearchSubmit: function (location, cartPage, entryNumber, productCode, latitude, longitude)
 	{
 		$("#colorbox .js-add-to-cart-for-pickup-popup, #colorbox .js-qty-selector-minus, #colorbox .js-qty-selector-input, #colorbox .js-qty-selector-plus").attr("disabled","disabled");
 
 		$.post({
-			url: actionUrl,
+			url: productCode,
 			data: {locationQuery: location, cartPage: cartPage, entryNumber: entryNumber, latitude: latitude, longitude: longitude},
 			dataType: "text",
 			success: function (response)
@@ -155,51 +155,67 @@ ACC.pickupinstore = {
 
 	createListItemHtml: function (data,id){
 
+		var dispNameTxtNode = document.createTextNode(data.displayName);
+		var idTxtNode = document.createTextNode(id);
 		
-		var $rdioEl = $("<input>").attr("type","radio")
-							.attr("name","storeNamePost")
-							.attr("id","pickup-entry-" + id)
-							.attr("data-id", id)
-							.addClass("js-pickup-store-input")
-							.val(data.displayName);
+		var rdioEl = document.createElement("input");
+		rdioEl.type = "radio";
+		rdioEl.name = "storeNamePost";
+		rdioEl.value = dispNameTxtNode.nodeValue;
+		rdioEl.id = "pickup-entry-" + idTxtNode.nodeValue;
+		rdioEl.className = "js-pickup-store-input";
+		rdioEl.setAttribute("data-id", idTxtNode.nodeValue);
 		
-		var $spanElStInfo = $("<span>")
-							.addClass("pickup-store-info")
-							.append($("<span>").addClass("pickup-store-list-entry-name").text(data.displayName))
-							.append($("<span>").addClass("pickup-store-list-entry-address").text(data.line1 + " " + data.line2))
-							.append($("<span>").addClass("pickup-store-list-entry-city").text(data.town));
-			
-		var $spanElStAvail = $("<span>")
-							.addClass("store-availability")
-							.append(
-									$("<span>")
-									.addClass("available")
-									.append(document.createTextNode(data.formattedDistance))
-									.append("<br>")
-									.append(data.stockPickupHtml)
-							);
+		var spanElStLstEnName = document.createElement("span");
+		spanElStLstEnName.className = "pickup-store-list-entry-name";
+		spanElStLstEnName.appendChild(dispNameTxtNode);
+		var spanElStLstEnAddr = document.createElement("span");
+		spanElStLstEnAddr.className = "pickup-store-list-entry-address";
+		spanElStLstEnAddr.appendChild(document.createTextNode(data.line1 + " " + data.line2));
+		var spanElStLstEnCity = document.createElement("span");
+		spanElStLstEnCity.className = "pickup-store-list-entry-city";
+		spanElStLstEnCity.appendChild(document.createTextNode(data.town));
+		var spanElStInfo = document.createElement("span");
+		spanElStInfo.className = "pickup-store-info";
+		spanElStInfo.appendChild(spanElStLstEnName);
+		spanElStInfo.appendChild(spanElStLstEnAddr);
+		spanElStInfo.appendChild(spanElStLstEnCity);
 		
-		var $lblEl = $("<label>").addClass("js-select-store-label")
-						.attr("for","pickup-entry-" + id)
-						.append($spanElStInfo)
-						.append($spanElStAvail);
+		var spanElAvailChild = document.createElement("span");
+		spanElAvailChild.className = "available";
+		spanElAvailChild.insertAdjacentText("beforeend", data.formattedDistance);
+		spanElAvailChild.insertAdjacentElement("beforeend", document.createElement("br"));
+		spanElAvailChild.insertAdjacentHTML("beforeend", data.stockPickup);
 		
-		return $("<li>").addClass("pickup-store-list-entry")
-						.append($rdioEl)
-						.append($lblEl);
+		var spanElStAvail = document.createElement("span");
+		spanElStAvail.className = "store-availability";
+		spanElStAvail.appendChild(spanElAvailChild);
+		
+		var lblEl = document.createElement("label");
+		lblEl.htmlFor = "pickup-entry-" + idTxtNode.nodeValue;
+		lblEl.className = "js-select-store-label";
+		lblEl.appendChild(spanElStInfo);
+		lblEl.appendChild(spanElStAvail);
+		
+		var liEl = document.createElement("li");
+		liEl.className = "pickup-store-list-entry";
+		liEl.appendChild(rdioEl);
+		liEl.appendChild(lblEl);
+
+		return liEl.outerHTML;
 	},
 
 	refreshPickupInStoreColumn: function (data){
 		data = $.parseJSON(data);
-		var $storeList = $('#colorbox .js-pickup-store-list');
-		$storeList.empty();
-		
+		var listitems = "";
+
 		$("#colorbox .js-pickup-component").data("data",data);
 
 		for(i = 0;i < data["data"].length;i++){
-			$storeList.append(ACC.pickupinstore.createListItemHtml(data["data"][i],i));
+			listitems += ACC.pickupinstore.createListItemHtml(data["data"][i],i)
 		}
 
+		$('#colorbox .js-pickup-store-list').html(listitems);
 		ACC.pickupinstore.unbindPickupPaginationResults()
 		ACC.pickupinstore.bindPickupPaginationResults()
 
@@ -270,7 +286,7 @@ ACC.pickupinstore = {
 					$("#colorbox #pickupModal").attr("id", productId);
 
 					// insert the product image
-					$("#colorbox #" + productId + " .thumb").html(ele.data("imgHtml"));
+					$("#colorbox #" + productId + " .thumb").html(ele.data("img"));
 
 					// insert the product cart details
 					$("#colorbox #" + productId + " .js-pickup-product-price").html(ele.data("productcart"));
@@ -282,7 +298,7 @@ ACC.pickupinstore = {
 					});
 
 					// insert the product name
-					$("#colorbox  #" + productId + " .js-pickup-product-info").html(ele.data("productnameHtml"))
+					$("#colorbox  #" + productId + " .js-pickup-product-info").text(ele.data("productname"))
 
 					// insert the form action
 					$("#colorbox #" + productId + " form.searchPOSForm").attr("action", ele.data("actionurl"));
@@ -337,35 +353,44 @@ ACC.pickupinstore = {
 
 			$.each(storeData[storeId],function(key,value){
 				if(key=="url"){
-					$ele.find(".js-store-image").empty();
 					if(value!=""){
-						$ele.find(".js-store-image").append($("<img>").attr("src", value).attr("alt", ""));
+						$ele.find(".js-store-image").html('<img src="'+value+'" alt="" />');
+					}else{
+						$ele.find(".js-store-image").html('');
 					}
 				}else if(key=="productcode"){
 					$ele.find(".js-store-productcode").val(value);
 				}
 				else if(key=="openings"){
-					var $oele = $ele.find(".js-store-"+key);
-					$oele.empty();
 					if(value!=""){
+						var $oele = $ele.find(".js-store-"+key);
+						var openings = "";
 						$.each(value,function(key2,value2){
-							$oele.append($("<dt>").text(key2));
-							$oele.append($("<dd>").text(value2));
+							openings += "<dt>"+key2+"</dt>";
+							openings += "<dd>"+value2+"</dd>";
 						});
+
+						$oele.html(openings);
+
+					}else{
+						$ele.find(".js-store-"+key).html('');
 					}
 
 				}
-				else if(key=="specialOpenings")
-				{}
+				else if(key=="specialOpenings"){}
 				else{
 					if(value!=""){
-						$ele.find(".js-store-"+key).text(value);
+						$ele.find(".js-store-"+key).html(value);
 					}else{
-						$ele.find(".js-store-"+key).empty();
+						$ele.find(".js-store-"+key).html('');
 					}
 				}
 
 			})
+
+
+
+
 
 			$(document).one("click", "#colorbox .js-pickup-map-tab",function(){
 				ACC.pickupinstore.storeId = storeData[storeId];
@@ -495,7 +520,7 @@ ACC.pickupinstore = {
 				icon: "https://maps.google.com/mapfiles/marker" + 'A' + ".png"
 			});
 			var infowindow = new google.maps.InfoWindow({
-				content: ACC.common.encodeHtml(storeInformation["name"]),
+				content: storeInformation["name"],
 				disableAutoPan: true
 			});
 			google.maps.event.addListener(marker, 'click', function (){

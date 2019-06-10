@@ -20,14 +20,14 @@
 
     <alias name="defaultCheckSellerApproverResponseOnQuoteAction" alias="checkSellerApproverResponseOnQuoteAction"/>
     <bean id="defaultCheckSellerApproverResponseOnQuoteAction"
-          class="org.core.actions.quote.CheckSellerApproverResponseOnQuoteAction"
+          class="org.customsite.core.actions.quote.CheckSellerApproverResponseOnQuoteAction"
           parent="abstractAction">
         <property name="quoteService" ref="quoteService"/>
     </bean>
 
     <alias name="defaultQuoteApprovalRejectedAction" alias="quoteApprovalRejectedAction"/>
     <bean id="defaultQuoteApprovalRejectedAction"
-          class="org.core.actions.quote.QuoteApprovalRejectedAction"
+          class="org.customsite.core.actions.quote.QuoteApprovalRejectedAction"
           parent="abstractAction">
         <property name="commerceQuoteService" ref="commerceQuoteService"/>
         <property name="quoteService" ref="quoteService"/>

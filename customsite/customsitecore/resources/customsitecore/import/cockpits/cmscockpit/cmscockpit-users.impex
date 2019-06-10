@@ -13,7 +13,7 @@
 # 
 
 INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
-;cmsmanagergroup;employeegroup
+;cmsmanagergroup;cockpitgroup,employeegroup
 
 # Set hMC configurations for user groups (see also CORE-4072);
 INSERT_UPDATE UserGroup;UID[unique=true];hmcXML;locname[lang=de];locname[lang=en];description;

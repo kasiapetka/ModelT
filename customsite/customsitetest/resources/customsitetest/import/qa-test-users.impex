@@ -43,10 +43,10 @@ INSERT_UPDATE StandardPaymentModeValue;paymentmode(code)[unique=true];currency(i
 ;advance;USD;0;;;;;;
 ;advance;GBP;0;;;;;;
 ;;
-INSERT_UPDATE DeliveryMode;code[unique=true];active;supportedpaymentmodes(code);
-;courier;true;creditcard;Kreditkarte;creditcard,debitentry,invoice,advance;
-;postService;true;creditcard,debitentry,invoice,advance;
-;collect;true;invoice,advance;
+INSERT_UPDATE DeliveryMode;code[unique=true];active;net;supportedpaymentmodes(code);
+;courier;true;false;creditcard;Kreditkarte;creditcard,debitentry,invoice,advance;
+;postService;true;false;creditcard,debitentry,invoice,advance;
+;collect;true;false;invoice,advance;
 ;;
 
 # Sample customers

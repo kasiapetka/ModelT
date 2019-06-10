@@ -45,14 +45,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public abstract class AbstractRegisterPageController extends AbstractPageController
@@ -144,7 +143,6 @@ public abstract class AbstractRegisterPageController extends AbstractPageControl
 	{
 		if (bindingResult.hasErrors())
 		{
-			form.setTermsCheck(false);
 			model.addAttribute(form);
 			model.addAttribute(new LoginForm());
 			model.addAttribute(new GuestForm());
@@ -168,8 +166,7 @@ public abstract class AbstractRegisterPageController extends AbstractPageControl
 		}
 		catch (final DuplicateUidException e)
 		{
-			LOGGER.debug("registration failed.");
-			form.setTermsCheck(false);
+			LOGGER.warn("registration failed: ", e);
 			model.addAttribute(form);
 			model.addAttribute(new LoginForm());
 			model.addAttribute(new GuestForm());
@@ -256,7 +253,7 @@ public abstract class AbstractRegisterPageController extends AbstractPageControl
 		}
 		catch (final DuplicateUidException e)
 		{
-			LOGGER.debug("guest registration failed.");
+			LOGGER.warn("guest registration failed: ", e);
 			GlobalMessages.addErrorMessage(model, FORM_GLOBAL_ERROR);
 			return handleRegistrationError(model);
 		}

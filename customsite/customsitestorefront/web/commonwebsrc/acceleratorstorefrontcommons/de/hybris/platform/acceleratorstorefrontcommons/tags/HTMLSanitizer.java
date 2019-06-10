@@ -21,8 +21,8 @@ import org.owasp.html.Sanitizers;
 public class HTMLSanitizer
 {
 	protected static final PolicyFactory POLICY = new HtmlPolicyBuilder()
-			.allowElements("pre", "address", "em", "hr", "a")
-			.allowAttributes("class").onElements("em", "a")
+			.allowElements("pre", "address", "em", "hr")
+			.allowAttributes("class").onElements("em")
 			.toFactory()
 			.and(Sanitizers.BLOCKS)
 			.and(Sanitizers.FORMATTING)

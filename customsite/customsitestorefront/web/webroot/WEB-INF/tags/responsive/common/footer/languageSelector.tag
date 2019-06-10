@@ -12,7 +12,7 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <c:if test="${fn:length(languages) > 1}">
-	<spring:url value="/_s/language" var="setLanguageActionUrl" />
+	<c:url value="/_s/language" var="setLanguageActionUrl" />
 	<form:form action="${setLanguageActionUrl}" method="post" id="lang-form">
 		<div class="form-group">
 			<spring:theme code="text.language" var="languageText" />

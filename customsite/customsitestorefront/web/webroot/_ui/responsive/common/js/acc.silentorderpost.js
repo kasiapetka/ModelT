@@ -1,6 +1,6 @@
 ACC.silentorderpost = {
 
-	spinner: $("<img>").attr("src", ACC.config.commonResourcePath + "/images/spinner.gif"),
+	spinner: $("<img src='" + ACC.config.commonResourcePath + "/images/spinner.gif' />"),
 
 	bindUseDeliveryAddress: function ()
 	{
@@ -76,16 +76,8 @@ ACC.silentorderpost = {
 	{
 		if ($('#useDeliveryAddress').is(":checked"))
 		{
-			var countryIsoCode = $('#address\\.country').val($('#useDeliveryAddressData').data('countryisocode')).val();
-			if(ACC.silentorderpost.isEmpty(countryIsoCode))
-			{
-				$('#useDeliveryAddress').click();
-				$('#useDeliveryAddress').parent().hide();
-			}
-			else
-			{
-				ACC.silentorderpost.disableAddressForm();
-			}
+			$('#address\\.country').val($('#useDeliveryAddressData').data('countryisocode'));
+			ACC.silentorderpost.disableAddressForm();
 		}
 		else
 		{
@@ -133,9 +125,12 @@ ACC.silentorderpost = {
 
 $(document).ready(function ()
 {
-	ACC.silentorderpost.bindUseDeliveryAddress();
-	ACC.silentorderpost.bindSubmitSilentOrderPostForm();
-	ACC.silentorderpost.bindCreditCardAddressForm();
+	with (ACC.silentorderpost)
+	{
+		bindUseDeliveryAddress()
+		bindSubmitSilentOrderPostForm();
+		bindCreditCardAddressForm();
+	}
 
 	// check the checkbox
 	$("#useDeliveryAddress").click();

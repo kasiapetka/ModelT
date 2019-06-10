@@ -29,10 +29,8 @@ var mediator = (function() {
 			}
 			for (var tracker in mediator.trackers)
 			{
-				if (mediator.trackers.hasOwnProperty(tracker)) {
-                    var args = [tracker].concat(Array.prototype.slice.call(arguments));
-                    mediator.publish.apply(this, args);
-				}
+				var args = [tracker].concat(Array.prototype.slice.call(arguments));
+				mediator.publish.apply(this, args);
 			}
 			return this;
 		};

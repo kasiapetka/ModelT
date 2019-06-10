@@ -239,7 +239,7 @@ if ($("#quickOrder").length > 0) {
         },
 
         getAndDisplayProductInfo: function (event, parentLi, productCode) {
-            var url = ACC.config.encodedContextPath + '/quickOrder/productInfo?code=' + encodeURIComponent(productCode);
+            var url = ACC.config.encodedContextPath + '/quickOrder/productInfo?code=' + productCode;
             $.getJSON(url, function (result) {
                 if (result.errorMsg != null && result.errorMsg.length > 0) {
                     $(event.target).addClass(ACC.quickorder.$classHasError);

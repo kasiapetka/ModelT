@@ -21,7 +21,6 @@ import de.hybris.platform.category.model.CategoryModel;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.CategoryPageModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
-import de.hybris.platform.cms2.servicelayer.services.CMSPreviewService;
 import de.hybris.platform.commercefacades.product.data.CategoryData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.search.ProductSearchFacade;
@@ -55,8 +54,8 @@ public class AbstractCategoryPageController extends AbstractSearchPageController
 {
 	/**
 	 * We use this suffix pattern because of an issue with Spring 3.1 where a Uri value is incorrectly extracted if it
-	 * contains on or more '.' characters. Please see https://jira.springsource.org/browse/SPR-6164 for a discussion on
-	 * the issue and future resolution.
+	 * contains on or more '.' characters. Please see https://jira.springsource.org/browse/SPR-6164 for a discussion on the
+	 * issue and future resolution.
 	 */
 	protected static final String CATEGORY_CODE_PATH_VARIABLE_PATTERN = "/{categoryCode:.*}";
 	protected static final String PRODUCT_GRID_PAGE = "category/productGridPage";
@@ -78,9 +77,6 @@ public class AbstractCategoryPageController extends AbstractSearchPageController
 
 	@Resource(name = "customerLocationService")
 	private CustomerLocationService customerLocationService;
-
-	@Resource(name = "cmsPreviewService")
-	private CMSPreviewService cmsPreviewService;
 
 	@ExceptionHandler(UnknownIdentifierException.class)
 	public String handleUnknownIdentifierException(final UnknownIdentifierException exception, final HttpServletRequest request)
@@ -151,8 +147,7 @@ public class AbstractCategoryPageController extends AbstractSearchPageController
 	}
 
 	/**
-	 * Creates empty search results in case {@code doSearch} throws an exception in order to avoid stacktrace on
-	 * storefront.
+	 * Creates empty search results in case {@code doSearch} throws an exception in order to avoid stacktrace on storefront.
 	 *
 	 * @param categoryCode
 	 *           category code
@@ -231,7 +226,7 @@ public class AbstractCategoryPageController extends AbstractSearchPageController
 	{
 		try
 		{
-			return getCmsPageService().getPageForCategory(category, getCMSPreviewService().getPagePreviewCriteria());
+			return getCmsPageService().getPageForCategory(category);
 		}
 		catch (final CMSItemNotFoundException ignore) // NOSONAR
 		{
@@ -297,7 +292,7 @@ public class AbstractCategoryPageController extends AbstractSearchPageController
 			else
 			{
 				// We have some search filtering
-				if (categoryPage == null)
+				if (categoryPage == null || !categoryHasDefaultPage(categoryPage))
 				{
 					// Load the default category page
 					categoryPage = getDefaultCategoryPage();
@@ -308,10 +303,9 @@ public class AbstractCategoryPageController extends AbstractSearchPageController
 
 				final PageableData pageableData = createPageableData(page, getSearchPageSize(), sortCode, showMode);
 				searchPageData = getProductSearchFacade().categorySearch(categoryCode, searchState, pageableData);
-
+				//Encode SearchPageData
+				searchPageData = (ProductCategorySearchPageData) encodeSearchPageData(searchPageData);
 			}
-			//Encode SearchPageData
-			searchPageData = (ProductCategorySearchPageData) encodeSearchPageData(searchPageData);
 		}
 
 		public int getPage()
@@ -377,14 +371,6 @@ public class AbstractCategoryPageController extends AbstractSearchPageController
 	public CustomerLocationService getCustomerLocationService()
 	{
 		return customerLocationService;
-	}
-
-	/**
-	 * @return the cmsPreviewService
-	 */
-	public CMSPreviewService getCMSPreviewService()
-	{
-		return cmsPreviewService;
 	}
 
 

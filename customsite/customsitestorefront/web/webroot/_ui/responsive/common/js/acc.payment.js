@@ -5,7 +5,7 @@ ACC.payment = {
 			$(document).on("click",".js-saved-payments",function(e){
 				e.preventDefault();
 				
-				var titleHtml = $("#savedpaymentstitle").html();
+				var title = $("#savedpaymentstitle").html();
 				
 				$.colorbox({
 					href: "#savedpaymentsbody",
@@ -13,7 +13,7 @@ ACC.payment = {
 					maxWidth:"100%",
 					opacity:0.7,
 					width:"320px",
-					title: titleHtml,
+					title: title,
 					close:'<span class="glyphicon glyphicon-remove"></span>',
 					onComplete: function(){
 					}
@@ -51,8 +51,10 @@ ACC.payment = {
 }
 
 $(document).ready(function () {
-	ACC.payment.activateSavedPaymentButton();
-	ACC.payment.bindPaymentCardTypeSelect();
+	with (ACC.payment) {
+		activateSavedPaymentButton();
+		bindPaymentCardTypeSelect();
+	}
 });
 	
 	

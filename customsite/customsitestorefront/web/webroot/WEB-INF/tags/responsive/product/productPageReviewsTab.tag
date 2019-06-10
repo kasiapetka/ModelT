@@ -4,7 +4,6 @@
 <%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -41,6 +40,8 @@
                         <c:forEach  begin="1" end="10" varStatus="loop">
                             <span class="js-ratingIcon glyphicon glyphicon-star ${loop.index % 2 == 0 ? 'lh' : 'fh'}"></span>
                         </c:forEach>
+
+
 					</div>
 				</div>
 
@@ -54,7 +55,7 @@
 
 	</div>
 
-	<ul id="reviews" class="review-list" data-reviews="${fn:escapeXml(getPageOfReviewsUrl)}"  data-allreviews="${fn:escapeXml(getAllReviewsUrl)}"></ul>
+	<ul id="reviews" class="review-list" data-reviews="${getPageOfReviewsUrl}"  data-allreviews="${getAllReviewsUrl}"></ul>
 
 	<div class="review-pagination-bar">
 

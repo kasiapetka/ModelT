@@ -8,6 +8,8 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
+<spring:url value="/my-account/order/" var="orderDetailsUrl" htmlEscape="false"/>
+
 <c:set var="searchUrl" value="/my-account/orders?sort=${ycommerce:encodeUrl(searchPageData.pagination.sort)}"/>
 
 <div class="account-section-header">
@@ -40,10 +42,7 @@
 							<ycommerce:testId code="orderHistoryItem_orderDetails_link">
 								<td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.account.orderHistory.orderNumber" /></td>
 								<td class="responsive-table-cell">
-									<spring:url value="/my-account/order/{/orderCode}" var="orderDetailsUrl" htmlEscape="false">
-										<spring:param name="orderCode" value="${order.code}"/>
-									</spring:url>
-									<a href="${fn:escapeXml(orderDetailsUrl)}" class="responsive-table-link">
+									<a href="${orderDetailsUrl}${ycommerce:encodeUrl(order.code)}" class="responsive-table-link">
 										${fn:escapeXml(order.code)}
 									</a>
 								</td>

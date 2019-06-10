@@ -9,10 +9,9 @@
 {"quickOrderErrorData": [
 <c:forEach items="${quickOrderErrorData}" var="quickOrderEntry" varStatus="status">
 	<c:set var="productCode" value="${fn:escapeXml(quickOrderEntry.productData.code)}" />
-	<spring:theme code="${quickOrderEntry.errorMsg}" var="quickOrderEntryErrorMsg" htmlEscape="true"/>
 	{
 		"sku":		"${ycommerce:encodeJSON(productCode)}",
-		"errorMsg": "${ycommerce:encodeJSON(quickOrderEntryErrorMsg)}"
+		"errorMsg": "<spring:theme code='${quickOrderEntry.errorMsg}' htmlEscape="true"/>"
 	}<c:if test="${not status.last}">,</c:if>
 </c:forEach>
 ],
@@ -57,7 +56,7 @@
             </c:choose>
 
             <ycommerce:testId code="checkoutLinkInPopup">
-                <a href="${fn:escapeXml(cartUrl)}" class="btn btn-primary btn-block add-to-cart-button">
+                <a href="${cartUrl}" class="btn btn-primary btn-block add-to-cart-button">
 	                <c:choose>
 		                <c:when test="${isQuote}">
 		                	<spring:theme code="quote.view" />

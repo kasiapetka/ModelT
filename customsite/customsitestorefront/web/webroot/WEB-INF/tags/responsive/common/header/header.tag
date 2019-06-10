@@ -9,8 +9,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav"%>
 
-<spring:htmlEscape defaultHtmlEscape="true" />
-
 <cms:pageSlot position="TopHeaderSlot" var="component" element="div" >
 	<cms:component component="${component}" />
 </cms:pageSlot>
@@ -30,10 +28,10 @@
 					<ul class="nav__links nav__links--account">
 						<c:if test="${empty hideHeaderLinks}">
 							<c:if test="${uiExperienceOverride}">
-								<li class="backToMobileLink">
-									<c:url value="/_s/ui-experience?level=" var="backToMobileStoreUrl" />
-									<a href="${fn:escapeXml(backToMobileStoreUrl)}">
-										<spring:theme code="text.backToMobileStore" />
+								<li class="backToMobileLink"><c:url
+										value="/_s/ui-experience?level=" var="backToMobileStoreUrl" />
+									<a href="${backToMobileStoreUrl}"> <spring:theme
+											code="text.backToMobileStore" />
 									</a>
 								</li>
 							</c:if>
@@ -47,7 +45,7 @@
 
 								<li class="logged_in js-logged_in">
 									<ycommerce:testId code="header_LoggedUser">
-										<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" />
+										<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" htmlEscape="true" />
 									</ycommerce:testId>
 								</li>
 							</sec:authorize>
@@ -59,8 +57,7 @@
 							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
 								<li class="liOffcanvas">
 									<ycommerce:testId code="header_Login_link">
-										<c:url value="/login" var="loginUrl" />
-										<a href="${fn:escapeXml(loginUrl)}">
+										<a href="<c:url value='/login'/>">
 											<spring:theme code="header.link.login" />
 										</a>
 									</ycommerce:testId>
@@ -70,8 +67,7 @@
 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" >
 								<li class="liOffcanvas">
 									<ycommerce:testId code="header_signOut">
-										<c:url value="/logout" var="logoutUrl"/>
-										<a href="${fn:escapeXml(logoutUrl)}">
+										<a href="<c:url value='/logout'/>">
 											<spring:theme code="header.link.logout" />
 										</a>
 									</ycommerce:testId>
@@ -119,8 +115,7 @@
 							<c:if test="${empty hideHeaderLinks}">
 								<ycommerce:testId code="header_StoreFinder_link">
 									<div class="mobile__nav__row--table-cell hidden-sm hidden-md hidden-lg mobile__nav__row--seperator">
-										<c:url value="/store-finder" var="storeFinderUrl"/>
-										<a href="${fn:escapeXml(storeFinderUrl)}" class="mobile__nav__row--btn mobile__nav__row--btn-location btn">
+										<a href="<c:url value="/store-finder"/>" class="mobile__nav__row--btn mobile__nav__row--btn-location btn">
 											<span class="glyphicon glyphicon-map-marker"></span>
 										</a>
 									</div>
@@ -158,17 +153,20 @@
 							<c:if test="${empty hideHeaderLinks}">
 								<ycommerce:testId code="header_StoreFinder_link">
 									<div class="nav-location hidden-xs">
-										<c:url value="/store-finder" var="storeFinderUrl"/>
-										<a href="${fn:escapeXml(storeFinderUrl)}" class="btn">
+										<a href="<c:url value="/store-finder"/>" class="btn">
 											<span class="glyphicon glyphicon-map-marker"></span>
 										</a>
 									</div>
 								</ycommerce:testId>
 							</c:if>
+
 						</li>
+
 						<li>
 							<cms:pageSlot position="MiniCart" var="cart" element="div" class="componentContainer">
+
 								<cms:component component="${cart}" element="div"/>
+
 							</cms:pageSlot>
 						</li>
 					</ul>
@@ -179,6 +177,7 @@
 	<a id="skiptonavigation"></a>
 	<nav:topNavigation />
 </header>
+
 
 <cms:pageSlot position="BottomHeaderSlot" var="component" element="div"	class="container-fluid">
 	<cms:component component="${component}" />

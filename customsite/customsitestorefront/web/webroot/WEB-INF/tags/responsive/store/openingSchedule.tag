@@ -14,14 +14,14 @@
 <c:if test="${not empty openingSchedule}">
     {
         <c:forEach items="${openingSchedule.weekDayOpeningList}" var="weekDay" varStatus="weekDayNumber">
+            <c:set var="dayOfTheWeek" value="${fn:escapeXml(weekDay.weekDay)}"/>
             <c:choose>
                 <c:when test="${weekDay.closed}">
-                		<spring:theme code="storeDetails.table.opening.closed" htmlEscape="false" var="closedText"/>
-                    "${ycommerce:encodeJSON(weekDay.weekDay)}":"${ycommerce:encodeJSON(closedText)}"<c:if
+                    "${dayOfTheWeek}":"<spring:theme code="storeDetails.table.opening.closed"/>"<c:if
                         test="${!weekDayNumber.last}">,</c:if>
                 </c:when>
                 <c:otherwise>
-                    "${ycommerce:encodeJSON(weekDay.weekDay)}":"${ycommerce:encodeJSON(weekDay.openingTime.formattedHour)} - ${ycommerce:encodeJSON(weekDay.closingTime.formattedHour)}"<c:if
+                    "${dayOfTheWeek}":"${weekDay.openingTime.formattedHour} - ${weekDay.closingTime.formattedHour}"<c:if
                         test="${!weekDayNumber.last}">,</c:if>
                 </c:otherwise>
             </c:choose>

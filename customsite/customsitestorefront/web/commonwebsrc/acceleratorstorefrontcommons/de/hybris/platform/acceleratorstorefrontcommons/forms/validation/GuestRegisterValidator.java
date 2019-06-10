@@ -38,9 +38,9 @@ public class GuestRegisterValidator implements Validator
 		final GuestRegisterForm guestRegisterForm = (GuestRegisterForm) object;
 		final String newPasswd = guestRegisterForm.getPwd();
 		final String checkPasswd = guestRegisterForm.getCheckPwd();
-		final boolean termsCheck = guestRegisterForm.isTermsCheck();
 
-		if (StringUtils.isNotEmpty(newPasswd) && StringUtils.isNotEmpty(checkPasswd) && !StringUtils.equals(newPasswd, checkPasswd))
+		if (StringUtils.isNotEmpty(newPasswd) && StringUtils.isNotEmpty(checkPasswd)
+				&& !StringUtils.equals(newPasswd, checkPasswd))
 		{
 			errors.rejectValue(CHECK_PWD, "validation.checkPwd.equals");
 		}
@@ -63,15 +63,6 @@ public class GuestRegisterValidator implements Validator
 			{
 				errors.rejectValue(CHECK_PWD, "register.checkPwd.invalid");
 			}
-		}
-		validateTermsAndConditions(errors, termsCheck);
-	}
-
-	protected void validateTermsAndConditions(final Errors errors, final boolean termsCheck)
-	{
-		if (!termsCheck)
-		{
-			errors.rejectValue("termsCheck", "register.terms.not.accepted");
 		}
 	}
 }

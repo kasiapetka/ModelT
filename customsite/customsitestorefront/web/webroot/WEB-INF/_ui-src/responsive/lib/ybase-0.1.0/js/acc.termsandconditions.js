@@ -40,8 +40,10 @@ ACC.termsandconditions = {
 }
 
 $(function(){
-	ACC.termsandconditions.bindTermsAndConditionsLink();
-	ACC.termsandconditions.handleRegisterChkTermsConditionsChange();
-	$("#registerChkTermsConditions").removeAttr("disabled");
-	$('[name="consentForm.consentGiven"]').removeAttr("disabled");
+	with(ACC.termsandconditions) {
+		bindTermsAndConditionsLink();
+		handleRegisterChkTermsConditionsChange();
+		$("#registerChkTermsConditions").removeAttr("disabled");
+		$('[name="consentForm.consentGiven"]').removeAttr("disabled");
+	}
 });

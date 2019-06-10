@@ -21,37 +21,37 @@
 
 	<!-- Consignment Process Actions -->
 
-	<bean id="sendConsignmentToWarehouseAction" class="org.fulfilmentprocess.actions.consignment.SendConsignmentToWarehouseAction"  parent="abstractAction">
+	<bean id="sendConsignmentToWarehouseAction" class="org.customsite.fulfilmentprocess.actions.consignment.SendConsignmentToWarehouseAction"  parent="abstractAction">
 		<property name="process2WarehouseAdapter" ref="process2WarehouseAdapter"/>
 	</bean>
 
-	<bean id="waitBeforeTransmissionAction" class="org.fulfilmentprocess.actions.consignment.WaitBeforeTransmissionAction"  parent="abstractAction"/>
+	<bean id="waitBeforeTransmissionAction" class="org.customsite.fulfilmentprocess.actions.consignment.WaitBeforeTransmissionAction"  parent="abstractAction"/>
 
-	<bean id="receiveConsignmentStatusAction" class="org.fulfilmentprocess.actions.consignment.ReceiveConsignmentStatusAction"  parent="abstractAction"/>
+	<bean id="receiveConsignmentStatusAction" class="org.customsite.fulfilmentprocess.actions.consignment.ReceiveConsignmentStatusAction"  parent="abstractAction"/>
 
-	<bean id="confirmConsignmentPickupAction" class="org.fulfilmentprocess.actions.consignment.ConfirmConsignmentPickupAction"  parent="abstractAction"/>
+	<bean id="confirmConsignmentPickupAction" class="org.customsite.fulfilmentprocess.actions.consignment.ConfirmConsignmentPickupAction"  parent="abstractAction"/>
 
-	<bean id="sendDeliveryMessageAction" class="org.fulfilmentprocess.actions.consignment.SendDeliveryMessageAction"  parent="abstractAction">
+	<bean id="sendDeliveryMessageAction" class="org.customsite.fulfilmentprocess.actions.consignment.SendDeliveryMessageAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="sendReadyForPickupMessageAction" class="org.fulfilmentprocess.actions.consignment.SendReadyForPickupMessageAction"  parent="abstractAction">
+	<bean id="sendReadyForPickupMessageAction" class="org.customsite.fulfilmentprocess.actions.consignment.SendReadyForPickupMessageAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 	
-	<bean id="sendPickedUpMessageAction" class="org.fulfilmentprocess.actions.consignment.SendPickedUpMessageAction"  parent="abstractAction">
+	<bean id="sendPickedUpMessageAction" class="org.customsite.fulfilmentprocess.actions.consignment.SendPickedUpMessageAction"  parent="abstractAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 
-	<bean id="cancelConsignmentAction" class="org.fulfilmentprocess.actions.consignment.CancelConsignmentAction"  parent="abstractAction"/>
+	<bean id="cancelConsignmentAction" class="org.customsite.fulfilmentprocess.actions.consignment.CancelConsignmentAction"  parent="abstractAction"/>
 
-	<bean id="sendCancelMessageAction" class="org.fulfilmentprocess.actions.consignment.SendCancelMessageAction"  parent="abstractAction"/>
+	<bean id="sendCancelMessageAction" class="org.customsite.fulfilmentprocess.actions.consignment.SendCancelMessageAction"  parent="abstractAction"/>
 
-	<bean id="subprocessEndAction" class="org.fulfilmentprocess.actions.consignment.SubprocessEndAction"  parent="abstractAction">
+	<bean id="subprocessEndAction" class="org.customsite.fulfilmentprocess.actions.consignment.SubprocessEndAction"  parent="abstractAction">
 		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
 
-	<bean id="allowShipmentAction" class="org.fulfilmentprocess.actions.consignment.AllowShipmentAction"  parent="abstractAction">
+	<bean id="allowShipmentAction" class="org.customsite.fulfilmentprocess.actions.consignment.AllowShipmentAction"  parent="abstractAction">
 		<property name="process2WarehouseAdapter" ref="process2WarehouseAdapter"/>
 	</bean>
 

@@ -14,8 +14,8 @@
 
 <div style="display:none">
     <spring:theme code="${ycommerce:isQuoteUserSalesRep() ? 'text.quote.conteroffer.confirmation.modal.title' : 'text.quote.submit.confirmation.modal.title'}"  arguments="${quoteData.code}"
-                  var="submitConfirmationModalTitleHtml"/>
-    <div id="js-quote-submit-modal" data-submit-confirmation-modal-title="${submitConfirmationModalTitleHtml}">
+                  var="submitConfirmationModalTitle"/>
+    <div id="js-quote-submit-modal" data-submit-confirmation-modal-title="${submitConfirmationModalTitle}">
         <div class="modal__top">
             <label class="modal__top--label">
                 <spring:theme code="text.quote.name.label"/>

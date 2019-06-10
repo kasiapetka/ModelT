@@ -23,13 +23,13 @@
         <div class="col-xs-12 col-sm-6 pull-right">
             <c:if test="${not empty savedCartCount and savedCartCount ne 0}">
                 <spring:url value="/my-account/saved-carts" var="listSavedCartUrl" htmlEscape="false"/>
-                <a href="${fn:escapeXml(listSavedCartUrl)}" class="save__cart--link cart__head--link">
+                <a href="${listSavedCartUrl}" class="save__cart--link cart__head--link">
                     <spring:theme code="saved.cart.total.number" arguments="${savedCartCount}"/>
                 </a>
             </c:if>
             <c:if test="${not empty quoteCount and quoteCount ne 0}">
                 <spring:url value="/my-account/my-quotes" var="listQuotesUrl" htmlEscape="false"/>
-                    <a href="${fn:escapeXml(listQuotesUrl)}" class="cart__quotes--link cart__head--link">
+                    <a href="${listQuotesUrl}" class="cart__quotes--link cart__head--link">
                         <spring:theme code="saved.quote.total.number" arguments="${quoteCount}"/>
                     </a>
             </c:if>
@@ -89,13 +89,11 @@
 						  <c:if test="${quoteData.orderCode ne null}">
 						  	  <div class="col-sm-3">
 						  	  	  <div class="item-group">
-                                  <spring:url htmlEscape="false" value="/my-account/order/{/orderCodeParam}" var="orderDetailUrl" >
-                                      <spring:param name="orderCodeParam" value="${quoteData.orderCode}" />
-                                  </spring:url>
+								    <spring:url htmlEscape="false" value="/my-account/order/${quoteData.orderCode}" var="orderDetailUrl"/>
 	                    	    <ycommerce:testId code="quoteDetail_overviewOrderId_label">
 									    <span class="item-label"><spring:theme code="text.account.orderHistory.orderNumber"/></span>
 	                            <span class="item-value">
-										    <a href="${fn:escapeXml(orderDetailUrl)}" >
+										    <a href="${orderDetailUrl}" >
 											    ${fn:escapeXml(quoteData.orderCode)}
 										    </a>
 	                            </span>
@@ -144,7 +142,7 @@
                     </c:if>
                     <c:if test="${allowedActions['EDIT']}">
                         <button type="button" class="btn btn-primary btn-block item__btn ${allowedActions['CHECKOUT'] ? 'js-quote-warning-btn':'js-quote-edit-btn'}" 
-                            id="editQuoteButton" data-quote-edit-url="${fn:escapeXml(editQuoteUrl)}">
+                            id="editQuoteButton" data-quote-edit-url="${editQuoteUrl}">
                             <spring:theme code="quote.edit" />
                         </button>    
                     </c:if>

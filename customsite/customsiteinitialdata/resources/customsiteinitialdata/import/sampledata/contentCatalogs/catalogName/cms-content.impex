@@ -23,9 +23,9 @@ $image=image(code, $contentCV);
 $media=media(code, $contentCV);
 $page=page(uid, $contentCV);
 $contentPage=contentPage(uid, $contentCV);
-$siteResource=jar:org.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/contentCatalogs/$contentCatalog
-$productResource=jar:org.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/productCatalogs/$productCatalog
-$jarResourceCms=jar:org.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/cockpits/cmscockpit
+$siteResource=jar:org.customsite.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/contentCatalogs/$contentCatalog
+$productResource=jar:org.customsite.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/productCatalogs/$productCatalog
+$jarResourceCms=jar:org.customsite.initialdata.setup.InitialDataSystemSetup&/customsiteinitialdata/import/cockpits/cmscockpit
 
 
 # CMS Site Settings

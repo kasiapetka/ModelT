@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 @Component("merchantCallbackUrlStrategy")
 public class DefaultMerchantCallbackUrlStrategy implements MerchantCallbackUrlStrategy
 {
-	@Resource(name = "configurationService")
+	@Resource
 	private ConfigurationService configurationService;
 
 	@Override

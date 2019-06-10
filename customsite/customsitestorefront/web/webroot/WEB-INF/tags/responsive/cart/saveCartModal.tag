@@ -7,8 +7,10 @@
 <%@ attribute name="messageKey" required="false" type="java.lang.String"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-<spring:message var="loc_val_html" code="basket.save.cart.max.chars" />
-<input type="hidden" id="localized_val" name="localized_val" value="${loc_val_html}"/>
+<c:set var="loc_val">
+    <spring:message code="basket.save.cart.max.chars" />
+</c:set>
+<input type="hidden" id="localized_val" name="localized_val" value="${loc_val}"/>
 <div class="hidden">
 	<div id="saveCart" data-save-cart-title="<spring:theme code="${titleKey}"/>">
 		<form:form action="${actionUrl}" id="saveCartForm" commandName="saveCartForm" autocomplete="off">

@@ -8,18 +8,35 @@ ACC.paginationsort = {
 	},
 	bindPaginationSort: function ()
 	{
-		ACC.paginationsort.bindSortForm($('#sortForm1'));
-		ACC.paginationsort.bindSortForm($('#sortForm2'));
+		with (ACC.paginationsort)
+		{
+			bindSortForm($('#sortForm1'));
+			bindSortForm($('#sortForm2'));
+		}
 	},
 	bindSortForm: function (sortForm)
 	{
+//  browser.msie has been removed from jQuery as of version 1.9. Modernizr is recommended as a replacement
+//	issue created
+//		if ($.browser.msie)
+//		{
+// 			this.sortFormIEFix($(sortForm).children('select'), $(sortForm).children('select').val());
+//		}
+
 		sortForm.change(function ()
 		{
-			if (!ACC.paginationsort.downUpPressed)
-			{
-				this.submit();
-			}
-			ACC.paginationsort.downUpPressed = false;
+//			if (!$.browser.msie)
+//			{
+//				this.submit();
+//			}
+//			else
+//			{
+				if (!ACC.paginationsort.downUpPressed)
+				{
+					this.submit();
+				}
+				ACC.paginationsort.downUpPressed = false;
+//			}
 		});
 	},
 	sortFormIEFix: function (sortOptions, selectedOption)

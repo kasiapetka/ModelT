@@ -2,21 +2,21 @@
 <%@ attribute name="cmsPageRequestContextData" required="true" type="de.hybris.platform.acceleratorcms.data.CmsPageRequestContextData" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:if test="${cmsPageRequestContextData.liveEdit}">
 
+
     <c:if test="${empty addOnLiveEditJavaScriptPaths}">
-        <script src="${fn:escapeXml(commonResourcePath)}/js/hybris.cms.live.edit.js"></script>
+        <script type="text/javascript" src="${commonResourcePath}/js/hybris.cms.live.edit.js"></script>
         <c:if test="${cmsPageRequestContextData.preview}">
-            <script>
+            <script type="text/javascript">
 
-                var currentUserId = '${ycommerce:encodeJavaScript(cmsPageRequestContextData.user.uid)}';
-                var currentJaloSessionId = '${ycommerce:encodeJavaScript(cmsPageRequestContextData.sessionId)}';
-                var currentPagePk = '${ycommerce:encodeJavaScript(cmsPageRequestContextData.page.pk)}';
+                var currentUserId = '${fn:escapeXml(cmsPageRequestContextData.user.uid)}';
+                var currentJaloSessionId = '${cmsPageRequestContextData.sessionId}';
+                var currentPagePk = '${cmsPageRequestContextData.page.pk}';
 
-                $(function()
+                $(document).ready(function ()
                 {
                     parent.postMessage({eventName:'notifyIframeAboutUrlChange', data: [window.location.href, currentPagePk, currentUserId, currentJaloSessionId]},'*');
                 });
@@ -25,8 +25,9 @@
     </c:if>
     <c:if test="${not empty addOnLiveEditJavaScriptPaths}">
         <c:forEach items="${addOnLiveEditJavaScriptPaths}" var="addOnJavaScript">
-            <script src="${fn:escapeXml(addOnJavaScript)}"></script>
+            <script type="text/javascript" src="${addOnJavaScript}"></script>
         </c:forEach>
     </c:if>
 
 </c:if>
+

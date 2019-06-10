@@ -48,9 +48,8 @@
 							<spring:theme code="search.nav.changeLocation"/>
 						</a>
 						<c:if test="${not empty userLocation.searchTerm}">
-						<c:set var="searchTermHtml" value="${userLocation.searchTerm}"/>
 							<div class="facet__search__results">
-								<spring:theme code="search.nav.resultsForStore" arguments="${searchTermHtml}" htmlEscape="false"/>
+								<spring:theme code="search.nav.resultsForStore" arguments="${userLocation.searchTerm}" htmlEscape="false"/>
 							</div>
 						</c:if>
 					</div>
@@ -60,11 +59,9 @@
 							<c:forEach items="${facetData.values}" var="facetValue" varStatus="status">
 								<li class="${(status.index < 5 or facetValue.selected) ? '' : 'hidden'}">
 									<c:if test="${facetData.multiSelect}">
-										<c:set var="facetQueryValueHtml" value="${facetValue.query.query.value}"/>
-										<c:set var="freeTextSearchHtml" value="${searchPageData.freeTextSearch}"/>
 										<form action="#" method="get">
-											<input type="hidden" name="q" value="${facetQueryValueHtml}"/>
-											<input type="hidden" name="text" value="${freeTextSearchHtml}"/>
+											<input type="hidden" name="q" value="${facetValue.query.query.value}"/>
+											<input type="hidden" name="text" value="${searchPageData.freeTextSearch}"/>
 											<label>
 												<input class="facet__list__checkbox js-facet-checkbox sr-only" type="checkbox"  ${facetValue.selected ? 'checked="checked"' : ''} >
 												<span class="facet__list__label">
@@ -82,7 +79,7 @@
 									<c:if test="${not facetData.multiSelect}">
 										<c:url value="${facetValue.query.url}" var="facetValueQueryUrl"/>
 										<span class="facet__list__text">
-											<a href="${fn:escapeXml(facetValueQueryUrl)}">${fn:escapeXml(facetValue.name)}</a>
+											<a href="${facetValueQueryUrl}">${fn:escapeXml(facetValue.name)}</a>
 											<ycommerce:testId code="facetNav_count">
 												<span class="facet__value__count"> <spring:theme code="search.nav.facetValueCount" arguments="${facetValue.count}"/></span>
 											</ycommerce:testId>

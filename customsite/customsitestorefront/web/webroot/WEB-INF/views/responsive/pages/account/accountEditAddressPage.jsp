@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="address" tagdir="/WEB-INF/tags/responsive/address"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -19,7 +18,7 @@
 <div class="back-link border">
     <div class="row">
         <div class="container-lg col-md-6">
-            <button type="button" class="addressBackBtn" data-back-to-addresses="${fn:escapeXml(addressBookUrl)}">
+            <button type="button" class="addressBackBtn" data-back-to-addresses="${addressBookUrl}">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </button>
             <span class="label">${headline}</span>
@@ -35,5 +34,4 @@
         </div>
     </div>
 </div>
-<address:suggestedAddresses selectedAddressUrl="/my-account/select-suggested-address" />
 

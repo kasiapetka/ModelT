@@ -31,25 +31,20 @@
 			return this.each(function(){
 				var infoarea = $(this).attr('id');
 
-				$(this).after($("<div>").attr("id", infoarea + "_bar").addClass("progress").css("display", "none")
-						.append($("<div>").addClass("progress-bar").css("width", "0%").attr({
-							"role":"progressbar",
-							"aria-valuenow":0,
-							"aria-valuemin":0,
-							"aria-valuemax":100
-						}).append($("<span>").attr("id", infoarea + "_text").text("0%"))));
-				
+
+				$(this).after('<div id="' + infoarea + '_bar" class="progress" style="display: none;"><div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><span  id="' + infoarea + '_text">0%<span></div></div>');
+
 				if(options.minchar>0){
-					$(this).after($("<div>").addClass("help-block").attr("id", infoarea + "_minchar").text(options.minCharText.replace('%d', options.minchar)));
+					$(this).after('<div class="help-block" id="' + infoarea + '_minchar">' + options.minCharText.replace('%d', options.minchar) + '</div>');
 				}
 
 
-				options.$ctlBar = $(document).find("#" + infoarea + "_bar .progress-bar");
-	    		options.$ctlText = $(document).find("#" + infoarea + "_text");
+				options.$ctlBar = $("#" + infoarea + "_bar .progress-bar");
+	    		options.$ctlText = $("#" + infoarea + "_text");
 
 				$(this).keyup(function(){
-					if(options.minchar <= $(this).val().length && $(document).find("#"+infoarea + '_bar:hidden')){
-						$(document).find("#"+infoarea + '_bar').show();
+					if(options.minchar <= $(this).val().length && $("#"+infoarea + '_bar:hidden')){
+						$("#"+infoarea + '_bar').show()
 					}
 
 					$.fn.runPassword($(this).val(), infoarea, options);

@@ -5,7 +5,7 @@ ACC.multidgrid = {
 		event.preventDefault();
 
 		var itemIndex = $(element).data("index");
-		var gridEntries = $(document).find('#grid' + itemIndex);
+		var gridEntries = $('#grid' + itemIndex);
 
 		var strSubEntries = gridEntries.data("sub-entries");
 		var productName = gridEntries.data("product-name");
@@ -13,8 +13,8 @@ ACC.multidgrid = {
 		var firstVariantCode = arrSubEntries[0].split(':')[0];
 
 		var targetUrl = gridEntries.data("target-url") + '?productCode=' + encodeURIComponent(firstVariantCode);
-		
-		ACC.colorbox.open(ACC.common.encodeHtml(productName),{
+
+		ACC.colorbox.open(productName,{
 			href:   targetUrl,
 			className: 'read-only-grid',
 			close:'<span class="glyphicon glyphicon-remove"></span>',
@@ -38,8 +38,8 @@ ACC.multidgrid = {
 	populateAndShowGrid: function(element, event, readOnly)
 	{
 		var itemIndex = $(element).data("index");
-		grid = $(document).find("#ajaxGrid" + itemIndex);
-		var gridEntries = $(document).find('#grid' + itemIndex);
+		grid = $("#ajaxGrid" + itemIndex);
+		var gridEntries = $('#grid' + itemIndex);
 		
 		$(element).toggleClass('open');
 		
@@ -64,7 +64,6 @@ ACC.multidgrid = {
 			url: targetUrl,
 			data: {productCode: firstVariantCode},
 			type: method,
-			dataType: 'html',
 			success: function(data)
 			{
 				grid.html(data);
@@ -72,7 +71,7 @@ ACC.multidgrid = {
 			},
 			error: function(xht, textStatus, ex)
 			{
-				console.log("Failed to get variant matrix. Error details [" + xht + ", " + textStatus + ", " + ex + "]");
+				alert("Failed to get variant matrix. Error details [" + xht + ", " + textStatus + ", " + ex + "]");
 			}
 
 		});

@@ -77,6 +77,7 @@ public class OptCustomerFacade extends DefaultCustomerFacade
 		}
 		else
 		{
+
 			readListOfCarts();
 		}
 	}
@@ -127,7 +128,6 @@ public class OptCustomerFacade extends DefaultCustomerFacade
 	 */
 	private CartModel createCartModel()
 	{
-		LOG.debug(">>>>>>>>>>>OptCustomerFacade:createCartModel<<<<<<<<<<<<<");
 		final CartModel ret = new CartModel();
 		ret.setCode(getCode());
 		ret.setName(ret.getCode());
@@ -153,8 +153,8 @@ public class OptCustomerFacade extends DefaultCustomerFacade
 
 	private void readListOfCartsfs()
 	{
-
 		LOG.debug(">>>>>>>>>>>OptCustomerFacade:readListOfCartsfs<<<<<<<<<<<<<");
+
 		final FlexibleSearchQuery query = new FlexibleSearchQuery(SELECT_PK_FROM_CART_WHERE_PK_PK);
 		query.addQueryParameter("pk", "8098888880");
 

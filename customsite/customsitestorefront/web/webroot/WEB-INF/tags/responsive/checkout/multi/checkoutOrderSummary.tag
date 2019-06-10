@@ -11,12 +11,9 @@
 <%@ taglib prefix="multi-checkout" tagdir="/WEB-INF/tags/responsive/checkout/multi" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="order" tagdir="/WEB-INF/tags/responsive/order" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<spring:htmlEscape defaultHtmlEscape="true" />
-
-<spring:url value="/checkout/multi/summary/placeOrder" var="placeOrderUrl" htmlEscape="false"/>
-<spring:url value="/checkout/multi/termsAndConditions" var="getTermsAndConditionsUrl" htmlEscape="false"/>
+<spring:url value="/checkout/multi/summary/placeOrder" var="placeOrderUrl"/>
+<spring:url value="/checkout/multi/termsAndConditions" var="getTermsAndConditionsUrl"/>
 
 <div class="checkout-summary-headline hidden-xs">
     <spring:theme code="checkout.multi.order.summary" />
@@ -42,8 +39,7 @@
     <form:form action="${placeOrderUrl}" id="placeOrderForm1" commandName="placeOrderForm" class="place-order-form col-xs-12">
         <div class="checkbox">
             <label> <form:checkbox id="Terms1" path="termsCheck" />
-                <spring:theme var="termsAndConditionsHtml" code="checkout.summary.placeOrder.readTermsAndConditions" arguments="${fn:escapeXml(getTermsAndConditionsUrl)}" htmlEscape="false"/>
-            	${ycommerce:sanitizeHTML(termsAndConditionsHtml)}
+                <spring:theme code="checkout.summary.placeOrder.readTermsAndConditions" arguments="${getTermsAndConditionsUrl}" />
             </label>
         </div>
 

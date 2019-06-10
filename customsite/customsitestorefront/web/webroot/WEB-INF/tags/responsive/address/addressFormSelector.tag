@@ -88,7 +88,7 @@
 							<div class="col-sm-6 col-sm-pull-6 accountButtons">
 								<ycommerce:testId code="editAddress_cancelAddress_button">
 									<c:url value="${cancelUrl}" var="cancel"/>
-									<a class="btn btn-block btn-default" href="${fn:escapeXml(cancel)}">
+									<a class="btn btn-block btn-default" href="${cancel}">
 										<spring:theme code="text.button.cancel" />
 									</a>
 								</ycommerce:testId>

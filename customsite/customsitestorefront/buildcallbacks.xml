@@ -85,6 +85,7 @@
 	<target description="Adds a new responsive theme based on an existing responsive source theme" name="customsitestorefront_responsive_theme_setup">
 		<customsitestorefront_responsive_theme_setup/>
 	</target>
+	
 
 	<macrodef name="customsitestorefront_check_responsive_theme_setup_parameters">
 		<sequential>
@@ -164,7 +165,7 @@
 			</xmltask>
 		</sequential>
 	</macrodef>
-
+	
 	<macrodef name="customsitestorefront_sync_responsive_theme">
 		<attribute name="sourceCode"/>
 		<attribute name="targetCode"/>
@@ -271,9 +272,6 @@
 			<copy todir="${ext.customsitestorefront.path}/web/webroot/_ui/responsive/">
 				<fileset dir="${ext.customsitestorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/fonts/*"/>
 				<regexpmapper from="themes/(.*)/fonts/(.*)" handledirsep="yes" to="theme-\1/fonts/\2"/>        
-			</copy>
-			<copy overwrite="true" todir="${ext.customsitestorefront.path}/web/webroot/_ui/shared/js">
-				<fileset dir="${ext.customsitestorefront.path}/web/webroot/WEB-INF/_ui-src/shared/js" includes="**"/>
 			</copy>
 		</sequential>
 	</macrodef>
@@ -401,9 +399,8 @@
 				</do>
 			</foreachext>
 		</sequential>
-
-
 	</macrodef>
+
 
 
 	<macrodef name="delete_wro_addons_xml">
@@ -624,28 +621,7 @@
 		</sequential>
 	</macrodef>
 
-	<patternset id="extension.customsitestorefront.binary.filter">
-		<patternset refid="extension.binary.filter"/>
-		<exclude name="resources/wro_addons.xml"/>
-	</patternset>
-
-	<patternset id="extension.customsitestorefront.source.filter">
-		<patternset refid="extension.source.filter"/>
-		<exclude name="resources/wro_addons.xml"/>
-	</patternset>
-
-	<patternset id="extension.customsitestorefront.production.filter">
-		<patternset refid="extension.production.filter"/>
-		<exclude name="resources/wro_addons.xml"/>
-	</patternset>
-
-	<patternset id="extension.customsitestorefront.devzip.filter">
-		<patternset refid="extension.source.filter"/>
-		<exclude name="resources/wro_addons.xml"/>
-	</patternset>
-
 	<target description="compile the _ui-src folder in _ui" name="customsitestorefront_compileuisrc">
 		<customsitestorefront_compileuisrc_executor/>
 	</target>
-
 </project>

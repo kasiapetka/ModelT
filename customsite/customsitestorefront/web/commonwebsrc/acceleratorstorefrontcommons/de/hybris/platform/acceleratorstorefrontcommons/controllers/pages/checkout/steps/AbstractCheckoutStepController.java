@@ -25,7 +25,6 @@ import de.hybris.platform.commercefacades.order.CartFacade;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.user.data.CountryData;
 import de.hybris.platform.commercefacades.user.data.TitleData;
-import de.hybris.platform.commerceservices.enums.CountryType;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 
 import java.util.ArrayList;
@@ -105,7 +104,7 @@ public abstract class AbstractCheckoutStepController extends AbstractCheckoutCon
 	@ModelAttribute("countries")
 	public Collection<CountryData> getCountries()
 	{
-		return getCheckoutFacade().getCountries(CountryType.SHIPPING);
+		return getCheckoutFacade().getDeliveryCountries();
 	}
 
 	@ModelAttribute("countryDataMap")
@@ -156,10 +155,9 @@ public abstract class AbstractCheckoutStepController extends AbstractCheckoutCon
 	protected void prepareDataForPage(final Model model) throws CMSItemNotFoundException
 	{
 		model.addAttribute("isOmsEnabled", Boolean.valueOf(getSiteConfigService().getBoolean("oms.enabled", false)));
-		model.addAttribute("supportedCountries", getCheckoutFacade().getCountries(CountryType.SHIPPING));
+		model.addAttribute("supportedCountries", getCartFacade().getDeliveryCountries());
 		model.addAttribute("expressCheckoutAllowed", Boolean.valueOf(getCheckoutFacade().isExpressCheckoutAllowedForCart()));
 		model.addAttribute("taxEstimationEnabled", Boolean.valueOf(getCheckoutFacade().isTaxEstimationEnabledForCart()));
-		model.addAttribute("supportedBillingCountries", getCheckoutFacade().getCountries(CountryType.BILLING));
 	}
 
 	protected CheckoutStep getCheckoutStep(final String currentController)

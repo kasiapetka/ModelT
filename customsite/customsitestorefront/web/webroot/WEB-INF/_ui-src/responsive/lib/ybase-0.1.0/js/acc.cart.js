@@ -14,8 +14,8 @@ ACC.cart = {
         $(document).on("click", ".js-cart-help", function (e) {
             e.preventDefault();
             var title = $(this).data("help");
-            ACC.colorbox.open(ACC.common.encodeHtml(title), {
-                html: $(".js-help-popup-content").text(),
+            ACC.colorbox.open(title, {
+                html: $(".js-help-popup-content").html(),
                 width: "300px"
             });
         })
@@ -38,7 +38,7 @@ ACC.cart = {
     bindMultiDEntryRemoval: function () {
         $(document).on("click", '.js-submit-remove-product-multi-d', function () {
             var itemIndex = $(this).data("index");
-            var $form = $(document).find('#updateCartForm' + itemIndex);
+            var $form = $('#updateCartForm' + itemIndex);
             var initialCartQuantity = $form.find('input[name=initialQuantity]');
             var cartQuantity = $form.find('input[name=quantity]');
             var entryNumber = $form.find('input[name=entryNumber]').val();
@@ -54,12 +54,11 @@ ACC.cart = {
                 url: $form.attr("action"),
                 data: $form.serialize(),
                 type: method,
-                dataType: "text",
                 success: function (data) {
                     location.reload();
                 },
                 error: function () {
-                    console.log("Failed to remove quantity. Error details [" + xht + ", " + textStatus + ", " + ex + "]");
+                    alert("Failed to remove quantity. Error details [" + xht + ", " + textStatus + ", " + ex + "]");
                 }
 
             });
@@ -71,9 +70,9 @@ ACC.cart = {
     populateAndShowEditableGrid: function (element, event) {
         var readOnly = $(element).data("readOnlyMultidGrid");
         var itemIndex = $(element).data("index");
-        grid = $(document).find("#ajaxGrid" + itemIndex);
+        grid = $("#ajaxGrid" + itemIndex);
 
-        var gridEntries = $(document).find('#grid' + itemIndex);
+        var gridEntries = $('#grid' + itemIndex);
         var strSubEntries = gridEntries.data("sub-entries");
         var arrSubEntries = strSubEntries.split(',');
         var firstVariantCode = arrSubEntries[0].split(':')[0];
@@ -97,7 +96,6 @@ ACC.cart = {
                 url: targetUrl,
                 data: {productCode: firstVariantCode, readOnly: readOnly},
                 type: method,
-                dataType: 'html',
                 success: function (data) {
                     grid.html(data);
                     $("#ajaxGrid").removeAttr('id');
@@ -111,7 +109,7 @@ ACC.cart = {
                     ACC.productorderform.coreTableScrollActions(grid.children('#cartOrderGridForm'));
                 },
                 error: function (xht, textStatus, ex) {
-                    console.log("Failed to get variant matrix. Error details [" + xht + ", " + textStatus + ", " + ex + "]");
+                    alert("Failed to get variant matrix. Error details [" + xht + ", " + textStatus + ", " + ex + "]");
                 }
 
             });
@@ -126,7 +124,7 @@ ACC.cart = {
         var skuQuantityClass = '.sku-quantity';
 
         var quantityBefore = 0;
-        var grid = $(document).find('#ajaxGrid' + itemIndex + " .product-grid-container");
+        var grid = $('#ajaxGrid' + itemIndex + " .product-grid-container");
 
         grid.on('focusin', skuQuantityClass, function (event) {
             quantityBefore = jQuery.trim(this.value);
@@ -160,7 +158,7 @@ ACC.cart = {
             this.value = ACC.productorderform.filterSkuEntry(this.value);
 
             quantityAfter = jQuery.trim(this.value);
-            var variantCode = $(document).find("input[id='cartEntries[" + currentIndex + "].sku']").val();
+            var variantCode = $("input[id='cartEntries[" + currentIndex + "].sku']").val();
 
             if (isNaN(jQuery.trim(this.value))) {
                 this.value = 0;
@@ -172,13 +170,13 @@ ACC.cart = {
             }
 
             var $gridTotalValue = grid.find("[data-grid-total-id=" + 'total_value_' + currentIndex + "]");
-            var currentPrice = $(document).find("input[id='productPrice[" + currentIndex + "]']").val();
+            var currentPrice = $("input[id='productPrice[" + currentIndex + "]']").val();
 
             if (quantityAfter > 0) {
                 gridLevelTotalPrice = ACC.productorderform.formatTotalsCurrency(parseFloat(currentPrice) * parseInt(quantityAfter));
             }
 
-            $gridTotalValue.text(gridLevelTotalPrice);
+            $gridTotalValue.html(gridLevelTotalPrice);
 
             var _this = this;
             var priceSibling = $(this).siblings('.price');
@@ -257,7 +255,7 @@ ACC.cart = {
 
             if (entryNum == -1) // grouped item
             {
-                form = $(document).find('.js-qty-form' + itemIndex);
+                form = $('.js-qty-form' + itemIndex);
                 var productCode = form.find('input[name=productCode]').val();
 
                 var quantity = 0;
@@ -276,8 +274,8 @@ ACC.cart = {
                     location.reload();
                 }
                 else {
-                    form.find(".qtyValue").text(quantity);
-                    form.parent().parent().find(".js-item-total").text(entryPrice.formattedValue);
+                    form.find(".qtyValue").html(quantity);
+                    form.parent().parent().find(".js-item-total").html(entryPrice.formattedValue);
                 }
             }
 
@@ -288,13 +286,13 @@ ACC.cart = {
     refreshCartPageWithJSONResponse: function (cartData) {
         // refresh mini cart
         ACC.minicart.updateMiniCartDisplay();
-        $('.js-cart-top-totals').text($("#cartTopTotalSectionTemplate").tmpl(cartData));
+        $('.js-cart-top-totals').html($("#cartTopTotalSectionTemplate").tmpl(cartData));
         $('div .cartpotproline').remove();
         $('div .cartproline').remove();
         $('.js-cart-totals').remove();
-        $('#ajaxCartPotentialPromotionSection').text($("#cartPotentialPromotionSectionTemplate").tmpl(cartData));
-        $('#ajaxCartPromotionSection').text($("#cartPromotionSectionTemplate").tmpl(cartData));
-        $('#ajaxCart').text($("#cartTotalsTemplate").tmpl(cartData));
+        $('#ajaxCartPotentialPromotionSection').html($("#cartPotentialPromotionSectionTemplate").tmpl(cartData));
+        $('#ajaxCartPromotionSection').html($("#cartPromotionSectionTemplate").tmpl(cartData));
+        $('#ajaxCart').html($("#cartTotalsTemplate").tmpl(cartData));
         ACC.quote.bindQuoteDiscount();
     },
     
@@ -330,11 +328,11 @@ ACC.cart = {
                     var currentIndex = parseInt(quantities[index].id.match(indexPattern));
                     var gridTotalValue = gridContainer.find("[data-grid-total-id=" + 'total_value_' + currentIndex + "]");
                     var gridLevelTotalPrice = "";
-                    var currentPrice = $(document).find("input[id='productPrice[" + currentIndex + "]']").val();
+                    var currentPrice = $("input[id='productPrice[" + currentIndex + "]']").val();
                     if (quantity > 0) {
                         gridLevelTotalPrice = ACC.productorderform.formatTotalsCurrency(parseFloat(currentPrice) * parseInt(quantity));
                     }
-                    gridTotalValue.text(gridLevelTotalPrice);
+                    gridTotalValue.html(gridLevelTotalPrice);
 
                     selectedVariants.push({
                         id: skuId,
@@ -349,7 +347,7 @@ ACC.cart = {
                 $.tmpl(ACC.productorderform.$variantSummaryTemplate, {
                     variants: selectedVariants
                 }).appendTo($(currentTable).addClass('selected'));
-                $(currentTable).find('.variant-summary .variant-property').text($(currentTable).find('.variant-detail').data('variant-property'));
+                $(currentTable).find('.variant-summary .variant-property').html($(currentTable).find('.variant-detail').data('variant-property'));
                 $(currentTable).data(ACC.productorderform.selectedVariantData, selectedVariants);
             }
         });

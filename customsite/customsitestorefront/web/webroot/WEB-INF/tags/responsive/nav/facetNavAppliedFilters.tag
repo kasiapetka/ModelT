@@ -6,7 +6,6 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<spring:htmlEscape defaultHtmlEscape="true" />
 
 <c:if test="${not empty pageData.breadcrumbs}">
 
@@ -21,7 +20,7 @@
 				<c:forEach items="${pageData.breadcrumbs}" var="breadcrumb">
 					<li>
 						<c:url value="${breadcrumb.removeQuery.url}" var="removeQueryUrl"/>
-						${fn:escapeXml(breadcrumb.facetValueName)}&nbsp;<a href="${fn:escapeXml(removeQueryUrl)}" ><span class="glyphicon glyphicon-remove"></span></a>
+						${fn:escapeXml(breadcrumb.facetValueName)}&nbsp;<a href="${removeQueryUrl}" ><span class="glyphicon glyphicon-remove"></span></a>
 					</li>
 				</c:forEach>
 			</ul>

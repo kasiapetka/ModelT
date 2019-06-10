@@ -349,7 +349,7 @@ INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lan
 ;CN;CN-31;31;"Shanghai"
 ;CN;CN-12;12;"Tianjin"
 ;CN;CN-34;34;"Anhui"
-;CN;CN-35;35;"Fujian"
+;CN;CN-35;35;"Fujan"
 ;CN;CN-62;62;"Gansu"
 ;CN;CN-44;44;"Guangdong"
 ;CN;CN-52;52;"Guizhou"

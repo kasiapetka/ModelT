@@ -26,7 +26,6 @@ import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.cms2.model.pages.PageTemplateModel;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
-import de.hybris.platform.cms2.servicelayer.services.CMSPreviewService;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
 import de.hybris.platform.commercefacades.consent.ConsentFacade;
 import de.hybris.platform.commercefacades.consent.data.ConsentTemplateData;
@@ -123,9 +122,6 @@ public abstract class AbstractPageController extends AbstractController
 	@Resource(name = "consentFacade")
 	private ConsentFacade consentFacade;
 
-	@Resource(name = "cmsPreviewService")
-	private CMSPreviewService cmsPreviewService;
-
 	protected SiteConfigService getSiteConfigService()
 	{
 		return siteConfigService;
@@ -189,11 +185,6 @@ public abstract class AbstractPageController extends AbstractController
 	protected ConsentFacade getConsentFacade()
 	{
 		return consentFacade;
-	}
-
-	protected CMSPreviewService getCmsPreviewService()
-	{
-		return cmsPreviewService;
 	}
 
 	@ModelAttribute("languages")
@@ -322,40 +313,30 @@ public abstract class AbstractPageController extends AbstractController
 		}
 	}
 
-	/**
-	 * Finds a content page by label or id and evaluates the cms restrictions associated to the page and components on the
-	 * page.
-	 *
-	 * @param labelOrId
-	 *           the label or id used for the look-up
-	 * @return a content page
-	 * @throws CMSItemNotFoundException
-	 *            when no page is found for the provided label or id
-	 */
 	protected ContentPageModel getContentPageForLabelOrId(final String labelOrId) throws CMSItemNotFoundException
 	{
 		String key = labelOrId;
 		if (StringUtils.isEmpty(labelOrId))
 		{
-			// Fallback to site home page - find the homepage for the site and run cms restrictions
-			final ContentPageModel homePage = getCmsPageService().getHomepage(getCmsPreviewService().getPagePreviewCriteria());
+			// Fallback to site home page
+			final ContentPageModel homePage = cmsPageService.getHomepage();
 			if (homePage != null)
 			{
-				return homePage;
+				key = cmsPageService.getLabelOrId(homePage);
 			}
 			else
 			{
 				// Fallback to site start page label
-				final CMSSiteModel site = getCmsSiteService().getCurrentSite();
+				final CMSSiteModel site = cmsSiteService.getCurrentSite();
 				if (site != null)
 				{
-					key = getCmsSiteService().getStartPageLabelOrId(site);
+					key = cmsSiteService.getStartPageLabelOrId(site);
 				}
 			}
 		}
 
 		// Actually resolve the label or id - running cms restrictions
-		return getCmsPageService().getPageForLabelOrId(key, getCmsPreviewService().getPagePreviewCriteria());
+		return cmsPageService.getPageForLabelOrId(key);
 	}
 
 	protected PageTitleResolver getPageTitleResolver()
@@ -456,8 +437,8 @@ public abstract class AbstractPageController extends AbstractController
 
 	protected void addRegistrationConsentDataToModel(final Model model)
 	{
-		final String consentId = getSiteConfigService()
-				.getProperty(REGISTRATION_CONSENT_ID + baseSiteService.getCurrentBaseSite().getUid());
+		final String consentId = configurationService.getConfiguration()
+				.getString(REGISTRATION_CONSENT_ID + baseSiteService.getCurrentBaseSite().getUid());
 		if (StringUtils.isNotBlank(consentId))
 		{
 			final ConsentTemplateData consentData = getConsentFacade().getLatestConsentTemplate(consentId);
