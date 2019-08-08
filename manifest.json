@@ -1,6 +1,7 @@
 {
-   "commerceSuiteVersion": "1808",
+   "commerceSuiteVersion": "1905",
    "troubleshootingModeEnabled": true,
+   "useCloudExtensionPack": true,
    "extensions": [
    	   "mcc",
        "backoffice",
@@ -46,7 +47,9 @@
        "customsitetest",
        "customsiteinitialdata",
        "customsitestorefront",
-       "personalizationsearchsamplesaddon"
+       "personalizationsearchsamplesaddon",
+       "gigyaloginaddon",
+       "gigyabackoffice"
    ],
    "storefrontAddons" : [
         {
@@ -114,8 +117,13 @@
             "storefront": "customsitestorefront",
             "template": "yacceleratorstorefront"
 
+        },
+        {
+            "addon": "gigyaloginaddon",
+            "storefront": "customsitestorefront",
+            "template": "yacceleratorstorefront"
+
         }
-        
 
         
     ],
