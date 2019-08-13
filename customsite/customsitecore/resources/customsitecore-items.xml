@@ -109,6 +109,18 @@
                     </attribute>
                 </attributes>
             </itemtype>
+         
+<itemtype code="SolrIndexOperation" autocreate="false" generate="false">
+<indexes>
+<index name="IDXSOL_exte_stat_pindex_operat">
+<key attribute="external" />
+<key attribute="status" />
+<key attribute="index" />
+<key attribute="operation" />
+</index>
+</indexes>
+</itemtype>
+         
         </typegroup>
 
     </itemtypes>
