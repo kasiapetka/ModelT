@@ -31,7 +31,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Required;
 
 import com.codahale.metrics.MetricRegistry;
@@ -39,7 +38,7 @@ import com.codahale.metrics.Timer;
 import com.google.common.base.Suppliers;
 
 
-public class CustomAuxiliaryTablesSchedulerRole implements InitializingBean
+public class CustomAuxiliaryTablesSchedulerRole extends AuxiliaryTablesSchedulerRole
 {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomAuxiliaryTablesSchedulerRole.class);
@@ -65,6 +64,7 @@ public class CustomAuxiliaryTablesSchedulerRole implements InitializingBean
 					getColumnName(TaskConditionModel._TYPECODE, TaskConditionModel.TASK),
 					getColumnName(TaskConditionModel._TYPECODE, TaskConditionModel.FULFILLED)));
 
+	@Override
 	public Collection<TasksProvider.VersionPK> tryToPerformSchedulerJob(final RuntimeConfigHolder runtimeConfigHolder,
 	                                                                    final TaskEngineParameters taskEngineParameters,
 	                                                                    final int maxItemsToSchedule)
@@ -430,11 +430,13 @@ public class CustomAuxiliaryTablesSchedulerRole implements InitializingBean
 		             .map(Map.Entry::getKey).collect(Collectors.toList());
 	}
 
+	@Override
 	protected String getConditionsQuery()
 	{
 		return conditionsQuerySupplier.get();
 	}
 
+	@Override
 	protected String getExpiredTasksQuery(final int rangeStart, final int rangeEnd)
 	{
 		final TasksQueueGateway tasksQueueGateway = gatewayFactory.getTasksQueueGateway();
@@ -450,6 +452,7 @@ public class CustomAuxiliaryTablesSchedulerRole implements InitializingBean
 
 	}
 
+	@Override
 	protected String getTasksQuery(final int rangeStart, final int rangeEnd)
 	{
 		final TasksQueueGateway tasksQueueGateway = gatewayFactory.getTasksQueueGateway();
@@ -498,18 +501,21 @@ public class CustomAuxiliaryTablesSchedulerRole implements InitializingBean
 		this.countTasksTimer = metricRegistry.timer(RuntimeConfigHolder.metricName("pooling.scheduler.countTasks.time"));
 	}
 
+	@Override
 	@Required
 	public void setGatewayFactory(final AuxiliaryTablesGatewayFactory gatewayFactory)
 	{
 		this.gatewayFactory = gatewayFactory;
 	}
 
+	@Override
 	@Required
 	public void setMetricRegistry(final MetricRegistry metricRegistry)
 	{
 		this.metricRegistry = metricRegistry;
 	}
 
+	@Override
 	@Required
 	public void setTypeService(final TypeService typeService)
 	{
