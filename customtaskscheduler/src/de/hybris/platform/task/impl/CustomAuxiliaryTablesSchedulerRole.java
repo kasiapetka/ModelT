@@ -506,6 +506,7 @@ public class CustomAuxiliaryTablesSchedulerRole extends AuxiliaryTablesScheduler
 	public void setGatewayFactory(final AuxiliaryTablesGatewayFactory gatewayFactory)
 	{
 		this.gatewayFactory = gatewayFactory;
+		super.setGatewayFactory(gatewayFactory);
 	}
 
 	@Override
@@ -513,6 +514,7 @@ public class CustomAuxiliaryTablesSchedulerRole extends AuxiliaryTablesScheduler
 	public void setMetricRegistry(final MetricRegistry metricRegistry)
 	{
 		this.metricRegistry = metricRegistry;
+		super.setMetricRegistry(metricRegistry);
 	}
 
 	@Override
@@ -520,5 +522,6 @@ public class CustomAuxiliaryTablesSchedulerRole extends AuxiliaryTablesScheduler
 	public void setTypeService(final TypeService typeService)
 	{
 		this.typeService = typeService;
+		super.setTypeService(typeService);
 	}
 }
