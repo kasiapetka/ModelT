@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	
+    <bean id="customtaskschedulerSystemSetup" class="de.hybris.platform.task.impl.setup.CustomtaskschedulerSystemSetup">
+        <!-- constructor arg injection example -->
+        <constructor-arg ref="customtaskschedulerService"/>
+    </bean>
+
+    <bean id="customtaskschedulerService" class="de.hybris.platform.task.impl.service.impl.DefaultCustomtaskschedulerService">
+        <!-- setter injection example -->
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    
+    <alias alias="auxiliaryTablesSchedulerRole" name="customAuxiliaryTablesSchedulerRole" />
+    <bean id="customAuxiliaryTablesSchedulerRole" class="de.hybris.platform.task.impl.CustomAuxiliaryTablesSchedulerRole">
+        <property name="gatewayFactory" ref="auxiliaryTablesGatewayFactory"/>
+        <property name="metricRegistry" ref="metricRegistry"/>
+        <property name="typeService" ref="typeService"/>
+    </bean>
+			
+</beans>
