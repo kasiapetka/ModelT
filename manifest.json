@@ -46,7 +46,8 @@
        "customsitetest",
        "customsiteinitialdata",
        "customsitestorefront",
-       "personalizationsearchsamplesaddon"
+       "personalizationsearchsamplesaddon",
+       "customtaskscheduler"
    ],
    "storefrontAddons" : [
         {
