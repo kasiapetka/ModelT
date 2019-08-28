@@ -36,7 +36,13 @@
         <property name="metricRegistry" ref="metricRegistry"/>
         <property name="typeService" ref="typeService"/>
     </bean>
+    
+	<alias name="auxiliaryTablesBasedTaskProvider" alias="tasksProvider"/>
 	
-    <alias name="auxiliaryTablesBasedTaskProvider" alias="tasksProvider"/>
+    <alias name="customAuxiliaryTablesGatewayFactory" alias="auxiliaryTablesGatewayFactory"/>
+    <bean id="customAuxiliaryTablesGatewayFactory" class="de.hybris.platform.task.impl.CustomAuxiliaryTablesGatewayFactory">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="typeService" ref="typeService"/>
+    </bean>
 			
 </beans>
