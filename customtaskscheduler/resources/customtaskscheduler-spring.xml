@@ -36,5 +36,7 @@
         <property name="metricRegistry" ref="metricRegistry"/>
         <property name="typeService" ref="typeService"/>
     </bean>
+	
+    <alias name="auxiliaryTablesBasedTaskProvider" alias="tasksProvider"/>
 			
 </beans>
