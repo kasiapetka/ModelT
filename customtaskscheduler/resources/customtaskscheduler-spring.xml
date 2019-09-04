@@ -44,5 +44,10 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <property name="typeService" ref="typeService"/>
     </bean>
+    
+    <alias name="customTaskDao" alias="taskDao"/>
+    <bean id="customTaskDao" class="de.hybris.platform.task.impl.CustomTaskDAO">
+        <constructor-arg ref="tenantFactory" />
+    </bean>
 			
 </beans>
