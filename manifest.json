@@ -1,173 +1,119 @@
 {
-   "commerceSuiteVersion": "6.7.0.1",
+   "commerceSuiteVersion": "1905",
    "troubleshootingModeEnabled": true,
    "extensions": [
-   	   "mcc",
-       "backoffice",
-       "platformbackoffice",
-       "basecommercebackoffice",  
-       "adaptivesearchsolr",
-       "adaptivesearchbackoffice",
-       "adaptivesearchsamplesaddon",
-       "adaptivesearchwebservices",
-       "commerceservicesbackoffice",
-       "solrfacetsearchbackoffice",
-       "ycommercewebservices",
-       "ycommercewebservicestest",
-       "electronicsstore",
-       "acceleratorwebservicesaddon",
-       "orderselfserviceaddon",
-       "customersupportbackoffice",
-       "customerticketingaddon",
-       "commerceorgsamplesaddon",
-       "rulebuilderbackoffice",
-       "couponbackoffice",
-       "droolsruleengineservices",
-       "couponfacades",
-       "promotionenginesamplesaddon",
-       "cmswebservices",
-       "smarteditwebservices",
-       "cmssmarteditwebservices",
-       "permissionswebservices",
-       "smarteditaddon",
-       "cmssmartedit",
-       "cmsbackoffice",
-       "cmsmulticountrycockpit",
-       "multicountrysampledataaddon",       
-       "textfieldconfiguratortemplatebackoffice",
-       "textfieldconfiguratortemplateaddon",
-       "assistedservicestorefront",
-       "assistedservicewebservices",
-       "assistedservicepromotionaddon",
-       "pcmbackofficesamplesaddon",
-       "customsitefulfilmentprocess",
-       "customsitefulfilmentprocess",
-       "customsitecockpits",
-       "customsitecore",
-       "customsitefacades",
-       "customsitetest",
-       "customsiteinitialdata",
-       "customsitestorefront",
-       "personalizationsearchsamplesaddon",
-       "datahubadapter",
-		"secureportaladdon",
-		"datahubbackoffice",
-		"sapcoreaddon",
-		"sapcoreconfigurationbackoffice",	
-		"sapmodelbackoffice",
-		"sapcustomerb2bbackoffice",
-		"b2bsappricing",
-		"sappricingbackoffice",	
-		"ysaporderfulfillment",
-		"saporderexchangeb2b",
-		"saporderexchangebackoffice",
-		"ysapordermgmtb2baddon",
-		"sapordermgmtbackoffice",
-		"b2bsapproductavailability",
-		"sapproductavailabilitybackoffice",
-		"sapcreditcheckbackoffice",
-		"sapcoretest"
+    "adaptivesearchsolr"
+    "adaptivesearchbackoffice"
+    "b2bcommercebackoffice"
+    "solrfacetsearchbackoffice"
+    "yacceleratorbackoffice"
+    "yacceleratorinitialdata"
+    "yacceleratorfulfilmentprocess"
+    "yacceleratorstorefront"
+    "ycommercewebservices"
+    "ycommercewebservicestest"
+    "electronicsstore"
+    "powertoolsstore"
+    "acceleratorwebservicesaddon"
+    "b2bacceleratoraddon"
+    "commerceorgaddon"
+    "commerceorgsamplesaddon"
+    "orderselfserviceaddon"
+    "assistedservicestorefront"
+    "customerticketingaddon"
+    "customersupportbackoffice"
+    "rulebuilderbackoffice"
+    "couponbackoffice"
+    "droolsruleengineservices"
+    "couponfacades"
+    "couponservices"
+    "promotionenginesamplesaddon"
+    "textfieldconfiguratortemplatebackoffice"
+    "textfieldconfiguratortemplateaddon"
+    "cmswebservices"
+    "smarteditwebservices"
+    "permissionswebservices"
+    "smarteditaddon"
+    "cmssmartedit"
+    "previewwebservices"
+    "cmssmarteditwebservices"
+    "cmsoccaddon"
+    "pcmbackofficesamplesaddon"
+    "secureportaladdon"
+    "datahubbackoffice"
+    "sapcoreaddon"
+    "sapcoreconfigurationbackoffice"
+    "sapmodelbackoffice"
+    "sapcustomerb2bbackoffice"
+    "b2bsappricing"
+    "sappricingbackoffice"
+    "ysaporderfulfillment"
+    "saporderexchangeb2b"
+    "saporderexchangebackoffice"
+    "ysapordermgmtb2baddon"
+    "sapordermgmtbackoffice"
+    "b2bsapproductavailability"
+    "sapproductavailabilitybackoffice"
+    "sapcreditcheckbackoffice"
+    "sapcoretest"
+    "sapreturnsexchange"
+    "sapreturnsexchangeb2b"
+    "ysaperpreturnprocess"
+    "outboundservices"
+    "odata2webservices"
+    "odata2webservicesfeaturetests"
+    "kymaintegrationbackoffice"
+    "yb2bacceleratorstorefront"
    ],
    "storefrontAddons" : [
         {
-            "addon": "adaptivesearchsamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "acceleratorwebservicesaddon",
-            "storefront": "ycommercewebservices",
-            "template": "ycommercewebservices"
-        },
-        {
-            "addon": "orderselfserviceaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "customerticketingaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
             "addon": "commerceorgsamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "promotionenginesamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "smarteditaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "multicountrysampledataaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "textfieldconfiguratortemplateaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "assistedservicepromotionaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "pcmbackofficesamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "personalizationsearchsamplesaddon",
-            "storefront": "customsitestorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "assistedservicestorefront",
-            "storefront": "customsitestorefront",
+            "storefront": "ycommercewebservices",
+            "template": "ycommercewebservices"
+        },
+        {
+            "addon": "customerticketingaddon",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
-
+        },
+        {
+            "addon": "promotionenginesamplesaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "textfieldconfiguratortemplateaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "orderselfserviceaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        },
+        {
+            "addon": "smarteditaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
         },
         {
             "addon": "sapcoreaddon",
-            "storefront": "customsitestorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
-
-        }        
-
+        },
+        {
+            "addon": "pcmbackofficesamplesaddon",
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
+        }
         
     ],
    "properties": [
-        {
-            "key": "test.property.1",
-            "value": "test.property.1.value"
-        },
-        {
-            "key": "test.property.2",
-            "value": "global"
-        },
-        {
-            "key": "test.property.3",
-            "value": "persona.development",
-            "persona": "development"
-        },
-        {
-            "key": "test.property.4",
-            "value": "persona.staging",
-            "persona": "staging"
-        },
-        {
-            "key": "test.property.5",
-            "value": "persona.production",
-            "persona": "production"
-        },
         {
      	      "key":"hac.webroot",
      	      "value":"/hac"
@@ -175,7 +121,75 @@
         {
             "key":"persistence.legacy.mode",
             "value":"false"
-        }
+        },
+        {
+     	      "key":"yb2bacceleratorstorefront.illegalrequirementstest.excluded",
+     	      "value":"true"
+        },
+
+        {
+     	      "key":"keygen.customer.sap_customer_id.start",
+     	      "value":"0000500200"
+        },
+        {
+     	      "key":"keygen.customer.sap_contact_id.start",
+     	      "value":"0000600200"
+        },
+
+        {
+     	      "key":"keygen.order.code.start",
+     	      "value":"0007131120"
+        },
+
+        {
+     	      "key":"keygen.returnorder.code.start",
+     	      "value":"6782001"
+        },
+
+        {
+     	      "key":"sapcustomerexchange.outbound.datahub.feed",
+     	      "value":"SAPCONSUMER_OUTBOUND_FEED"
+        },
+        {
+     	      "key":"sapcoreconfiguration.datahuboutbound.enabled",
+     	      "value":"true"
+        },
+        {
+     	      "key":"numberseries.cache.size.order_code",
+     	      "value":"1"
+        },
+        {
+     	      "key":"saporderexchange.orderoutbound.maxRetries",
+     	      "value":"3"
+        },
+        { 
+            "key": "datahubadapter.security.https.enabled",
+            "value" : "false"
+        } ,
+        {
+            "key": "datahubadapter.datahuboutbound.user",
+            "value":"admin"
+        },
+        {
+            "key": "datahubadapter.datahuboutbound.password",
+            "value":"nimda"
+        },
+        { 
+            "key": "datahub.backoffice.rest.client.username.admin",
+            "value":"admin"
+        },
+        { 
+            "key": "datahub.backoffice.rest.client.password.admin",
+            "value":"nimda"
+        },
+        { 
+            "key": "datahub.backoffice.rest.client.username.developer",
+            "value":"admin"
+        },
+        { 
+            "key": "datahub.backoffice.rest.client.password.developer",
+            "value":"nimda"
+        },
     ],
    "aspects": [
          {
@@ -222,7 +236,7 @@
                     "contextPath": "/medias"
                 },
                 {
-                    "name": "customsitestorefront",
+                    "name": "yacceleratorstorefront",
                     "contextPath": ""
 
                 }
