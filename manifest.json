@@ -118,6 +118,10 @@
      	      "key":"hac.webroot",
      	      "value":"/hac"
     	  },
+    	{
+    		"key":"catalog.sync.active"
+    		"value":"false"
+    	},
         {
             "key":"persistence.legacy.mode",
             "value":"false"
