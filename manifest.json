@@ -119,7 +119,7 @@
      	      "value":"/hac"
     	  },
     	{
-    		"key":"catalog.sync.active"
+    		"key":"catalog.sync.active",
     		"value":"false"
     	},
         {
