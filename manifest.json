@@ -73,8 +73,8 @@
         },
         {
             "addon": "assistedservicestorefront",
-            "storefront": "ycommercewebservices",
-            "template": "ycommercewebservices"
+            "storefront": "yacceleratorstorefront",
+            "template": "yacceleratorstorefront"
         },
         {
             "addon": "customerticketingaddon",
@@ -191,6 +191,7 @@
             "value":"nimda"
         }
     ],
+    
    "aspects": [
          {
             "name": "backoffice",
