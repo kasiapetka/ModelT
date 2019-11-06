@@ -189,7 +189,7 @@
         { 
             "key": "datahub.backoffice.rest.client.password.developer",
             "value":"nimda"
-        },
+        }
     ],
    "aspects": [
          {
