@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="reactorFix_buildcallbacks">
+	<macrodef name="reactorFix__after_build">
+		<sequential>
+			<replaceregexp
+			             file="${ext.publicsectorfacades.path}/src/de/hybris/platform/publicsectorfacades/order/converters/populators/PSOrderEntryPopulator.java"
+			             match='reactor.util.Assert'
+			             replace='org.springframework.util.Assert'/>
+		</sequential>
+	</macrodef>
+</project>

@@ -1,120 +1,21 @@
 {
    "commerceSuiteVersion": "1811",
    "troubleshootingModeEnabled": true,
+   "useCloudExtensionPack":true,
+    "extensionPacks": [
+      {
+        "name": "hybris-hcea-suite",
+        "version": "1906.0"
+      }
+    ],
    "extensions": [
-   	   "mcc",
-       "backoffice",
-       "platformbackoffice",
-       "basecommercebackoffice",  
-       "adaptivesearchsolr",
-       "adaptivesearchbackoffice",
-       "adaptivesearchsamplesaddon",
-       "adaptivesearchwebservices",
-       "commerceservicesbackoffice",
-       "solrfacetsearchbackoffice",
-       "ycommercewebservices",
-       "ycommercewebservicestest",
-       "electronicsstore",
-       "acceleratorwebservicesaddon",
-       "orderselfserviceaddon",
-       "customersupportbackoffice",
-       "customerticketingaddon",
-       "commerceorgsamplesaddon",
-       "rulebuilderbackoffice",
-       "couponbackoffice",
-       "droolsruleengineservices",
-       "couponfacades",
-       "promotionenginesamplesaddon",
-       "cmswebservices",
-       "smarteditwebservices",
-       "cmssmarteditwebservices",
-       "permissionswebservices",
-       "smarteditaddon",
-       "cmssmartedit",
-       "cmsbackoffice",
-       "multicountrysampledataaddon",       
-       "textfieldconfiguratortemplatebackoffice",
-       "textfieldconfiguratortemplateaddon",
-       "assistedservicestorefront",
-       "assistedservicewebservices",
-       "assistedservicepromotionaddon",
-       "pcmbackofficesamplesaddon",
-       "customsitefulfilmentprocess",
-       "customsitefulfilmentprocess",
-       "customsitecore",
-       "customsitefacades",
-       "customsitetest",
-       "customsiteinitialdata",
-       "customsitestorefront",
-       "personalizationsearchsamplesaddon",
-       "customtaskscheduler"
+      "reactorFix"
    ],
    "storefrontAddons" : [
         {
-            "addon": "adaptivesearchsamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "acceleratorwebservicesaddon",
-            "storefront": "ycommercewebservices",
-            "template": "ycommercewebservices"
-        },
-        {
-            "addon": "orderselfserviceaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "customerticketingaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "commerceorgsamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "promotionenginesamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "smarteditaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "multicountrysampledataaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "textfieldconfiguratortemplateaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "assistedservicepromotionaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "pcmbackofficesamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "personalizationsearchsamplesaddon",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "assistedservicestorefront",
-            "storefront": "customsitestorefront",
-            "template": "yacceleratorstorefront"
-
+          "addon":"xyformsstorefrontcommons",
+          "storefront":"customsitestorefront",
+          "template":"yacceleratorstorefront"
         }
 
         
