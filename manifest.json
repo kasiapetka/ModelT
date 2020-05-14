@@ -9,7 +9,8 @@
       }
     ],
    "extensions": [
-      "publicsectorfacades"
+      "publicsectorfacades",
+      "billfacades"
    ],
    "storefrontAddons" : [
 
