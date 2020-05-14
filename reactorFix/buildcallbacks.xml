@@ -6,6 +6,10 @@
 			             file="${ext.publicsectorfacades.path}/src/de/hybris/platform/publicsectorfacades/order/converters/populators/PSOrderEntryPopulator.java"
 			             match='reactor.util.Assert'
 			             replace='org.springframework.util.Assert'/>
+			<replaceregexp
+			             file="${ext.publicsectorfacades.package}/src/de/hybris/platform/publicsectorfacades/order/converters/populators/PSOrderEntryPopulator.java"
+			             match='reactor.util.Assert'
+			             replace='org.springframework.util.Assert'/>
 		</sequential>
 	</macrodef>
 </project>
