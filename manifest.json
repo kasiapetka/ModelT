@@ -12,11 +12,6 @@
       "reactorFix"
    ],
    "storefrontAddons" : [
-        {
-          "addon":"xyformsstorefrontcommons",
-          "storefront":"customsitestorefront",
-          "template":"yacceleratorstorefront"
-        }
 
         
     ],
