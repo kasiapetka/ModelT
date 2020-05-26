@@ -35,6 +35,23 @@
             "value": "300"
         },
         {
+            "key": "publicsectorservices.encoder.algorithm",
+            "value": "AES"
+        },
+        {
+            "key": "publicsectorservices.encoder.aes.key",
+            "value": "d2cb415e067c7b13"
+        },
+        {
+            "key": "publicsectorservices.encoder.encryption.cipher",
+            "value": "AES/CBC/PKCS5Padding"
+        },
+        {
+            "key": "publicsectorservices.encoder.initialization.vector",
+            "value": "e36dc751d0433f05"
+        
+        },
+        {
             "key": "test.property.5",
             "value": "persona.production",
             "persona": "production"
