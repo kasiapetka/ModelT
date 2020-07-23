@@ -47,7 +47,8 @@
        "customsiteinitialdata",
        "customsitestorefront",
        "personalizationsearchsamplesaddon",
-       "customtaskscheduler"
+       "customtaskscheduler",
+       "npmancillary"
    ],
    "storefrontAddons" : [
         {
@@ -142,6 +143,10 @@
             "key": "test.property.5",
             "value": "persona.production",
             "persona": "production"
+        },
+        {
+            "key": "npmancillary.run.npminstall",
+            "value": "true"
         }
     ],
    "aspects": [
