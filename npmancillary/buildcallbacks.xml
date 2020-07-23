@@ -478,7 +478,7 @@
                 <os family="windows"/>
             </not>
             <then>
-                <chmod file="${ext.npmancillary.path}/resources/npm/**" perm="ugo+x"/>
+                <!--<chmod file="${ext.npmancillary.path}/resources/npm/**" perm="ugo+x"/>-->
                 <exec executable="${ext.npmancillary.path}/resources/npm/repairnpm.sh">
                     <arg line="${os.family}"/>
                 </exec>
