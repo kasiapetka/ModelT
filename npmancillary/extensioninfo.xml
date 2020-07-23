@@ -12,11 +12,15 @@
 
   
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
-
-   <extension abstractclassprefix="Generated" classprefix="Npmancillary" managername="NpmancillaryManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="npmancillary">
-               
-      <coremodule generated="true" manager="de.hybris.jalo.NpmancillaryManager" packageroot="de.hybris"/>		
-
-   </extension>
+       
+    <extension abstractclassprefix="Generated" classprefix="Npmancillary" managername="NpmancillaryManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="npmancillary">
+                       
       
+        <coremodule generated="true" manager="de.hybris.jalo.NpmancillaryManager" packageroot="de.hybris"/>
+        		
+
+   
+    </extension>
+          
+
 </extensioninfo>

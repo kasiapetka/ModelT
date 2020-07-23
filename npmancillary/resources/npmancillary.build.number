@@ -1,9 +1,11 @@
 #Ant properties
-#Tue Jul 14 14:37:09 CEST 2020
-builddate=20200714 1432
-description=npmancillary
-name=npmancillary
-releasedate=20181129 1417
+#Tue Jul 14 14:40:47 CEST 2020
+version.api=1905
 vendor=hybris
-version=1811.24
-version.api=1811
+group.id=de.hybris.platform
+name=npmancillary
+description=npmancillary
+builddate=20200714 1437
+releasedate=20190628 1509
+version=1905.16
+module.name=platform-module

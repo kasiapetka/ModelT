@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.hybris.platform</groupId>
 	<artifactId>npmancillary</artifactId>
-	<version>5.0.0.0-SNAPSHOT</version>
+	<version>1905.0</version>
 
 	<packaging>jar</packaging>
 
