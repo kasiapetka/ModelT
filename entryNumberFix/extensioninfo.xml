@@ -16,7 +16,7 @@
                          
       
         
-        <!-- <requires-extension name="cms"/> -->
+        <requires-extension name="platformservices"/>
                          
       
 
