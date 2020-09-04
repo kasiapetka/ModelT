@@ -138,7 +138,7 @@
         },
         {
             "key": "npmancillary.run.npminstall",
-            "value": "true"
+            "value": "false"
         }
     ],
    "aspects": [
