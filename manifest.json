@@ -139,6 +139,10 @@
         {
             "key": "npmancillary.run.npminstall",
             "value": "false"
+        },
+        {
+            "key": "clone.order.entry.number.normalization.cadence",
+            "value": "10"
         }
     ],
    "aspects": [
