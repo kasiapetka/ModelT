@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><entryNumberFix><testclass>de.hybris.platform.order.strategies.ordercloning.impl.jalo.EntryNumberFixTest</testclass><testclass>de.hybris.platform.order.strategies.ordercloning.impl.service.impl.DefaultEntryNumberFixServiceIntegrationTest</testclass></entryNumberFix></testclasses>

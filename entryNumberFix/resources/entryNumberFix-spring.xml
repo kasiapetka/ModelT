@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<alias alias="cloneAbstractOrderStrategy" name="customCloneAbstractOrderStrategy"/>
+	<bean id="customCloneAbstractOrderStrategy"
+			class="de.hybris.platform.order.strategies.ordercloning.impl.CustomCloneAbstractOrderStrategy">
+		<constructor-arg name="typeService" ref="typeService"/>
+		<constructor-arg name="itemModelCloneCreator" ref="itemModelCloneCreator"/>
+		<constructor-arg name="abstractOrderEntryTypeService" ref="abstractOrderEntryTypeService"/>
+	</bean>
+	
+    <bean id="entryNumberFixSystemSetup" class="de.hybris.platform.order.strategies.ordercloning.impl.setup.EntryNumberFixSystemSetup">
+        <!-- constructor arg injection example -->
+        <constructor-arg ref="entryNumberFixService"/>
+    </bean>
+
+    <bean id="entryNumberFixService" class="de.hybris.platform.order.strategies.ordercloning.impl.service.impl.DefaultEntryNumberFixService">
+        <!-- setter injection example -->
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+			
+</beans>

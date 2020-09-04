@@ -46,7 +46,7 @@
        "customsiteinitialdata",
        "customsitestorefront",
        "personalizationsearchsamplesaddon",
-       "customtaskscheduler"
+       "entryNumberFix"
    ],
    "storefrontAddons" : [
         {
