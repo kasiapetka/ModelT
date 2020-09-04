@@ -184,7 +184,10 @@
                 {
                     "name": "yacceleratorstorefront",
                     "contextPath": ""
-
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "acceleratorservices"
                 }
             ]
         },
