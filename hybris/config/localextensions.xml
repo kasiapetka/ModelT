@@ -52,7 +52,6 @@
 	  <extension name= 'personalizationsearchbackoffice' />
 	  <extension name= 'personalizationsearchsmartedit' />
 	  <extension name= 'personalizationsearchweb' />
-	  <extension name= 'personalizationsearchsamplesaddon' />
 	  <extension name= 'personalizationintegration' />
 	  <extension name= 'personalizationintegrationbackoffice' />
 	  <extension name= 'personalizationyprofile' />
